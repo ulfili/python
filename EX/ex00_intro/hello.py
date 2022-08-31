@@ -5,32 +5,3 @@ print("Hi,", name)                                              # say hello and 
 a = int(input("Enter a random number: "))                       # ask for a first number
 b = int(input("Great! Now enter a second random number: "))     # ask for a second number
 print(a, "+", b, "is", a + b)                                   # tipe an answer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
