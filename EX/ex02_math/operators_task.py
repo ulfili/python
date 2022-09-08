@@ -1,53 +1,53 @@
 """Math operators."""
-import math   # open math modul
+import math                                     # open math modul
 
 
-def add(x: int, y: int):   # + action
+def add(x: int, y: int):                        # + action
     return x + y
 
 
-def sub(x: int, y: int):   # - action
+def sub(x: int, y: int):                        # - action
     return x - y
 
 
-def multiply(x: int, y: int):  # * action
+def multiply(x: int, y: int):                   # * action
     return x * y
 
 
-def div(x: int, y: int):  # / action
+def div(x: int, y: int):                        # / action
     return x / y
 
 
-def modulus(x: int, y: int):   # % action
+def modulus(x: int, y: int):                    # % action
     return x % y
 
 
-def floor_div(x: int, y: int):   # // action
+def floor_div(x: int, y: int):                  # // action
     return x // y
 
 
-def exponent(x: int, y: int):       # exponent
+def exponent(x: int, y: int):                   # exponent
     return math.pow(x, y)
 
 
-def first_greater_or_equal(x: int, y: int):   # x is bigger or same as y
+def first_greater_or_equal(x: int, y: int):     # x is bigger or same as y
     return x >= y
 
 
-def second_less_or_equal(x: int, y: int):  # x is bigger or same as y
+def second_less_or_equal(x: int, y: int):       # x is bigger or same as y
     return y <= x
 
 
-def x_is_y(x: int, y: int):      # x and y are the same
+def x_is_y(x: int, y: int):                     # x and y are the same
     return x == y
 
 
-def x_is_not_y(x: int, y: int):      # x is not y
+def x_is_not_y(x: int, y: int):                 # x is not y
     return x != y
 
 
-def if_else(a: int, b: int, c: int, d: int):          # if multiplied a and b is same as divided c and d then return 0
-    mult = a * b                                      # or return bigger result
+def if_else(a: int, b: int, c: int, d: int):    # if multiplied a and b is same as divided c and d then return 0
+    mult = a * b                                # or return bigger result
     div = c / d
     if mult == div:
         return 0
@@ -97,12 +97,7 @@ print(x_is_not_y(2, 4))
 print(if_else(2, 2, 8, 2))
 print(if_else(8, 4, 2, 1))
 print(if_else(1, 1, 9, 3))
-a = int(input("enter num: "))
-b = int(input("enter sec num: "))
-print(surface(a, b))
-aa = int(input("Enter a number: "))
-bb = int(input("Enter a second number: "))
-cc = int(input("Enter a third number: "))
-print(volume(aa, bb, cc))
+print(surface(2, 3))
+print(volume(1, 2, 3))
 print(clock(1, 1, 1, 60))
 print(calculate(1, 5, 2))
