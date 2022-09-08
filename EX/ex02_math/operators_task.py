@@ -1,53 +1,53 @@
 """Math operators."""
-import math                                   # open math modul
+import math   # open math modul
 
 
-def add(x: int, y: int):
+def add(x: int, y: int):   # + action
     return x + y
 
 
-def sub(x: int, y: int):
+def sub(x: int, y: int):   # - action
     return x - y
 
 
-def multiply(x: int, y: int):
+def multiply(x: int, y: int):  # * action
     return x * y
 
 
-def div(x: int, y: int):
+def div(x: int, y: int):  # / action
     return x / y
 
 
-def modulus(x: int, y: int):
+def modulus(x: int, y: int):   # % action
     return x % y
 
 
-def floor_div(x: int, y: int):
+def floor_div(x: int, y: int):   # // action
     return x // y
 
 
-def exponent(x: int, y: int):
+def exponent(x: int, y: int):       # exponent
     return math.pow(x, y)
 
 
-def first_greater_or_equal(x: int, y: int):
+def first_greater_or_equal(x: int, y: int):   # x is bigger or same as y
     return x >= y
 
 
-def second_less_or_equal(x: int, y: int):
+def second_less_or_equal(x: int, y: int):  # x is bigger or same as y
     return y <= x
 
 
-def x_is_y(x: int, y: int):
+def x_is_y(x: int, y: int):      # x and y are the same
     return x == y
 
 
-def x_is_not_y(x: int, y: int):
+def x_is_not_y(x: int, y: int):      # x is not y
     return x != y
 
 
-def if_else(a: int, b: int, c: int, d: int):
-    mult = a * b
+def if_else(a: int, b: int, c: int, d: int):          # if multiplied a and b is same as divided c and d then return 0
+    mult = a * b                                      # or return bigger result
     div = c / d
     if mult == div:
         return 0
@@ -56,14 +56,12 @@ def if_else(a: int, b: int, c: int, d: int):
     return div
 
 
-a = int(input("Enter a number: "))
-b = int(input("Enter a second number: "))
 def surface(a: int, b: int):
     return a * b
 
 
-def volume(a: int(input("Enter a number: ")), b: int(input("Enter a second number: ")), c: int(input("Enter a third number: "))):
-    return a * b * c
+def volume(aa: int, bb: int, cc: int):
+    return aa * bb * cc
 
 
 def clock(day: int, hour: int, minut: int, sec: int) -> float:
@@ -99,7 +97,12 @@ print(x_is_not_y(2, 4))
 print(if_else(2, 2, 8, 2))
 print(if_else(8, 4, 2, 1))
 print(if_else(1, 1, 9, 3))
+a = int(input("enter num: "))
+b = int(input("enter sec num: "))
 print(surface(a, b))
-print(volume(a, b, c))
+aa = int(input("Enter a number: "))
+bb = int(input("Enter a second number: "))
+cc = int(input("Enter a third number: "))
+print(volume(aa, bb, cc))
 print(clock(1, 1, 1, 60))
 print(calculate(1, 5, 2))
