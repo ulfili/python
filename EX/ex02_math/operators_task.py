@@ -6,77 +6,44 @@ def add(x: int, y: int):
     return x + y
 
 
-print(add(1, 2))
-
-
 def sub(x: int, y: int):
     return x - y
-
-
-print(sub(1, 2))
 
 
 def multiply(x: int, y: int):
     return x * y
 
 
-print(multiply(1, 2))
-
-
 def div(x: int, y: int):
     return x / y
-
-
-print(div(1, 2))
 
 
 def modulus(x: int, y: int):
     return x % y
 
 
-print(modulus(1, 2))
-
-
 def floor_div(x: int, y: int):
     return x // y
-
-
-print(floor_div(1, 2))
 
 
 def exponent(x: int, y: int):
     return math.pow(x, y)
 
 
-print(math.pow(2, 3))
-
-
 def first_greater_or_equal(x: int, y: int):
     return x >= y
-
-
-print(first_greater_or_equal(4, 3))
 
 
 def second_less_or_equal(x: int, y: int):
     return y <= x
 
 
-print(second_less_or_equal(4, 3))
-
-
 def x_is_y(x: int, y: int):
     return x == y
 
 
-print(x_is_y(2, 2))
-
-
 def x_is_not_y(x: int, y: int):
     return x != y
-
-
-print(x_is_not_y(2,4))
 
 
 def if_else(a: int, b: int, c: int, d: int):
@@ -89,7 +56,50 @@ def if_else(a: int, b: int, c: int, d: int):
     return div
 
 
+a = int(input("Enter a number: "))
+b = int(input("Enter a second number: "))
+def surface(a: int, b: int):
+    return a * b
+
+
+def volume(a: int(input("Enter a number: ")), b: int(input("Enter a second number: ")), c: int(input("Enter a third number: "))):
+    return a * b * c
+
+
+def clock(day: int, hour: int, minut: int, sec: int) -> float:
+    day = day * 1440
+    hour = hour * 60
+    minut = minut
+    sec = sec / 60
+    return day + hour + minut + sec
+
+
+def calculate(act: int, num_1: int, num_2: int):
+    if act == 0:
+        return num_1 + num_2
+    if act == 1:
+        return num_1 - num_2
+    if act == 2:
+        return num_1 * num_2
+    if act == 3:
+        return num_1 / num_2
+
+
+print(add(1, 2))
+print(sub(1, 2))
+print(multiply(1, 2))
+print(div(1, 2))
+print(modulus(1, 2))
+print(floor_div(1, 2))
+print(math.pow(2, 3))
+print(first_greater_or_equal(4, 3))
+print(second_less_or_equal(4, 3))
+print(x_is_y(2, 2))
+print(x_is_not_y(2, 4))
 print(if_else(2, 2, 8, 2))
 print(if_else(8, 4, 2, 1))
-print(if_else(1,1,9,3))
-
+print(if_else(1, 1, 9, 3))
+print(surface(a, b))
+print(volume(a, b, c))
+print(clock(1, 1, 1, 60))
+print(calculate(1, 5, 2))
