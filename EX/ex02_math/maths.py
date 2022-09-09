@@ -1,5 +1,4 @@
 """Math."""
-import math
 
 
 def average(a: int, b: int, c: int, d: int) -> float:
@@ -8,6 +7,7 @@ def average(a: int, b: int, c: int, d: int) -> float:
     c = c * 3
     d = d * 4
     return (a + b + c + d) / 4
+
 
 def school_pressure(ects: int, weeks: int) -> float:
     ects = ects * 26
@@ -19,9 +19,12 @@ def school_pressure(ects: int, weeks: int) -> float:
         return eap
 
 
-def add_fractions(a: int, b: int, c: int, d: int) -> float:
-    act_1 = int(a) + "/" + int(b)
-    act_2 = int(c) + "/" + int(d)
-    return act_1 + act_2
+def add_fractions(a: int, b: int, c: int, d: int) -> str:
+    act_1 = (a * d) + (c * b)
+    act_2 = d * b
+    return str(act_1) + "/" + str(act_2)
 
-print(add_fractions(1, 2, 1, 2))
+
+print(average(1, 2, 3, 4))
+print(school_pressure(1, 1))
+print(add_fractions(3, 1, 1, 1))
