@@ -1,7 +1,7 @@
 """Math."""
 
 
-def average(a: int, b: int, c: int, d: int) -> float:
+def average(a: int, b: int, c: int, d: int) -> float:              # find average
     a = a * 1
     b = b * 2
     c = c * 3
@@ -9,7 +9,7 @@ def average(a: int, b: int, c: int, d: int) -> float:
     return (a + b + c + d) / 4
 
 
-def school_pressure(ects: int, weeks: int) -> float:
+def school_pressure(ects: int, weeks: int) -> float:              # find eap
     ects = ects * 26
     weeks = weeks * 168
     eap = weeks / ects
@@ -19,7 +19,7 @@ def school_pressure(ects: int, weeks: int) -> float:
         return eap
 
 
-def add_fractions(a: int, b: int, c: int, d: int) -> str:
+def add_fractions(a: int, b: int, c: int, d: int) -> str:       # find fraction answer
     act_1 = (a * d) + (c * b)
     act_2 = d * b
     return str(act_1) + "/" + str(act_2)
