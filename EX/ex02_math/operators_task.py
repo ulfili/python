@@ -18,12 +18,12 @@ def multiply(x: int, y: int):              # * action
 
 
 def div(x: int, y: int):                                              # / action
-    """a."""
+    """action divided."""
     return x / y
 
 
 def modulus(x: int, y: int):                                          # % action
-    """b."""
+    """action ."""
     return x % y
 
 
