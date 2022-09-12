@@ -18,47 +18,52 @@ def multiply(x: int, y: int):              # * action
 
 
 def div(x: int, y: int):                                              # / action
-    """action divided."""
+    """Divide x by y."""
     return x / y
 
 
 def modulus(x: int, y: int):                                          # % action
-    """action ."""
+    """Divide x by y and return remainder. Use an arithmetic operator."""
     return x % y
 
 
 def floor_div(x: int, y: int):                                        # // action
-    """c."""
+    """Divide x by y and floor the value. Use an arithmetic operator."""
     return x // y
 
 
 def exponent(x: int, y: int):                                         # exponent
-    """d."""
+    """Calculate x raised to the power of y."""
     return math.pow(x, y)
 
 
 def first_greater_or_equal(x: int, y: int):                           # x is bigger or same as y
-    """e."""
+    """If x is greater or equal than y then return True. If not then return False."""
     return x >= y
 
 
 def second_less_or_equal(x: int, y: int):                             # x is bigger or same as y
-    """f."""
+    """If y is less or equal than x then return True. If not then return False."""
     return y <= x
 
 
 def x_is_y(x: int, y: int):                                           # x and y are the same
-    """g."""
+    """If x value is the same as y value then return True. If not then return False."""
     return x == y
 
 
 def x_is_not_y(x: int, y: int):                                       # x is not y
-    """h."""
+    """If x value is not the same as y value then return True. If not then return False."""
     return x != y
 
 
 def if_else(a: int, b: int, c: int, d: int):                          # if multiplied a and b is same as divided c and d then return 0
-    """i."""
+    """
+    Create a program that has 4 numeric parameters.
+
+    Multiply parameters 1-2 (multiply a by b) by each other and divide parameters 3-4 (divide c by d) by each other.
+    Next check and return the greater value. If both values are the same then return 0 (number zero).
+    """
     mult = a * b                                                      # or return bigger result
     div = c / d
     if mult == div:
@@ -69,12 +74,12 @@ def if_else(a: int, b: int, c: int, d: int):                          # if multi
 
 
 def surface(a: int, b: int):                                          # find rectangle area
-    """e."""
+    """Add the missing parameters to calculate the surface of a rectangle. Calculate and return the value of the surface."""
     return a * b
 
 
 def volume(aa: int, bb: int, cc: int):                                # find cuboid volume
-    """j."""
+    """Add the missing parameters to calculate the volume of a cubiod. Calculate and return the value of the volume."""
     return aa * bb * cc
 
 
