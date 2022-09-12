@@ -12,43 +12,53 @@ def sub(x: int, y: int):                                              # - action
     return x - y
 
 
-def multiply(x: int, y: int):                                         # * action
+def multiply(x: int, y: int):              # * action
+    """ """
     return x * y
 
 
 def div(x: int, y: int):                                              # / action
+    """ """
     return x / y
 
 
 def modulus(x: int, y: int):                                          # % action
+    """ """
     return x % y
 
 
 def floor_div(x: int, y: int):                                        # // action
+    """ """
     return x // y
 
 
 def exponent(x: int, y: int):                                         # exponent
+    """ """
     return math.pow(x, y)
 
 
 def first_greater_or_equal(x: int, y: int):                           # x is bigger or same as y
+    """ """
     return x >= y
 
 
 def second_less_or_equal(x: int, y: int):                             # x is bigger or same as y
+    """ """
     return y <= x
 
 
 def x_is_y(x: int, y: int):                                           # x and y are the same
+    """ """
     return x == y
 
 
 def x_is_not_y(x: int, y: int):                                       # x is not y
+    """ """
     return x != y
 
 
 def if_else(a: int, b: int, c: int, d: int):                          # if multiplied a and b is same as divided c and d then return 0
+    """ """
     mult = a * b                                                      # or return bigger result
     div = c / d
     if mult == div:
@@ -59,14 +69,17 @@ def if_else(a: int, b: int, c: int, d: int):                          # if multi
 
 
 def surface(a: int, b: int):                                          # find rectangle area
+    """ """
     return a * b
 
 
 def volume(aa: int, bb: int, cc: int):                                # find cuboid volume
+    """ """
     return aa * bb * cc
 
 
 def clock(day: int, hour: int, minut: int, sec: int) -> float:        # return the total amount of minutes
+    """ """
     day = day * 1440
     hour = hour * 60
     minut = minut
@@ -75,6 +88,7 @@ def clock(day: int, hour: int, minut: int, sec: int) -> float:        # return t
 
 
 def calculate(act: int, num_1: int, num_2: int):                      # calculate function
+    """ """
     if act == 0:
         return num_1 + num_2
     if act == 1:
