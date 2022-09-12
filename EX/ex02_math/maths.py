@@ -10,6 +10,8 @@ def average(a: int, b: int, c: int, d: int) -> float:            # find average
 
 
 def school_pressure(ects: int, weeks: int) -> float:             # find eap
+    if weeks == 0:
+        return -1
     hours_to_work = (ects*26)/weeks                              # search for a week limit
     if hours_to_work > 168:
         return -1
