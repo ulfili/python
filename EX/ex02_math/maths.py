@@ -39,7 +39,7 @@ def school_pressure(ects: int, weeks: int) -> float:             # find eap
     return hours_to_work
 
 
-def add_fractions(a: int, b: int, c: int, d: int) -> str:        # find fraction answer
+def add_fractions(a: int, b: int, c: int, d: int) -> str:        # find fraction correct answer
     """
     Implement a function that takes 4 parameters.
 
