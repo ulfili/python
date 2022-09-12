@@ -11,7 +11,7 @@ def is_prime_number(a: int) -> bool:          # find a prime number
     1. If number is a prime number then return boolean True
     2. If number is not a prime number then return boolean False
 
-    :param number: the number to check.
+    :param a: the number to check.
     :return: boolean True if number is a prime number or False if number is not a prime number.
     """
     print("number to test is:", a)
@@ -28,6 +28,7 @@ def is_prime_number(a: int) -> bool:          # find a prime number
             print(f"{a} div {i} positive, we return false")
             return False
     return True
+
 
 print(is_prime_number(1))
 print(is_prime_number(2))
