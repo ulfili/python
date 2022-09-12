@@ -10,12 +10,10 @@ def average(a: int, b: int, c: int, d: int) -> float:            # find average
 
 
 def school_pressure(ects: int, weeks: int) -> float:             # find eap
-    hours_to_work = (ects*26)/weeks
-    week_limit = hours_to_work * weeks                           # search for a week limit
-    if week_limit > 168:
+    hours_to_work = (ects*26)/weeks                              # search for a week limit
+    if hours_to_work > 168:
         return -1
-    if week_limit < 168:
-        return hours_to_work
+    return hours_to_work
 
 
 def add_fractions(a: int, b: int, c: int, d: int) -> str:        # find fraction answer
@@ -25,5 +23,5 @@ def add_fractions(a: int, b: int, c: int, d: int) -> str:        # find fraction
 
 
 print(average(1, 2, 3, 4))
-print(school_pressure(1, 1))
+print(school_pressure(7, 7))
 print(add_fractions(3, 1, 1, 1))
