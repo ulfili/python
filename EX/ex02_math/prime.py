@@ -1,12 +1,18 @@
 """Prime number identifier."""
 
 
-def is_prime_number(k: int) -> bool:           # find a prime number
-    for i in range(2, k + 1):
-        if k % i == 0:
+def is_prime_number(a: int) -> bool:          # find a prime number
+    if a == 0:
+        return False                          # system says that 1 and 0 are not prime numbers
+    if a == 1:
+        return False
+    if a == 2:                                # system says that 2 is a prime number
+        return True
+    for i in range(2, a + 1):
+        if a % i == 0:                        # kui jagamisel ei tekki jääki siis arv ei ole algarv
             return False
-        if k % i >= 0:
-            return True
+        if a % i != 0:
+            return True                       # kui jagamisel tekkib jääk siis number on algarv
 
 
-print(is_prime_number(5))
+print(is_prime_number(17))
