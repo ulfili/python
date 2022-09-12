@@ -13,22 +13,22 @@ def sub(x: int, y: int):                                              # - action
 
 
 def multiply(x: int, y: int):              # * action
-    """ """
+    """ Multiply x by y. """
     return x * y
 
 
 def div(x: int, y: int):                                              # / action
-    """ """
+    """ a."""
     return x / y
 
 
 def modulus(x: int, y: int):                                          # % action
-    """ """
+    """ b."""
     return x % y
 
 
 def floor_div(x: int, y: int):                                        # // action
-    """ """
+    """ c."""
     return x // y
 
 
