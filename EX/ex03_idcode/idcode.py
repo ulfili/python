@@ -48,8 +48,7 @@ def the_first_control_number_algorithm(text: str) -> str:
     :param text: string
     :return: string
     """
-                  # kood kontrollib kas isikukood on korrektne ning kontrollib "moodul 11" 1 astme meetodiga
-    if len(text) > 11:
+    if len(text) > 11:  # kood kontrollib kas isikukood on korrektne ning kontrollib "moodul 11" 1 astme meetodiga
         return "Incorrect ID code!"     # kui tektsi pikkus on rohkem kui 11 või väiksem siis kood ei ole korrektne
     if len(text) < 11:
         return "Incorrect ID code!"
@@ -80,4 +79,4 @@ text = "50006170231"
 my_id_code = find_id_code(text)
 
 # print(the_first_control_number_algorithm(my_id_code))
-print(the_first_control_number_algorithm("50006170231"))
+print(the_first_control_number_algorithm("51201166313"))
