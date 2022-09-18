@@ -1,5 +1,6 @@
 """EX03 ID code."""
 
+
 def find_id_code(text: str) -> str:
     """
     Find ID-code from given text.
@@ -20,9 +21,9 @@ def find_id_code(text: str) -> str:
             number = number + ch
     # print("number is " + number)
     if len(number) > 11:
-        return "too many numbers"
+        return "Too many numbers!"
     if len(number) < 11:
-        return "not enough numbers"
+        return "Not enough numbers!"
     return number
 
 
@@ -73,8 +74,9 @@ def the_first_control_number_algorithm(text: str) -> str:
 
     return text       # end of function control_1
 
-text = "60106hhh260245"
+
+text = "50006170231"
 my_id_code = find_id_code(text)
 
 print(the_first_control_number_algorithm(my_id_code))
-print(the_first_control_number_algorithm("38112025710"))
+print(the_first_control_number_algorithm("50006170231"))
