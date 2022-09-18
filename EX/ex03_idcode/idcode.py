@@ -26,7 +26,6 @@ def find_id_code(text: str) -> str:
         return "Not enough numbers!"
     return number
 
-# print(find_id_code("60106fff260245"))
 
 def the_first_control_number_algorithm(text: str) -> str:
     """
@@ -49,11 +48,11 @@ def the_first_control_number_algorithm(text: str) -> str:
     :param text: string
     :return: string
     """
-    new_code = find_id_code(text)
+    new_code = find_id_code(text)   # kasutan esimese funksiooni tulemuse
     if len(new_code) > 11:  # kood kontrollib kas isikukood on korrektne ning kontrollib "moodul 11" 1 astme meetodiga
-        return "1Incorrect ID code!"     # kui tektsi pikkus on rohkem kui 11 või väiksem siis kood ei ole korrektne
+        return "Incorrect ID code!"     # kui tektsi pikkus on rohkem kui 11 või väiksem siis kood ei ole korrektne
     if len(new_code) < 11:
-        return "2Incorrect ID code!"
+        return "Incorrect ID code!"
     summ = 0
     control = 1
     number_to_check = new_code[:10]       # numbers_to_check on 10 isikukoodi numbrit
@@ -72,7 +71,7 @@ def the_first_control_number_algorithm(text: str) -> str:
     last_digit = new_code[10]
     print("last digit is " + last_digit)
     if str(rem) != last_digit:
-        return "3Incorrect ID code!"
+        return "Incorrect ID code!"
 
     return new_code       # end of function control_1
 
