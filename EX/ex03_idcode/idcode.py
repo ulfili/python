@@ -113,20 +113,13 @@ print(get_gender(0))
 
 def is_valid_year_number(year_number: int) -> bool:
     print("year_number ", year_number)
-    if year_number == 80:
-        return True
-    if year_number == 100:
-        return False
-    if year_number == 5:
-        return True
-    else:
-        return year_number
+    return year_number
     if year_number > 99:
         return False
     return True
 
 
-print(is_valid_year_number(80))
+print(is_valid_year_number(44))
 
 
 def is_valid_month_number(month_number: int) -> bool:
