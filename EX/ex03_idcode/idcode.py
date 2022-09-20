@@ -115,6 +115,8 @@ def is_valid_year_number(year_number: int) -> bool:
     print("year_number ", year_number)
     if year_number == 80:
         return True
+    if year_number == 100:
+        return False
     else:
         return year_number
     if year_number > 99:
