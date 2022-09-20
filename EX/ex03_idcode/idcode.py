@@ -80,3 +80,53 @@ text = "50006170231"
 
 # print(the_first_control_number_algorithm(my_id_code))
 print(the_first_control_number_algorithm("60106260fff245"))
+
+
+def is_valid_gender_number(first_num: int) -> bool:
+    if first_num == 0:
+        return False
+    if first_num <= 6:
+        return True
+    return False
+
+
+print(is_valid_gender_number(6))
+
+
+def get_gender(first_num: int) -> str:
+    is_valid = is_valid_gender_number(first_num)
+    if is_valid:
+        print("number is valid ", is_valid)
+        if first_num % 2 == 0:
+            return "female"
+        else:
+            return "male"
+    """
+    if (first_num == 1) or (first_num == 3) or (first_num == 5):
+        return "male"
+    if (first_num == 2) or (first_num == 4) or (first_num == 6):
+        return "female"
+    """
+
+
+print(get_gender(0))
+
+
+def is_valid_year_number(year_number: int) -> bool:
+    print("year_number ", year_number)
+    if year_number > 99:
+        return False
+    return True
+
+
+print(is_valid_year_number(15))
+
+
+def is_valid_month_number(month_number: int) -> bool:
+    month_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    if month_number in month_list:
+        return True
+    return False
+
+
+print(is_valid_month_number(3))
