@@ -132,11 +132,11 @@ print(is_valid_month_number(3))
 
 
 def is_valid_birth_number(birth_number: int) -> bool:
-    for i in range(1, 710 + 1):
-        print("birth number is " + str(birth_number) + " i is " + str(i))
+    for i in range(1, 999 + 1):
+        # print("birth number is " + str(birth_number) + " i is " + str(i))
         if i == birth_number:
             return True
     return False
 
 
-print(is_valid_birth_number(10))
+print(is_valid_birth_number(188))
