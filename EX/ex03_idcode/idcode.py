@@ -95,7 +95,7 @@ print(is_valid_gender_number(6))
 
 
 def get_gender(first_num: int) -> str:
-    """is valid gender number male or female."""
+    """Is valid gender number male or female."""
     is_valid = is_valid_gender_number(first_num)
     if is_valid:
         print("number is valid ", is_valid)
@@ -105,7 +105,7 @@ def get_gender(first_num: int) -> str:
             return "male"
     """
     teine võimalus funktsiooni kirjutada.
-    
+
     if (first_num == 1) or (first_num == 3) or (first_num == 5):
         return "male"
     if (first_num == 2) or (first_num == 4) or (first_num == 6):
