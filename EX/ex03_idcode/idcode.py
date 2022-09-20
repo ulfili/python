@@ -81,7 +81,6 @@ text = "50006170231"
 # print(the_first_control_number_algorithm(my_id_code))
 print(the_first_control_number_algorithm("60106260fff245"))
 
-
 def is_valid_gender_number(first_num: int) -> bool:
     if first_num == 0:
         return False
@@ -130,3 +129,14 @@ def is_valid_month_number(month_number: int) -> bool:
 
 
 print(is_valid_month_number(3))
+
+
+def is_valid_birth_number(birth_number: int) -> bool:
+    for i in range(1, 710 + 1):
+        print("birth number is " + str(birth_number) + " i is " + str(i))
+        if i == birth_number:
+            return True
+    return False
+
+
+print(is_valid_birth_number(10))
