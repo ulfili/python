@@ -12,11 +12,26 @@ def list_of_cars(all_cars: str) -> list:
     """
     if len(all_cars) == 0:
         return []
-    list = all_cars.split(",")
-    return list
+    cars_list = all_cars.split(",")
+    return cars_list
 
 
-print(list_of_cars(" "))
+print(list_of_cars("Tesla Model S,a b,c d e g f,Skoda Super Lux Sport"))
+
+
+def car_makes_models(all_cars: str) -> tuple[list, list]:
+    cars_list = list_of_cars(all_cars)
+    # print("car list is: ", cars_list)
+    maker_list = list()
+    model_list = list()
+    for car in cars_list:
+        # print("now car is: ", car)
+        maker, model = car.split(" ", 1)
+        # print("maker is: " + maker + " model is: " + model)
+        maker_list.append(maker)
+        model_list.append(model)
+        # print("maker list is: " + str(maker_list) + " model list is: " + str(model_list))
+    return maker_list, model_list
 
 
 def car_makes(all_cars: str) -> list:
@@ -27,13 +42,11 @@ def car_makes(all_cars: str) -> list:
 
     "Audi A4,Skoda Superb,Audi A4" => ["Audi", "Skoda"]
     """
-    all_cars_with_spaces = all_cars.replace(",", " ")   # asendan (replay) komad tühikutega
-    words_list = all_cars_with_spaces.split()          # tühikute asemel on komad
-    cars = (words_list[::2])         # võtan arvesse ainult paarisarvud (alustab lubemist 0st)
-    return list(set(cars))          # set teeb listi, kui ei ole kordusi
+    car_makes_list, car_models_list = car_makes_models(all_cars)
+    return list(set(car_makes_list))
 
 
-print(car_makes("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,Skoda Superb,Skoda Superb,BMW x5"))
+print(car_makes("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,Tesla Model S,Skoda Super Lux Sport"))
 
 
 def car_models(all_cars: str) -> list:
@@ -44,10 +57,47 @@ def car_models(all_cars: str) -> list:
 
     "Audi A4,Skoda Superb,Audi A4,Audi A6" => ["A4", "Superb", "A6"]
     """
-    all_cars_with_spaces = all_cars.replace(",", " ")       # asendan komad tühikutega
-    words_list = all_cars_with_spaces.split()               # tühikute asemele komad
-    models = (words_list[1::2])                             # alustan lugemist 1st ja jagan 2ga
-    return list(set(models))                                # list ilma korduseta
+    car_makes_list, car_models_list = car_makes_models(all_cars)
+    return list(set(car_models_list))
 
 
-print(car_models("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,Skoda Superb,Skoda Superb,BMW x5"))
+print(car_models("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,Tesla Model S,Skoda Super Lux Sport"))
+
+
+def search_by_make(all_cars: str, maker: str) -> list:
+    car = ""
+    car_list = list()
+    car_makes_list, car_models_list = car_makes_models(all_cars)
+    for i in range(len(car_makes_list)):
+        makes = car_makes_list[i]
+        model = car_models_list[i]
+        # print("makes is: ", makes, " model is: ", model, " i is: " , i)
+        if makes.capitalize() == maker.capitalize():
+            #print("makes is: ", makes, " model is: ", model)
+            car = makes + " " + model
+            car_list.append(car)
+    return car_list
+
+
+print(search_by_make("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,tesla Model S,Skoda Super Lux Sport", "TESLA"))
+print(search_by_make("Audi A4,audi A5,AUDI a6 A7", "audi"))
+
+
+def search_by_model(all_cars: str, model: str) -> list:
+    car = ""
+    car_list = list()
+    car_makes_list, car_models_list = car_makes_models(all_cars)
+    for i in range(len(car_models_list)):
+        makes = car_makes_list[i]
+        car_model = car_models_list[i]
+        #print("makes is: ", makes, " model is: ", model, " i is: " , i)
+        #if car_model.capitalize() == model.capitalize():
+        if model.upper() in car_model.upper():
+            print("makes is: ", makes, " model is: ", car_model)
+            car = makes + " " + car_model
+            car_list.append(car)
+    return car_list
+
+
+print(search_by_model("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,tesla Model S,Skoda Super Lux Sport", "lux"))
+print(search_by_model("Audi A4,Audi a4 2021,Audi A40", "4"))
