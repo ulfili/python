@@ -10,8 +10,8 @@ def list_of_cars(all_cars: str) -> list:
 
     "Audi A4,Skoda Superb,Audi A4" => ["Audi A4", "Skoda Superb", "Audi A4"]
     """
-    list = all_cars.split(",")    # split muudab listi korrektseks
-    return list                  # kui [] siis prindis on topelt sulud
+
+    return [all_cars]
 
 
 print(list_of_cars("Audi A4,Skoda Superb,Audi A4"))
