@@ -20,9 +20,7 @@ print(list_of_cars("Tesla Model S,a b,c d e g f,Skoda Super Lux Sport"))
 
 
 def car_makes_models(all_cars: str) -> tuple[list, list]:
-    """
-    This is a general function to return list of makers and models.
-    """
+    """ This is a general function to return list of makers and models. """
     cars_list = list_of_cars(all_cars)
     # print("car list is: ", cars_list)
     maker_list = list()
@@ -76,12 +74,7 @@ print(car_models("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,Tesla Mode
 
 
 def search_by_make(all_cars: str, maker: str) -> list:
-    """
-    This function is for searching cars by manufactor.
-    :param all_cars:
-    :param maker:
-    :return: list of cars manufactor and models.
-    """
+    """ This function is for searching cars by manufactor. """
     car = ""
     car_list = list()
     car_makes_list, car_models_list = car_makes_models(all_cars)
@@ -101,12 +94,7 @@ print(search_by_make("Audi A4,audi A5,AUDI a6 A7", "audi"))
 
 
 def search_by_model(all_cars: str, model: str) -> list:
-    """
-    This function is for searching cars by model.
-    :param all_cars:
-    :param model:
-    :return: list of cars manufactor and models.
-    """
+    """ This function is for searching cars by model. """
     car = ""
     car_list = list()
     car_makes_list, car_models_list = car_makes_models(all_cars)
