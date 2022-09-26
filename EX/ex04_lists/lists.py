@@ -73,7 +73,7 @@ def search_by_make(all_cars: str, maker: str) -> list:
         model = car_models_list[i]
         # print("makes is: ", makes, " model is: ", model, " i is: " , i)
         if makes.capitalize() == maker.capitalize():
-            #print("makes is: ", makes, " model is: ", model)
+            # print("makes is: ", makes, " model is: ", model)
             car = makes + " " + model
             car_list.append(car)
     return car_list
@@ -90,14 +90,17 @@ def search_by_model(all_cars: str, model: str) -> list:
     for i in range(len(car_models_list)):
         makes = car_makes_list[i]
         car_model = car_models_list[i]
-        #print("makes is: ", makes, " model is: ", model, " i is: " , i)
-        #if car_model.capitalize() == model.capitalize():
-        if model.upper() in car_model.upper():
-            print("makes is: ", makes, " model is: ", car_model)
-            car = makes + " " + car_model
-            car_list.append(car)
+        # print("makes is: ", makes, " model is: ", model, " i is: " , i)
+        # if car_model.capitalize() == model.capitalize():
+        model_word_list = car_model.split()
+        # print("model word list is: ", model_word_list)
+        for m in model_word_list:
+            if m.upper() == model.upper():
+                # print("makes is: ", makes, " model is: ", car_model)
+                car = makes + " " + car_model
+                car_list.append(car)
     return car_list
 
 
-print(search_by_model("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,tesla Model S,Skoda Super Lux Sport", "lux"))
-print(search_by_model("Audi A4,Audi a4 2021,Audi A40", "4"))
+print(search_by_model("Audi A4 ,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,tesla Model S,Skoda Super Lux Sport", "lux"))
+print(search_by_model("Audi A4,Audi a4 2021,Audi A40", "a4"))
