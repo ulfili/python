@@ -43,7 +43,11 @@ def car_makes(all_cars: str) -> list:
     "Audi A4,Skoda Superb,Audi A4" => ["Audi", "Skoda"]
     """
     car_makes_list, car_models_list = car_makes_models(all_cars)
-    return list(set(car_makes_list))
+    unique_makes_list = list()
+    for maker in car_makes_list:
+        if maker not in unique_makes_list:
+            unique_makes_list.append(maker)           # lisab listi listi sisse
+    return unique_makes_list
 
 
 print(car_makes("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,Tesla Model S,Skoda Super Lux Sport"))
@@ -58,7 +62,11 @@ def car_models(all_cars: str) -> list:
     "Audi A4,Skoda Superb,Audi A4,Audi A6" => ["A4", "Superb", "A6"]
     """
     car_makes_list, car_models_list = car_makes_models(all_cars)
-    return list(set(car_models_list))
+    unique_model_list = list()
+    for model in car_models_list:
+        if model not in unique_model_list:
+            unique_model_list.append(model)
+    return unique_model_list
 
 
 print(car_models("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,Tesla Model S,Skoda Super Lux Sport"))
