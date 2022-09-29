@@ -17,3 +17,15 @@ def format_time(min: int) -> str:
 
 print(format_time(125))
 
+
+def caught_speeding(num: int):
+    if num < 60:
+        return 0
+    if num > 80:
+        return 2
+    if num:
+        for i in range(61, 81):
+            return 1
+
+
+print(caught_speeding(55))
