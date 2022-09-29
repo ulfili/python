@@ -31,3 +31,11 @@ def caught_speeding(num: int, birthday: bool):
 
 
 print(caught_speeding(5, True))
+
+
+def first_half(word: str):
+    if len(word) % 2 == 0:
+        return word[:len(word)//2]
+
+
+print(first_half("kiki"))
