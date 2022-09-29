@@ -18,7 +18,9 @@ def format_time(min: int) -> str:
 print(format_time(125))
 
 
-def caught_speeding(num: int):
+def caught_speeding(num: int, birthday: bool):
+    if birthday is True:
+        num = num * 5
     if num < 60:
         return 0
     if num > 80:
@@ -28,4 +30,4 @@ def caught_speeding(num: int):
             return 1
 
 
-print(caught_speeding(55))
+print(caught_speeding(5, True))
