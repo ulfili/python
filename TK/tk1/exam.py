@@ -5,14 +5,14 @@ def format_time(min: int) -> str:
     hour = min // 60
     minut = min % 60
     if min % 60 == 0:
-        return hour
+        return str(hour)+"h"
     if min % 60 != 0:
         if min < 60:
-            return min
+            return str(min) + "min"
         if min > 60:
             answ = min - minut
             answ_2 = answ // 60
-            return answ_2, minut
+            return str(answ_2) + "h " + str(minut) + "min"
 
 
 print(format_time(125))
@@ -39,3 +39,12 @@ def first_half(word: str):
 
 
 print(first_half("kiki"))
+
+
+#def num_as_index(num_list:list):
+    #if num_list > 0:
+        #a =
+        #return
+
+
+#print(num_as_index([1,2,3,4]))
