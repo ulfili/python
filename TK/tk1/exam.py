@@ -5,6 +5,8 @@ def format_time(min: int) -> str:
     hour = min // 60
     minut = min % 60
     if min % 60 == 0:
+        if min == 0:
+            return str(min) + "min"
         return str(hour)+"h"
     if min % 60 != 0:
         if min < 60:
@@ -15,7 +17,7 @@ def format_time(min: int) -> str:
             return str(answ_2) + "h " + str(minut) + "min"
 
 
-print(format_time(125))
+print(format_time(0))
 
 
 def caught_speeding(num: int, birthday: bool):
