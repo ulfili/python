@@ -2,6 +2,7 @@
 
 
 def format_time(min: int) -> str:
+    """Given minutes as an int, return correctly formatted time in hours and minutes."""
     hour = min // 60
     minut = min % 60
     if min % 60 == 0:
@@ -21,8 +22,9 @@ print(format_time(0))
 
 
 def caught_speeding(num: int, birthday: bool):
+    """Return which category speeding ticket you would get."""
     if birthday is True:
-        num = num * 5
+        num = num + 5
     if num < 60:
         return 0
     if num > 80:
@@ -43,10 +45,4 @@ def first_half(word: str):
 print(first_half("kiki"))
 
 
-#def num_as_index(num_list:list):
-    #if num_list > 0:
-        #a =
-        #return
-
-
-#print(num_as_index([1,2,3,4]))
+def
