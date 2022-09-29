@@ -25,16 +25,14 @@ def caught_speeding(num: int, birthday: bool):
     """Return which category speeding ticket you would get."""
     if birthday:
         num = num + 5
-    if num < 60:
+    if num <= 60:
         return 0
     if num > 80:
         return 2
-    if num:
-        for i in range(61, 81):
-            return 1
+    return 1
 
 
-print(caught_speeding(5, True))
+print(caught_speeding(60, False))
 
 
 def first_half(word: str):
