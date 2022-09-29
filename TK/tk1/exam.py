@@ -8,7 +8,7 @@ def format_time(min: int) -> str:
     if min % 60 == 0:
         if min == 0:
             return str(min) + "min"
-        return str(hour)+"h"
+        return str(hour) + "h"
     if min % 60 != 0:
         if min < 60:
             return str(min) + "min"
@@ -24,7 +24,7 @@ print(format_time(0))
 def caught_speeding(num: int, birthday: bool):
     """Return which category speeding ticket you would get."""
     if birthday:
-        num = num + 5
+        num = num - 5
     if num <= 60:
         return 0
     if num > 80:
@@ -32,13 +32,13 @@ def caught_speeding(num: int, birthday: bool):
     return 1
 
 
-print(caught_speeding(60, False))
+print(caught_speeding(60, True))
 
 
 def first_half(word: str):
     """Return the first half of an string."""
     if len(word) % 2 == 0:
-        return word[:len(word)//2]
+        return word[:len(word) // 2]
 
 
 print(first_half("kiki"))
