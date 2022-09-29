@@ -1,0 +1,19 @@
+"""TK1."""
+
+
+def format_time(min: int) -> str:
+    hour = min // 60
+    minut = min % 60
+    if min % 60 == 0:
+        return hour
+    if min % 60 != 0:
+        if min < 60:
+            return min
+        if min > 60:
+            answ = min - minut
+            answ_2 = answ // 60
+            return answ_2, minut
+
+
+print(format_time(125))
+
