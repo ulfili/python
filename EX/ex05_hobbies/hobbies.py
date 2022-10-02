@@ -49,3 +49,28 @@ def sort_dictionary(dic: dict) -> dict:
 
 
 print(sort_dictionary({"Jack": ["swimming", "hiking"], "Charlie": ["games", "yoga"]}))
+
+
+def create_dictionary_with_hobbies(data: str) -> dict:
+    """
+    Create dictionary about hobbies and their hobbyists ie. {hobby1: [name1, name2, ...], hobby2: [...]}.
+    :param data: given string from database
+    :return: dictionary, where keys are hobbies and values are lists of people. Values are sorted alphabetically
+    """
+    my_dict = dict()
+    my_persons_list = data.split()
+    for person in my_persons_list:
+        person_name, person_hobbie = person.split(":")
+        print(f"Person with name {person_name} has hobbie {person_hobbie}")
+        if person_hobbie not in my_dict:
+            my_dict[person_hobbie] = [person_name]
+        else:
+            persons_list = my_dict[person_hobbie]
+            if person_name not in persons_list:
+                persons_list.append(person_name)
+                persons_list.sort()
+                my_dict[person_hobbie] = persons_list
+    return my_dict
+
+
+print(create_dictionary_with_hobbies("Wendy:crafting\nJack:crafting\nPeter:crafting\nWendy:gaming\nMonica:tennis\nChris:origami\nSophie:sport\nMonica:design\nCarmen:sport\nJack:crafting\nPeter:hiking"))
