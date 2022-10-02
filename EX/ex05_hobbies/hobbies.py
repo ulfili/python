@@ -54,6 +54,7 @@ print(sort_dictionary({"Jack": ["swimming", "hiking"], "Charlie": ["games", "yog
 def create_dictionary_with_hobbies(data: str) -> dict:
     """
     Create dictionary about hobbies and their hobbyists ie. {hobby1: [name1, name2, ...], hobby2: [...]}.
+
     :param data: given string from database
     :return: dictionary, where keys are hobbies and values are lists of people. Values are sorted alphabetically
     """
