@@ -5,7 +5,7 @@ import re
 def find_words(text: str) -> list:
     """Given string text, return all the words in that string."""
     new_list = []
-    pattern = r"[A-ZÕÄÖÜ][a-zõäöü]*"
+    pattern = r"[A-ZÕÄÖÜ][a-zõäöü]+"
     for match in re.finditer(pattern, text):
         found_words = match.group()
         new_list.append(found_words)
@@ -18,7 +18,7 @@ print(find_words("Tomat,Apelsin,mandarin,Klaviatuur,arvuti,Äike,Päike"))
 def find_words_with_vowels(text: str) -> list:
     """Given string text, return all the words in that string that start with a vowel."""
     new_list = []
-    pattern = r"[AEIOUÕÄÖÜ][a-zõäöü]*"
+    pattern = r"[AEIOUÕÄÖÜ][a-zõäöü]+"
     for match in re.finditer(pattern, text):
         found_words = match.group()
         new_list.append(found_words)
@@ -31,7 +31,7 @@ print(find_words_with_vowels("Tomat,Apelsin,mandarin,Klaviatuur,arvuti,Äike,Pä
 def find_sentences(text: str) -> list:
     """Given string text, return all sentences in that string."""
     new_list = []
-    pattern = r"([A-ZÕÄÖÜ][^\.!?]*[\.!?])"
+    pattern = r"([A-ZÕÄÖÜ][^\.!?]*[\.!?]+)"
     for match in re.finditer(pattern, text):
         found_words = match.group()
         new_list.append(found_words)
@@ -72,7 +72,7 @@ print(find_words_from_sentences_only("Minu nimi on uljana. Python is my fav lang
 def find_years(text: str) -> list:
     """Given string text, return a list of all 4-digit numbers (years) in that string."""
     new_list = []
-    pattern = r"\d+"
+    pattern = r"\b\d{4}\b"
     for match in re.finditer(pattern, text):
         found_words = match.group()
         new_list.append(found_words)
