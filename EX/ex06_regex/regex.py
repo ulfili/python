@@ -88,14 +88,14 @@ def find_phone_numbers(text: str) -> dict:
     for match in re.finditer(pattern, text):
         phone_number = match.group(2)
         country_code = match.group(1)
+        if country_code == None:
+            country_code = ""
         print("country code is: ", country_code, " phone num is: ", phone_number)
         if country_code not in my_dict.keys():
             my_dict[country_code] = []
             my_dict[country_code].append(phone_number)
         else:
             my_dict[country_code].append(phone_number)
-            my_dict[""] = my_dict[None]
-            del my_dict[None]
     return my_dict
 
 
