@@ -72,7 +72,7 @@ print(find_words_from_sentences_only("Minu nimi on uljana. Python is my fav lang
 def find_years(text: str) -> list:
     """Given string text, return a list of all 4-digit numbers (years) in that string."""
     new_list = []
-    pattern = r"\d{4}"
+    pattern = r"(?<!\d)\d{4}(?!\d)"
     for match in re.finditer(pattern, text):
         found_words = match.group()
         new_list.append(int(found_words))
