@@ -72,11 +72,25 @@ print(find_words_from_sentences_only("Minu nimi on uljana. Python is my fav lang
 def find_years(text: str) -> list:
     """Given string text, return a list of all 4-digit numbers (years) in that string."""
     new_list = []
-    pattern = r"\b\d{4}\b"
+    pattern = r"\d{4}"
     for match in re.finditer(pattern, text):
         found_words = match.group()
-        new_list.append(found_words)
+        new_list.append(int(found_words))
     return new_list
 
 
-print(find_years("dd  jvjos 1993. fpxjnsnz2001 oxobdy 2000 ! kksh hslsjijci 4999."))
+print(find_years("1998, 1998, 7777, 1234"))
+
+
+def find_phone_numbers(text: str) -> dict:
+    new_dict = dict
+    pattern = "(\+\d{3} *)?(\d{7,8})"
+    for match in re.finditer(pattern, text):
+        number = match.group(2)
+        index = match.group(1)
+        print(index, number)
+
+
+
+
+print(find_phone_numbers("+372 56887364  +37256887363  +33359835647  56887365 +11 1234567 +327 1 11111111"))
