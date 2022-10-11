@@ -83,14 +83,20 @@ print(find_years("1998, 1998, 7777, 1234"))
 
 
 def find_phone_numbers(text: str) -> dict:
-    new_dict = dict
+    my_dict = dict()
     pattern = "(\+\d{3} *)?(\d{7,8})"
     for match in re.finditer(pattern, text):
-        number = match.group(2)
-        index = match.group(1)
-        print(index, number)
-
-
+        phone_number = match.group(2)
+        country_code = match.group(1)
+        print("country code is: ", country_code, " phone num is: ", phone_number)
+        if country_code not in my_dict.keys():
+            my_dict[country_code] = []
+            my_dict[country_code].append(phone_number)
+        else:
+            my_dict[country_code].append(phone_number)
+            my_dict[""] = my_dict[None]
+            del my_dict[None]
+    return my_dict
 
 
 print(find_phone_numbers("+372 56887364  +37256887363  +33359835647  56887365 +11 1234567 +327 1 11111111"))
