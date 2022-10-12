@@ -5,13 +5,12 @@ import re
 class Entry:
     """Entry class."""
 
-    def __init__(self, first_name: str, last_name: str, id_code: str, country_code: str, phone_number: str, date_of_birth: str,
+    def __init__(self, first_name: str, last_name: str, id_code: str, phone_number: str, date_of_birth: str,
                  address: str):
         """Init."""
         self.first_name = first_name
         self.last_name = last_name
         self.id_code = id_code
-        self.country_code = country_code
         self.phone_number = phone_number
         self.date_of_birth = date_of_birth
         self.address = address
@@ -37,7 +36,7 @@ class Entry:
         """
         return f"Name: {self.first_name} {self.last_name}\n" \
                f"ID code: {self.id_code}\n" \
-               f"Phone number: {self.country_code}{self.phone_number}\n" \
+               f"Phone number: {self.phone_number}\n" \
                f"Date of birth: {self.date_of_birth}\n" \
                f"Address: {self.address}"
 
@@ -49,7 +48,7 @@ class Entry:
         This method is perfect. Don't touch it.
         """
         return self.first_name == other.first_name and self.last_name == other.last_name and \
-            self.id_code == other.id_code and self.country_code == other.country_code and self.phone_number == other.phone_number and \
+            self.id_code == other.id_code and self.phone_number == other.phone_number and \
             self.date_of_birth == other.date_of_birth and self.address == other.address
 
 
@@ -60,9 +59,9 @@ def parse(row: str) -> Entry:
     :param row: String representation of the data.
     :return: Entry object with filled values
     """
-    pattern = r"([A-Z][a-z]+)?([A-Z][a-z]+)?(\d{11})(\+\d{3})?( *\d{7,8})?(\d\d-\d\d-\d\d\d\d)?(.+)?"
+    pattern = r"([A-Z][a-z]+)?([A-Z][a-z]+)?(\d{11})?(\+\d{3} \d{7,8}|\+\d{3}\d{7,8}|\d{7,8})?(\d\d-\d\d-\d\d\d\d)?(.+)?"
     match = re.search(pattern, row)
-    entry = Entry(match.group(1), match.group(2), match.group(3), match.group(4), match.group(5), match.group(6), match.group(7))
+    entry = Entry(match.group(1), match.group(2), match.group(3), match.group(4), match.group(5), match.group(6))
     return entry
 
 
