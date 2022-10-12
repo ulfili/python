@@ -59,7 +59,7 @@ def parse(row: str) -> Entry:
     :param row: String representation of the data.
     :return: Entry object with filled values
     """
-    pattern = r"([A-Z][a-z]+)?([A-Z][a-z]+)?(\d{11})(\+\d{3}? *\d{7,8})?(\d\d-\d\d-\d\d\d\d)?(.*)"
+    pattern = r"([A-Z][a-z]+)?([A-Z][a-z]+)?(\d{11})(\+\d{3}? *\d{7,8})?(\d\d-\d\d-\d\d\d\d)?(.+)?"
     match = re.search(pattern, row)
     entry = Entry(match.group(1), match.group(2), match.group(3), match.group(4), match.group(5), match.group(6))
     return entry
