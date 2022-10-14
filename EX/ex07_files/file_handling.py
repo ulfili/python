@@ -30,4 +30,4 @@ def read_file_contents_to_list(filename: str) -> list:
     """
     with open (filename) as file:
         content = file.read()
-    return list(content)
+    return list(content.split())
