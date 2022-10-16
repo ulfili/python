@@ -62,3 +62,15 @@ def write_lines_to_file(filename: str, lines: list) -> None:
 
 
 write_lines_to_file("lines_file", ["list", "of", "stings"])
+
+
+def write_csv_file(filename: str, data: list) -> None:
+    """Write data into CSV file."""
+    with open(filename, 'w', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=";")
+        for row in data:
+            csv_writer.writerow(row)
+    pass
+
+
+write_csv_file("csv_file", [["name", "age"], ["john", "11"], ["mary", "15"]])
