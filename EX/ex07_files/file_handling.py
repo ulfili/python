@@ -45,5 +45,3 @@ def read_csv_file(filename: str) -> list:
             my_list.append(row)
     return my_list
 
-
-print(read_csv_file("data.csv"))
