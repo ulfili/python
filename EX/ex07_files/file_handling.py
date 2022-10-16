@@ -38,8 +38,7 @@ def write_contents_to_file(filename: str, contents: str) -> None:
 def write_lines_to_file(filename: str, lines: list) -> None:
     """Write lines to file."""
     with open(filename, "a",) as file:
-        for strings in lines:
-            file.write(strings + "\n")
+        file.write('\n'.join(lines))
     pass
 
 
