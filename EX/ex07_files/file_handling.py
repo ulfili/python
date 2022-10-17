@@ -84,6 +84,3 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
             result.append(t)
     print("after parsing all towns the result is\n", result)
     write_csv_file(csv_output_filename, result)
-
-
-merge_dates_and_towns_into_csv("dates.txt", "towns.txt", "output.csv")
