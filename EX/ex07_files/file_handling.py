@@ -58,29 +58,27 @@ write_csv_file("csv_file", [["name", "age"], ["john", "11"], ["mary", "15"]])
 
 
 def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv_output_filename: str) -> None:
+    "Names, towns, dates csv file."
     town_list = read_csv_file(towns_filename)  # loen towns faili
     data_list = read_csv_file(dates_filename)  # loen date faili
     print(town_list, data_list)
     result = [["name", "town", "date"]]
-    new_dict = dict
-    dates = []
-    towns = []
     for data in data_list:      # käin data elemendid läbi
         name, date = data[0].split(":")
-        #print("name is:", name, " date is: ", date)
+        # print("name is:", name, " date is: ", date)
         d = [name, "-", date]
         result.append(d)  # saan listi [name, "-", date]
-    #print("after parsing all data the result is\n", result)
+    # print("after parsing all data the result is\n", result)
     for data in town_list:       # käin town elemendid läbi
         name, town = data[0].split(":")
         data_not_found = True
         for row in result:
             if row[0] == name:
-                #print("we found name in result", name)
+                # print("we found name in result", name)
                 data_not_found = False
                 row[1] = town
         if data_not_found:
             t = [name, town, "-"]
             result.append(t)
-    #print("after parsing all towns the result is\n", result)
+    # print("after parsing all towns the result is\n", result)
     write_csv_file(csv_output_filename, result)
