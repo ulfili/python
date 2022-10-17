@@ -58,7 +58,7 @@ write_csv_file("csv_file", [["name", "age"], ["john", "11"], ["mary", "15"]])
 
 
 def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv_output_filename: str) -> None:
-    "Names, towns, dates csv file."
+    """Names, towns, dates csv file."""
     town_list = read_csv_file(towns_filename)  # loen towns faili
     data_list = read_csv_file(dates_filename)  # loen date faili
     print(town_list, data_list)
