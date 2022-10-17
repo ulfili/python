@@ -76,11 +76,11 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
         data_not_found = True
         for row in result:
             if row[0] == name:
-                print("we found name in result", name)
+                #print("we found name in result", name)
                 data_not_found = False
                 row[1] = town
         if data_not_found:
             t = [name, town, "-"]
             result.append(t)
-    print("after parsing all towns the result is\n", result)
+    #print("after parsing all towns the result is\n", result)
     write_csv_file(csv_output_filename, result)
