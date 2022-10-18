@@ -95,6 +95,3 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
             #print(my_dict)
             my_list.append(my_dict)
     print(my_list)
-
-
-read_csv_file_into_list_of_dicts("input.csv")
