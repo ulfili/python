@@ -61,7 +61,7 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
     """Names, towns, dates csv file."""
     town_list = read_csv_file(towns_filename)  # loen towns faili
     data_list = read_csv_file(dates_filename)  # loen date faili
-    print(town_list, data_list)
+    #print(town_list, data_list)
     result = [["name", "town", "date"]]
     for data in data_list:      # käin data elemendid läbi
         name, date = data[0].split(":")
@@ -82,3 +82,19 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
             result.append(t)
     # print("after parsing all towns the result is\n", result)
     write_csv_file(csv_output_filename, result)
+
+
+def read_csv_file_into_list_of_dicts(filename: str) -> list:
+    """Read csv file into list of dictionaries."""
+    my_list = []
+    with open(filename, "rt") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in csv_reader:
+            #print(row)
+            my_dict = {"name": row[0], "age": row[1], "sex": row[2], "town": row[3]}
+            #print(my_dict)
+            my_list.append(my_dict)
+    print(my_list)
+
+
+read_csv_file_into_list_of_dicts("input.csv")
