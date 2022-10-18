@@ -90,11 +90,8 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
     with open(filename, "rt") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            #print(row)
+            # print(row)
             my_dict = {"name": row[0], "age": row[1], "sex": row[2], "town": row[3]}
             # print(my_dict)
             my_list.append(my_dict)
-    print(my_list)
-
-
-read_csv_file_into_list_of_dicts("input.csv")
+    return my_list
