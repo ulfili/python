@@ -61,7 +61,7 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
     """Names, towns, dates csv file."""
     town_list = read_csv_file(towns_filename)  # loen towns faili
     data_list = read_csv_file(dates_filename)  # loen date faili
-    #print(town_list, data_list)
+    # print(town_list, data_list)
     result = [["name", "town", "date"]]
     for data in data_list:      # käin data elemendid läbi
         name, date = data[0].split(":")
