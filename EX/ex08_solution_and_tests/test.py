@@ -1,4 +1,4 @@
-"""Test of solutions"""
+"""Test of solutions."""
 import pytest
 
 from solution import students_study
