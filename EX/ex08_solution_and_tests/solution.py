@@ -43,6 +43,14 @@ def students_study(time: int, coffee_needed: bool) -> bool:
             return True
         else:
             return False
+    else:
+        if coffee_needed is True:
+            return False
+        else:
+            return True
 
 
 print(students_study(17, False))
+print(students_study(18, True))
+print(students_study(19, False))
+print(students_study(1, True))
