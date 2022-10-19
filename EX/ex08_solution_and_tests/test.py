@@ -13,6 +13,6 @@ def test_student_study__night_study():
 
 
 def test_student_study__day_study():
-    """Coffee is needed in the morning."""
+    """Coffee is needed in the morning!."""
     assert students_study(14, True) is True
     assert students_study(14, False) is False
