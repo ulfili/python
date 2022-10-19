@@ -7,13 +7,13 @@ def lottery(a: int, b: int, c: int) -> int:
         return 10
     if a == b == c != 5:
         return 5
-    if a != b != c:
+    if a != b and a != c:
         return 1
     else:
         return 0
 
 
-print(lottery(3, 2, 2))
+print(lottery(5, 1, 5))
 
 
 def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> int:
@@ -24,8 +24,12 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
     if all_kg == ordered_amount:
         return small_baskets
     if all_kg != ordered_amount:
-        return -1
+        if five_kg_baskets == 0:
+            return ordered_amount
+        else:
+            return -1
 
 
 print(fruit_order(4, 1, 9))
 print(fruit_order(3, 1, 10))
+print(fruit_order(10, 0, 9))
