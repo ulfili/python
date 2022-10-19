@@ -21,6 +21,8 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
     five_kg_baskets = big_baskets * 5
     one_kg_baskets = small_baskets * 1
     all_kg = five_kg_baskets + one_kg_baskets
+    if five_kg_baskets == ordered_amount:
+        return 0
     if all_kg == ordered_amount:
         return small_baskets
     if all_kg != ordered_amount:
@@ -33,3 +35,4 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
 print(fruit_order(4, 1, 9))
 print(fruit_order(3, 1, 10))
 print(fruit_order(10, 0, 9))
+print(fruit_order(3, 3, 15))
