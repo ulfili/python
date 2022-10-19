@@ -49,6 +49,3 @@ def students_study(time: int, coffee_needed: bool) -> bool:
             return False
         else:
             return True
-
-
-print(students_study(18, True))
