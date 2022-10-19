@@ -23,4 +23,9 @@ def test_student_study__day_study():
 
 def test_lottery__all_five():
     """If all numbers are 5."""
-    assert lottery(5, 5, 5) is 10
+    assert lottery(5, 5, 5) == 10
+
+
+def test_lottery__all_same():
+    """If all numbers are same (expected 5)."""
+    assert lottery(1, 1, 1) == 5
