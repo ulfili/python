@@ -6,7 +6,7 @@ from solution import lottery
 def test_student_study__evening_not_coffee_needed():
     """In the evening it doesn't matter whether we have coffee."""
     assert students_study(20, True) is False
-    assert students_study(20, False)is True
+    assert students_study(20, False) is True
 
 
 def test_student_study__night_study():
