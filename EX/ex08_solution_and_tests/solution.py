@@ -17,10 +17,11 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
     """Return number of small fruit baskets if it's possible to finish the order, otherwise return -1."""
     five_kg = 5
     five_kg_baskets = ordered_amount // five_kg
+    all_kg = (five_kg_baskets * 5) + (small_baskets * 1)
     print("5 kg: ", five_kg_baskets)
     if five_kg_baskets <= big_baskets:
-        return small_baskets
-    all_kg = (five_kg_baskets * big_baskets) + (small_baskets * 1)
+        if all_kg == ordered_amount:
+            return small_baskets
     if all_kg == ordered_amount:
         return small_baskets
     else:
@@ -29,7 +30,7 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
 
 print(fruit_order(1, 5, 21))
 print(fruit_order(4, 1, 9))
-print(fruit_order(3, 1, 10))
+print(fruit_order(2, 2, 13))
 
 
 def students_study(time: int, coffee_needed: bool) -> bool:
