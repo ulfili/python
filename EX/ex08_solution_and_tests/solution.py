@@ -37,14 +37,9 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
         return -1
 
 
-print(fruit_order(1, 5, 21))
-print(fruit_order(5, 0, 6))
-print(fruit_order(3, 3, 15))
-print(fruit_order(2, 2, 13))
-
 def students_study(time: int, coffee_needed: bool) -> bool:
     """Return True if students study in given circumstances."""
-    if 5 <= time <= 17:
+    if 5 <= time <= 18:
         if coffee_needed is True:
             return True
         else:
@@ -54,3 +49,6 @@ def students_study(time: int, coffee_needed: bool) -> bool:
             return False
         else:
             return True
+
+
+print(students_study(18, True))
