@@ -1,5 +1,6 @@
 """Test of solutions."""
 from solution import students_study
+from solution import lottery
 
 
 def test_student_study__evening_not_coffee_needed():
@@ -18,3 +19,8 @@ def test_student_study__day_study():
     """Coffee is needed in the morning!."""
     assert students_study(14, True) is True
     assert students_study(14, False) is False
+
+
+def test_lottery__all_five():
+    """If all numbers are 5."""
+    assert lottery(5, 5, 5) is 10
