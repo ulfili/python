@@ -32,14 +32,12 @@ def write_contents_to_file(filename: str, contents: str) -> None:
     """Write contents to file."""
     with open(filename, "w") as file:
         file.write(contents)
-    pass
 
 
 def write_lines_to_file(filename: str, lines: list) -> None:
     """Write lines to file."""
     with open(filename, "a",) as file:
         file.write('\n'.join(lines))        # ühendan lines ja panen \n algusesse, et sed ei oleks viimase linei lõppus
-    pass
 
 
 write_lines_to_file("lines_file", ["list", "of", "stings"])
@@ -87,11 +85,29 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
 def read_csv_file_into_list_of_dicts(filename: str) -> list:
     """Read csv file into list of dictionaries."""
     my_list = []
+    empty_list = []
     with open(filename, "rt") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            # print(row)
-            my_dict = {"name": row[0], "age": row[1], "sex": row[2], "town": row[3]}
-            # print(my_dict)
-            my_list.append(my_dict)
-    return my_list
+            my_list.append(row)
+        if len(my_list) <= 1:
+            return empty_list
+        else:
+            all_data_list = []
+            keys_list = []
+            for data in my_list[0]:
+                keys_list.append(data)
+            del my_list[0]
+            for row in my_list:
+                i = 0
+                my_dict = {}
+                for key in keys_list:
+                    my_dict[key] = {}
+                for key in my_dict:
+                    my_dict[key] = row[i]
+                    i += 1
+                all_data_list.append(my_dict)
+            return all_data_list
+
+
+read_csv_file_into_list_of_dicts("input.csv")
