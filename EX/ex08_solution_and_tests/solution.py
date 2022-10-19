@@ -22,6 +22,8 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
     if five_kg_baskets <= big_baskets:
         if all_kg == ordered_amount:
             return small_baskets
+        else:
+            return 0
     if all_kg == ordered_amount:
         return small_baskets
     if big_baskets == 0:
@@ -35,7 +37,8 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
 
 print(fruit_order(1, 5, 21))
 print(fruit_order(5, 0, 6))
-print(fruit_order(3, 1, 10))
+print(fruit_order(3, 3, 15))
+
 
 def students_study(time: int, coffee_needed: bool) -> bool:
     """Return True if students study in given circumstances."""
