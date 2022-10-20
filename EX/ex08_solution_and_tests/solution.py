@@ -1,6 +1,19 @@
 """Solution and test."""
 
 
+def students_study(time: int, coffee_needed: bool) -> bool:
+    """Return True if students study in given circumstances."""
+    if 18 <= time <= 24:
+        return True
+    if 5 <= time <= 17:
+        if coffee_needed is True:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
 def lottery(a: int, b: int, c: int) -> int:
     """Return Lottery victory result 10, 5, 1, or 0 according to input values."""
     if a == b == c == 5:
@@ -35,17 +48,3 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
             return -1
     else:
         return -1
-
-
-def students_study(time: int, coffee_needed: bool) -> bool:
-    """Return True if students study in given circumstances."""
-    if 5 <= time <= 18:
-        if coffee_needed is True:
-            return True
-        else:
-            return False
-    else:
-        if coffee_needed is True:
-            return False
-        else:
-            return True
