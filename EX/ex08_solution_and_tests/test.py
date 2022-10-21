@@ -46,4 +46,5 @@ def test__lottery_a_c_same_b_diff():
 
 def test_lottery__all_different():
     """All numbers are different."""
+    assert lottery(1, 2, 2) == 1
     assert lottery(1, 2, 3) == 1
