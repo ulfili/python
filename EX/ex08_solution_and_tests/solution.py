@@ -6,10 +6,7 @@ def students_study(time: int, coffee_needed: bool) -> bool:
     if 18 <= time <= 24:
         return True
     if 5 <= time <= 17:
-        if coffee_needed is True:
-            return True
-        else:
-            return False
+        return coffee_needed
     else:
         return False
 
@@ -20,7 +17,7 @@ def lottery(a: int, b: int, c: int) -> int:
         return 10
     if a == b == c != 5:
         return 5
-    if a != b and a != c:
+    if b == c != a:
         return 1
     else:
         return 0
