@@ -54,3 +54,13 @@ def test_lottery__all_different():
 def test_fruit_order__all_zero():
     """All numbers are zero."""
     assert fruit_order(0, 0, 0) == 0
+
+
+def test_fruit_order__zero_amount_zero_small():
+    """Amount is zero, small basket is zero."""
+    assert fruit_order(0, 10, 0) == 0
+
+
+def test_fruit_order__zero_amount_zero_big():
+    """Amount is zero, big basket is zero."""
+    assert fruit_order(5, 0, 0) == 0
