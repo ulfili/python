@@ -17,7 +17,7 @@ def lottery(a: int, b: int, c: int) -> int:
         return 10
     if a == b == c != 5:
         return 5
-    if b == c != a:
+    if a != b and a != c:
         return 1
     else:
         return 0
