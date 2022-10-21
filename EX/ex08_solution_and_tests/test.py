@@ -77,6 +77,7 @@ def test_fruit_order__all_enough():
     assert fruit_order(4, 0, 4) == 4
     assert fruit_order(0, 2, 10) == 0
     assert fruit_order(2, 2, 12) == 2
+    assert fruit_order(3, 7, 31) == 1
 
 
 def test_fruit_order__not_enough_baskets():
