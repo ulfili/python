@@ -92,3 +92,9 @@ def test_fruit_order__more_than_required():
     assert fruit_order(5, 0, 4) == 4
     assert fruit_order(0, 2, 5) == 0
     assert fruit_order(1, 5, 21) == 1
+
+
+def test_fruit_order__something_is_not_enough():
+    """There are not enough small or big baskets."""
+    assert fruit_order(1, 2, 12) == -1
+    assert fruit_order(3, 321, 1609) == -1
