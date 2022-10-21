@@ -26,6 +26,7 @@ def test_lottery__all_same():
     """All numbers are same, but not 5."""
     assert lottery(3, 3, 3) == 5
     assert lottery(0, 0, 0) == 5
+    assert lottery(-1, -1, -1) == 5
 
 
 def test_lottery__all_five():
