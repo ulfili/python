@@ -64,3 +64,14 @@ def test_fruit_order__zero_amount_zero_small():
 def test_fruit_order__zero_amount_zero_big():
     """Amount is zero, big basket is zero."""
     assert fruit_order(5, 0, 0) == 0
+
+
+def test_fruit_order__zero_amount_others_not_zero():
+    """Amount is zero, others are not."""
+    assert fruit_order(1, 2, 0) == 0
+
+
+def test_fruit_order__all_enough():
+    """Amount correct, enough baskets."""
+    assert fruit_order(1, 1, 6) == 1
+    assert fruit_order(4, 0, 4) == 4
