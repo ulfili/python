@@ -33,6 +33,16 @@ def test_lottery__all_five():
     assert lottery(5, 5, 5) == 10
 
 
+def test_lottery__a_b_same_c_diff():
+    """A and b are same, c is different."""
+    assert lottery(2, 2, 3) == 0
+
+
+def test__lottery_a_c_same_b_diff():
+    """A and c are same, b is different."""
+    assert lottery(2, 3, 2) == 0
+
+
 def test_lottery__all_different():
-    """All numbers are diferent."""
+    """All numbers are different."""
     assert lottery(1, 2, 3) == 1
