@@ -88,3 +88,5 @@ def test_fruit_order__not_enough_baskets():
 def test_fruit_order__more_than_required():
     """There are too many baskets."""
     assert fruit_order(5, 0, 4) == 4
+    assert fruit_order(0, 2, 5) == 0
+    assert fruit_order(1, 5, 21) == 1
