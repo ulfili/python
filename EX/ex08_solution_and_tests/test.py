@@ -101,3 +101,4 @@ def test_fruit_order__something_is_not_enough():
     """There are not enough small or big baskets."""
     assert fruit_order(1, 2, 12) == -1
     assert fruit_order(3, 10000, 10004) == -1
+    assert fruit_order(12, 1, 18) == -1
