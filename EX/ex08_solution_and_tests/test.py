@@ -25,3 +25,13 @@ def test_student_study__day_coffee_needed():
 def test_lottery__all_same():
     """All numbers are same, but not 5."""
     assert lottery(3, 3, 3) == 5
+
+
+def test_lottery__all_five():
+    """All numbers are 5."""
+    assert lottery(5, 5, 5) == 10
+
+
+def test_lottery__all_different():
+    """All numbers are diferent."""
+    assert lottery(1, 2, 3) == 1
