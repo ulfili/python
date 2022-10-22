@@ -102,3 +102,4 @@ def test_fruit_order__something_is_not_enough():
     assert fruit_order(1, 2, 12) == -1
     assert fruit_order(3, 10000, 10004) == -1
     assert fruit_order(12, 1, 18) == -1
+    assert fruit_order(0, 1, 4) == -1
