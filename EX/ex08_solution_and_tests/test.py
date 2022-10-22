@@ -12,7 +12,7 @@ def test_student_study__evening_not_coffee_needed():
 
 
 def test_student_study__night_coffee_needed():
-    """At night studens are sleeping."""
+    """At night students are sleeping."""
     assert students_study(1, True) is False
     assert students_study(1, False) is False
 
@@ -23,6 +23,10 @@ def test_student_study__day_coffee_needed():
     assert students_study(9, False) is False
 
 
+def test_student_study__edge_case():
+    """Something."""
+    assert students_study(-1, False) is False
+    assert students_study(-1, True) is False
 def test_lottery__all_same():
     """All numbers are same, but not 5."""
     assert lottery(3, 3, 3) == 5
