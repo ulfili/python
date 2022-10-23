@@ -25,8 +25,11 @@ def test_student_study__day_coffee_needed():
 
 def test_student_study__edge_case():
     """Something."""
-    assert students_study(-1, False) is False
-    assert students_study(-1, True) is False
+    assert students_study(17, True) is False
+    assert students_study(18, True) is False
+    assert students_study(23, True) is False
+
+
 def test_lottery__all_same():
     """All numbers are same, but not 5."""
     assert lottery(3, 3, 3) == 5
