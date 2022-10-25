@@ -9,9 +9,6 @@ def loop_reverse(s: str) -> str:
     return reversed_string
 
 
-print(loop_reverse("hey"))
-
-
 def recursive_reverse(s: str) -> str:
     """Reverse a string using recursion."""
     if len(s) == 0:
@@ -20,28 +17,19 @@ def recursive_reverse(s: str) -> str:
         return recursive_reverse(s[1:]) + s[0]
 
 
-print(recursive_reverse("hey"))
-
-
 def loop_sum(n: int) -> int:
     """Sum of numbers using loop."""
     num = 0
-    for i in range(1, n+1):
+    for i in range(1, n + 1):
         num = i + num
     return num
-
-
-print(loop_sum(5))
 
 
 def recursive_sum(n: int) -> int:
     """Sum of numbers using recursion."""
     if n == 0:
         return n
-    return n + recursive_sum(n-1)
-
-
-print(recursive_sum(5))
+    return n + recursive_sum(n - 1)
 
 
 def countdown(n: int):
@@ -49,18 +37,9 @@ def countdown(n: int):
     if n < 0:
         return []
     else:
-        return [n] + countdown(n-1)
-
-
-print(countdown(10))
-print(countdown(-1))
+        return [n] + countdown(n - 1)
 
 
 def add_commas(n: int):
     """Add comas into a number."""
     return "{:,}".format(n)
-
-
-print(add_commas(123456))
-print(add_commas(1245))
-print(add_commas(123456789))
