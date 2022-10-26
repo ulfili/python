@@ -42,7 +42,8 @@ def countdown(n: int):
 
 def add_commas(n: int):
     """Add comas into a number."""
-    return "{:,}".format(n)
+    return ("{:,}".format(n))
+print(add_commas(1245))
 
 
 def sum_digits_recursive(number: int) -> int:
@@ -54,7 +55,7 @@ def sum_digits_recursive(number: int) -> int:
 print("sum of digits is:")
 print(sum_digits_recursive(10000))
 
-def pair_star_recursive(word: str,number: int) -> str:
+def pair_star_recursive(word: str, number: int) -> str:
     """Add star between identical adjacent chars."""
     lenght = len(word)
     if number == lenght or number == lenght - 1:
@@ -62,7 +63,7 @@ def pair_star_recursive(word: str,number: int) -> str:
     if word[number] == word[number + 1]:
         return word[number] + "*" + pair_star_recursive(word, number+1)
     else:
-        return word[number] + pair_star_recursive(word,number + 1)
+        return word[number] + pair_star_recursive(word, number + 1)
 
 print(pair_star_recursive("hello", 0))
 
