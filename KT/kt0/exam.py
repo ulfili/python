@@ -75,7 +75,19 @@ def nr_into_num_list(nr: int, num_list: list) -> list:
     nr_into_num_list(0, [1,2,3,4,5]) -> [0,1,2,3,4,5,]
 
     """
-    pass
+    length = len(num_list)
+    if nr > (length - 1):
+        num_list.append(nr)
+    if nr == 0:
+        num_list.insert(0, nr)
+    else:
+        num_list.insert(nr - 1, nr)
+    return num_list
+
+
+print(nr_into_num_list(5, [1,2,3,4])) # [1,2,3,4,5]
+print(nr_into_num_list(5, [1,2,3,4,5,6]))
+print(nr_into_num_list(0, [1,2,3,4,5]))
 
 
 def symbol_average_position_in_words(words):
