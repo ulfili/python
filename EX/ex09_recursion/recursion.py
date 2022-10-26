@@ -46,62 +46,37 @@ def add_commas(n: int):
 
 
 def sum_digits_recursive(number: int) -> int:
-    """
-    Return the sum of the digits in number.
-
-    Given a non-negative int n, return the sum of its digits recursively (no loops).
-
-    sum_digits_recursive(123) => 6
-    sum_digits_recursive(1) => 1
-    sum_digits_recursive(0) => 0
-    sum_digits_recursive(999) => 27
-
-    Hint: turn the number into string and take one digit at a time.
-
-    :param number: non-negative number
-    :return: sum of digits in the number
-    """
-    pass
+    """Return the sum of the digits in number."""
+    if number <= 0:
+        return number
+    else:
+        return int(number % 10) + sum_digits_recursive(int(number / 10))
 
 
-def pair_star_recursive(s: str) -> str:
-    """
-    Add star between identical adjacent chars.
+def pair_star_recursive(word: str,number: int) -> str:
+    """Add star between identical adjacent chars."""
+    lenght = len(word)
+    if number == lenght or number == lenght - 1:
+        return word[number]
+    if word[number] == word[number + 1]:
+        return word[number] + "*" + pair_star_recursive(word, number+1)
+    else:
+        return word[number] + pair_star_recursive(word,number + 1)
 
-    Given a string, compute recursively a new string
-    where identical chars that are adjacent in the original string
-    are separated from each other by a "*".
-
-    pair_star_recursive("abc") => "abc"
-    pair_star_recursive("aa") => "a*a"
-    pair_star_recursive("aaa") => "a*a*a"
-    pair_star_recursive("") => ""
-
-    :param s: input string
-    :return: string with stars between identical chars.
-    """
-    pass
+print(pair_star_recursive("hello", 0))
 
 
 def stonks(coins: float, rate: float, years: int) -> int:
-    """
-    Each year your crypto-investment grows.
-
-    Write a recursive function that calculates the net worth of coins after some years.
-    Rate is in percents.
-    Round the answer down to the nearest integer.
-
-    stonks(1000, 10, 10) -> 2593
-    stonks(100000, 12, 3) -> 140492
-
-    :param coins: starting amount (0-10000)
-    :param rate: rate percentage (0-100)
-    :param years: number of years (0-50)
-    :return: coins after years
-    """
-    pass
+    """Each year your crypto-investment grows."""
+    protsent = coins * (rate / 100)
+    new_coins = round(coins + protsent)
+    if years <= 1:
+        return new_coins
+    else:
+        return stonks(new_coins, rate, years - 1)
 
 
+print(stonks(1000, 10, 10))
 def quic_mafs(a: int, b: int) -> list:
     """
     Write a recursive function that applies the following operations.
