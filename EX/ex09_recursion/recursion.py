@@ -72,9 +72,9 @@ def stonks(coins: float, rate: float, years: int) -> int:
     protsent = coins * (rate / 100)
     new_coins = coins + protsent
     if years <= 1:
-        return floor(new_coins)
+        return new_coins
     else:
-        return stonks(new_coins, rate, years - 1)
+        return floor(stonks(new_coins, rate, years - 1))
 
 print(stonks(100000, 12, 3))
 print(stonks(1000, 10, 10))
