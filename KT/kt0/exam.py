@@ -14,14 +14,14 @@ def add_char_into_pos(char: str, pos: int, string: str) -> str:
     add_char_into_pos("k", 10, "kalla") -> "kalla"
 
     """
-    l = len(string)
-    if 0 < pos < (l + 1):
+    lenght = len(string)
+    if 0 < pos < (lenght + 1):
         new_string = (string[:pos - 1] + char + string[pos-1] + string[pos:])
         return new_string
-    if pos == (l + 1):
+    if pos == (lenght + 1):
         new_string = (string[:pos] + char)
         return new_string
-    if pos > (l + 1):
+    if pos > (lenght + 1):
         return string
 
 
@@ -60,9 +60,6 @@ def nr_of_common_characters(string1: str, string2: str) -> int:
     return len(dup)
 
 
-print(nr_of_common_characters("memm", "taat"))
-
-
 def nr_into_num_list(nr: int, num_list: list) -> list:
     """
     Return a list of numbers where the "nr" is added into the "num_list" so that the list keep going to be sorted.
@@ -75,22 +72,20 @@ def nr_into_num_list(nr: int, num_list: list) -> list:
     nr_into_num_list(0, [1,2,3,4,5]) -> [0,1,2,3,4,5,]
 
     """
-    length = len(num_list)
-    if len(num_list) == 0:
-        return [nr]
-    if nr > length:
-        num_list.append(nr)
-    if nr == 0:
-        num_list.insert(0, nr)
-    else:
-        num_list.insert(nr - 1, nr)
-    return num_list
+    num_list.append(nr)
+    new_list = []
+    while num_list:
+        minim = num_list[0]
+        for x in num_list:
+            if x < minim:
+                minim = x
+        new_list.append(minim)
+        num_list.remove(minim)
+    return new_list
 
 
 print(nr_into_num_list(5, []))
-print(nr_into_num_list(1, [777]))
-print(nr_into_num_list(5, [1,2,3,4,5,6]))
-
+print(nr_into_num_list(0, [1, 2, 3, 4]))
 
 
 def symbol_average_position_in_words(words):
