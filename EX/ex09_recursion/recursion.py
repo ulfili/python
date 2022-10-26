@@ -65,17 +65,18 @@ def pair_star_recursive(word: str,number: int) -> str:
 
 print(pair_star_recursive("hello", 0))
 
+from math import floor
 
 def stonks(coins: float, rate: float, years: int) -> int:
     """Each year your crypto-investment grows."""
     protsent = coins * (rate / 100)
-    new_coins = round(coins + protsent)
+    new_coins = floor(coins + protsent)
     if years <= 1:
         return new_coins
     else:
         return stonks(new_coins, rate, years - 1)
 
-
+print(stonks(100000, 12, 3))
 print(stonks(1000, 10, 10))
 def quic_mafs(a: int, b: int) -> list:
     """
@@ -94,6 +95,7 @@ def quic_mafs(a: int, b: int) -> list:
     :param b: int
     :return: result
     """
+    # print("Function quack_mafs called, a is ", a, " b is ", b)
     if a == 0 or b == 0:
         return [a, b]
     if a >= 2 * b:
@@ -104,7 +106,3 @@ def quic_mafs(a: int, b: int) -> list:
             return [a, b]
         b = b - 2 * a
         return quic_mafs(a, b)
-
-print(quic_mafs(2, 1))
-print(quic_mafs(6, 19))
-print(quic_mafs(2638, 299))
