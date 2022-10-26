@@ -94,4 +94,17 @@ def quic_mafs(a: int, b: int) -> list:
     :param b: int
     :return: result
     """
-    pass
+    if a == 0 or b == 0:
+        return [a, b]
+    if a >= 2 * b:
+        a = a - 2 * b
+        return quic_mafs(a, b)
+    else:
+        if b < 2 * a:
+            return [a, b]
+        b = b - 2 * a
+        return quic_mafs(a, b)
+
+print(quic_mafs(2, 1))
+print(quic_mafs(6, 19))
+print(quic_mafs(2638, 299))
