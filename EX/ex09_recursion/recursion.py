@@ -1,4 +1,5 @@
 """If you're going to perform recursion, you need to use recursion."""
+from math import floor
 
 
 def loop_reverse(s: str) -> str:
@@ -43,6 +44,8 @@ def countdown(n: int):
 def add_commas(n: int):
     """Add comas into a number."""
     return ("{:,}".format(n))
+
+
 print(add_commas(1245))
 
 
@@ -52,8 +55,11 @@ def sum_digits_recursive(number: int) -> int:
         return number
     else:
         return int(number % 10) + sum_digits_recursive(int(number / 10))
+
+
 print("sum of digits is:")
 print(sum_digits_recursive(10000))
+
 
 def pair_star_recursive(word: str, number: int) -> str:
     """Add star between identical adjacent chars."""
@@ -61,13 +67,13 @@ def pair_star_recursive(word: str, number: int) -> str:
     if number == lenght or number == lenght - 1:
         return word[number]
     if word[number] == word[number + 1]:
-        return word[number] + "*" + pair_star_recursive(word, number+1)
+        return word[number] + "*" + pair_star_recursive(word, number + 1)
     else:
         return word[number] + pair_star_recursive(word, number + 1)
 
+
 print(pair_star_recursive("hello", 0))
 
-from math import floor
 
 def stonks(coins: float, rate: float, years: int) -> int:
     """Each year your crypto-investment grows."""
@@ -78,8 +84,11 @@ def stonks(coins: float, rate: float, years: int) -> int:
     else:
         return stonks(new_coins, rate, years - 1)
 
+
 print(stonks(100000, 12, 3))
 print(stonks(1000, 10, 10))
+
+
 def quic_mafs(a: int, b: int) -> list:
     """
     Write a recursive function that applies the following operations.
