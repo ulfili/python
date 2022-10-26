@@ -39,7 +39,15 @@ def nr_of_common_characters(string1: str, string2: str) -> int:
     """
     my_dict = {}
     dup = []
-    for key in set(string2 + string1):
+    elements_list = []
+    text1 = set(string1)
+    text2 = set(string2)
+    for elements in text1:
+        elements_list.append(elements)
+    for elements in text2:
+        elements_list.append(elements)
+        print(elements_list)
+    for key in elements_list:
         print("key is " + key)
         if key in my_dict:
             my_dict[key] = my_dict[key] + 1
@@ -50,6 +58,9 @@ def nr_of_common_characters(string1: str, string2: str) -> int:
         if value > 1:
             dup.append(value)
     return len(dup)
+
+
+print(nr_of_common_characters("memm", "taat"))
 
 
 def nr_into_num_list(nr: int, num_list: list) -> list:
