@@ -51,7 +51,8 @@ def sum_digits_recursive(number: int) -> int:
         return number
     else:
         return int(number % 10) + sum_digits_recursive(int(number / 10))
-
+print("sum of digits is:")
+print(sum_digits_recursive(10000))
 
 def pair_star_recursive(word: str,number: int) -> str:
     """Add star between identical adjacent chars."""
@@ -72,9 +73,9 @@ def stonks(coins: float, rate: float, years: int) -> int:
     protsent = coins * (rate / 100)
     new_coins = coins + protsent
     if years <= 1:
-        return new_coins
+        return floor(new_coins)
     else:
-        return floor(stonks(new_coins, rate, years - 1))
+        return stonks(new_coins, rate, years - 1)
 
 print(stonks(100000, 12, 3))
 print(stonks(1000, 10, 10))
