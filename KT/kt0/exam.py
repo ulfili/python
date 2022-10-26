@@ -78,7 +78,7 @@ def nr_into_num_list(nr: int, num_list: list) -> list:
     length = len(num_list)
     if len(num_list) == 0:
         return [nr]
-    if nr > (length - 1):
+    if nr > length:
         num_list.append(nr)
     if nr == 0:
         num_list.insert(0, nr)
@@ -88,8 +88,9 @@ def nr_into_num_list(nr: int, num_list: list) -> list:
 
 
 print(nr_into_num_list(5, []))
-print(nr_into_num_list(0, [1,2,3,4,5]))
+print(nr_into_num_list(1, [777]))
 print(nr_into_num_list(5, [1,2,3,4,5,6]))
+
 
 
 def symbol_average_position_in_words(words):
