@@ -70,9 +70,9 @@ from math import floor
 def stonks(coins: float, rate: float, years: int) -> int:
     """Each year your crypto-investment grows."""
     protsent = coins * (rate / 100)
-    new_coins = floor(coins + protsent)
+    new_coins = coins + protsent
     if years <= 1:
-        return new_coins
+        return floor(new_coins)
     else:
         return stonks(new_coins, rate, years - 1)
 
