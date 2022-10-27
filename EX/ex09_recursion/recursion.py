@@ -43,11 +43,12 @@ def countdown(n: int):
 
 def add_commas(n: int):
     """Add comas into a number."""
-    if len(str(n)) < 3:
+    if len(str(n)) < 4:
         return n
     else:
         return add_commas(str(n)[:-3]) + ',' + str(n)[-3:]
-print("commas added")
+
+
 print(add_commas(1245))
 
 
