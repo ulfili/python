@@ -58,7 +58,7 @@ def sum_digits_recursive(number: int) -> int:
     if number <= 0:
         return number
     else:
-        return int(number % 10) + sum_digits_recursive(int(number // 10))
+        return int(number % 10) + sum_digits_recursive(number // 10)
 
 
 print(sum_digits_recursive(10000))
