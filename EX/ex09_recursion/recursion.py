@@ -65,18 +65,21 @@ print(sum_digits_recursive(10000))
 print(sum_digits_recursive(123))
 
 
-def pair_star_recursive(word: str, number: int) -> str:
+def pair_star_recursive(word: str) -> str:
     """Add star between identical adjacent chars."""
-    lenght = len(word)
-    if number == lenght or number == lenght - 1:
-        return word[number]
-    if word[number] == word[number + 1]:
-        return word[number] + "*" + pair_star_recursive(word, number + 1)
+    if len(word) <= 1:
+        return word
+    first_char = word[0]
+    rest_chars = word[1:]
+    if first_char == rest_chars[0]:
+        return first_char + "*" + pair_star_recursive(rest_chars)
     else:
-        return word[number] + pair_star_recursive(word, number + 1)
+        return first_char + pair_star_recursive(rest_chars)
 
 
-print(pair_star_recursive("hello", 0))
+print(pair_star_recursive("hello"))
+print(pair_star_recursive("aaab"))
+print(pair_star_recursive("***"))
 
 
 def stonks(coins: float, rate: float, years: int) -> int:
