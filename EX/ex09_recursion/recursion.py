@@ -91,10 +91,6 @@ def stonks(coins: float, rate: float, years: int) -> int:
         return stonks(new_coins, rate, years - 1)
 
 
-print(stonks(100000, 12, 3))
-print(stonks(1000, 10, 10))
-
-
 def quic_mafs(a: int, b: int) -> list:
     """
     Write a recursive function that applies the following operations.
