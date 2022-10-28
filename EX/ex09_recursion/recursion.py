@@ -55,7 +55,7 @@ print(add_commas(103))
 
 def sum_digits_recursive(number: int) -> int:
     """Return the sum of the digits in number."""
-    if number <= 10:
+    if number <= 0:
         return number
     else:
         return int(number % 10) + sum_digits_recursive(int(number // 10))
