@@ -84,8 +84,7 @@ print(pair_star_recursive("***"))
 
 def stonks(coins: float, rate: float, years: int) -> int:
     """Each year your crypto-investment grows."""
-    protsent = coins * (rate / 100)
-    new_coins = coins + protsent
+    new_coins = coins * (1 + (rate / 100.0))
     if years <= 1:
         return floor(new_coins)
     else:
