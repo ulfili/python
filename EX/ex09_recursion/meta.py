@@ -1,3 +1,4 @@
+"""Tree drawing."""
 from turtle import *
 reset()
 color("pink")
