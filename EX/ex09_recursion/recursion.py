@@ -44,12 +44,13 @@ def countdown(n: int):
 def add_commas(n: int):
     """Add comas into a number."""
     if len(str(n)) < 4:
-        return n
+        return str(n)
     else:
         return add_commas(str(n)[:-3]) + ',' + str(n)[-3:]
 
 
 print(add_commas(1245))
+print(add_commas(103))
 
 
 def sum_digits_recursive(number: int) -> int:
@@ -60,7 +61,6 @@ def sum_digits_recursive(number: int) -> int:
         return int(number % 10) + sum_digits_recursive(int(number / 10))
 
 
-print("sum of digits is:")
 print(sum_digits_recursive(10000))
 
 
