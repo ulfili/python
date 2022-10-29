@@ -90,8 +90,8 @@ def stonks(coins: float, rate: float, years: int) -> int:
         return stonks(new_coins, rate, years - 1)
 
 
-print(stonks(1000, 10, 10)) # 2593
-print(stonks(100000, 12, 3)) # 140492
+print(stonks(1000, 10, 10))      # 2593
+print(stonks(100000, 12, 3))     # 140492
 
 
 def quic_mafs(a: int, b: int) -> list:
