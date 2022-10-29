@@ -1,5 +1,4 @@
 """If you're going to perform recursion, you need to use recursion."""
-from math import floor
 
 
 def loop_reverse(s: str) -> str:
@@ -89,8 +88,11 @@ def stonks(coins: float, rate: float, years: int) -> int:
         return int(new_coins)
     else:
         return stonks(new_coins, rate, years - 1)
+
+
 print(stonks(1000, 10, 10)) # 2593
 print(stonks(100000, 12, 3)) # 140492
+
 
 def quic_mafs(a: int, b: int) -> list:
     """
