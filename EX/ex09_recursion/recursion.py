@@ -48,20 +48,12 @@ def add_commas(n: int):
         return add_commas(str(n)[:-3]) + ',' + str(n)[-3:]
 
 
-print(add_commas(1245))
-print(add_commas(103))
-
-
 def sum_digits_recursive(number: int) -> int:
     """Return the sum of the digits in number."""
     if number <= 0:
         return number
     else:
         return int(number % 10) + sum_digits_recursive(number // 10)
-
-
-print(sum_digits_recursive(10000))
-print(sum_digits_recursive(123))
 
 
 def pair_star_recursive(word: str) -> str:
@@ -76,11 +68,6 @@ def pair_star_recursive(word: str) -> str:
         return first_char + pair_star_recursive(rest_chars)
 
 
-print(pair_star_recursive("hello"))
-print(pair_star_recursive("aaab"))
-print(pair_star_recursive("***"))
-
-
 def stonks(coins: float, rate: float, years: int) -> int:
     """Each year your crypto-investment grows."""
     new_coins = coins * (1 + (rate / 100.0))
@@ -88,10 +75,6 @@ def stonks(coins: float, rate: float, years: int) -> int:
         return int(new_coins)
     else:
         return stonks(new_coins, rate, years - 1)
-
-
-print(stonks(1000, 10, 10))      # 2593
-print(stonks(100000, 12, 3))     # 140492
 
 
 def quic_mafs(a: int, b: int) -> list:
