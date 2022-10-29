@@ -1,5 +1,5 @@
 """If you're going to perform recursion, you need to use recursion."""
-
+from math import floor
 
 def loop_reverse(s: str) -> str:
     """Reverse a string."""
@@ -70,7 +70,7 @@ def pair_star_recursive(word: str) -> str:
 
 def stonks(coins: float, rate: float, years: int) -> int:
     """Each year your crypto-investment grows."""
-    new_coins = coins * (1 + (rate / 100.0))
+    new_coins = (coins) * (1 + (rate / 100.0))
     if years <= 1:
         return int(new_coins)
     else:
@@ -79,6 +79,7 @@ def stonks(coins: float, rate: float, years: int) -> int:
 
 print(stonks(1000, 10, 10))
 print(stonks(100000, 12, 3))
+print(stonks(234, 33, 89))
 
 
 def quic_mafs(a: int, b: int) -> list:
