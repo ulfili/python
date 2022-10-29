@@ -86,10 +86,11 @@ def stonks(coins: float, rate: float, years: int) -> int:
     """Each year your crypto-investment grows."""
     new_coins = coins + (coins * (rate / 100))
     if years <= 1:
-        return floor(new_coins)
+        return int(new_coins)
     else:
         return stonks(new_coins, rate, years - 1)
-
+print(stonks(1000, 10, 10)) # 2593
+print(stonks(100000, 12, 3)) # 140492
 
 def quic_mafs(a: int, b: int) -> list:
     """
