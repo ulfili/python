@@ -70,14 +70,16 @@ def pair_star_recursive(word: str) -> str:
 
 def stonks(coins: float, rate: float, years: int) -> int:
     """Each year your crypto-investment grows."""
-    # new_coins = (coins) * (1 + (rate / 100.0))
+    if years == 0:
+        return int(coins)
     if years <= 1:
         return int((coins) * (1 + (rate / 100.0)))
     else:
         return stonks((coins) * (1 + (rate / 100.0)), rate, years - 1)
 
 
-print(stonks(1000, 10, 10))
+
+print(stonks(1000, 10, 0))
 print(stonks(100000, 12, 3))
 print(stonks(234, 33, 89))
 
