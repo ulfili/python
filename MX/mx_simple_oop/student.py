@@ -3,6 +3,7 @@
 
 class Student:
     """Student class."""
+
     def __init__(self, name, finished):
         """Student constructor."""
         self.name = name
