@@ -20,6 +20,15 @@ class Tweet:
         self.retweets = retweets
 
 
+class Popularity:
+    def __init__(self, hashtag, retweets):
+        self.hashtag = hashtag
+        self.retweets = retweets
+
+    def __repr__(self):
+        return '{' + self.hashtag + ', ' + str(self.retweets) + '}'
+
+
 def find_fastest_growing(tweets: list) -> Tweet:
     """
     Find the fastest growing tweet.
@@ -104,7 +113,27 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
     :param tweets: Input list of tweets.
     :return: List of hashtags by popularity.
     """
-    pass
+    hashtag_popularity = {}
+    pattern = r"#\w+"
+    for tweet in tweets:
+        hashtags_list_in_tweet = []
+        for match in re.finditer(pattern, tweet.content):
+            found_hashtag = match.group()
+            hashtags_list_in_tweet.append(found_hashtag)
+        for hashtag in hashtags_list_in_tweet:
+            if hashtag in hashtag_popularity:
+                hashtag_popularity[hashtag] = hashtag_popularity.get(hashtag) + tweet.retweets
+            else:
+                hashtag_popularity[hashtag] = tweet.retweets
+        print(hashtag_popularity)
+    tag_pop_list = []
+    for key, value in hashtag_popularity.items():
+        tag_pop = Popularity(key, value)
+        tag_pop_list.append(tag_pop)
+    print(tag_pop_list)
+    tag_pop_list.sort(key=attrgetter("hashtag"))
+    tag_pop_list.sort(key=attrgetter("retweets"), reverse=True)
+    print(tag_pop_list)
 
 
 if __name__ == '__main__':
@@ -124,11 +153,11 @@ if __name__ == '__main__':
     #print(filtered_by_popularity[2].user)  # -> "@realDonaldTrump"
 
 
-    filtered_by_hashtag = filter_by_hashtag(tweets, "#life")
-    for tw in filtered_by_hashtag:
-        print(tw.content)
+    #filtered_by_hashtag = filter_by_hashtag(tweets, "#life")
+    #for tw in filtered_by_hashtag:
+    #    print(tw.content)
     # print(filtered_by_hashtag[0].user)  # -> "@realDonaldTrump"
     # print(filtered_by_hashtag[1].user)  # -> "@elonMusk"
 
-    #sorted_hashtags = sort_hashtags_by_popularity(tweets)
-    #print(sorted_hashtags[0])  # -> "#heart"
+    sorted_hashtags = sort_hashtags_by_popularity(tweets)
+   # print(sorted_hashtags[0])  # -> "#heart"
