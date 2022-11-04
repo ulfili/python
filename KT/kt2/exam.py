@@ -69,7 +69,7 @@ def min_diff(nums: list) -> int:
     n = len(nums)
     diff = 10 ** 20
     for i in range(n - 1):
-        for j in range(i+1, n):
+        for j in range(i + 1, n):
             if abs(nums[i] - nums[j]) < diff:
                 diff = abs(nums[i] - nums[j])
     return diff
