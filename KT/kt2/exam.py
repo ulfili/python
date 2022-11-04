@@ -14,14 +14,14 @@ def switch_lasts_and_firsts(s: str) -> str:
     :param s:
     :return: modified string
     """
-    if len(s) < 4:
+    if len(s) <= 3:
         return s[::-1]
     else:
         word = s.replace(s[0:2], s[-2:])
         return word
 
 
-print(switch_lasts_and_firsts("nana"))
+print(switch_lasts_and_firsts("laka"))
 print(switch_lasts_and_firsts("ambulance"))
 
 
@@ -71,4 +71,16 @@ def get_symbols_by_occurrences(text: str) -> dict:
     get_symbols_by_occurrences("hello") => {1: ['e', 'o', 'h'], 2: ['l']}
     get_symbols_by_occurrences("abcaba") => {2: ['b'], 1: ['c'], 3: ['a']}
     """
-    pass
+    letters_list = []
+    my_dict = {}
+    for letter in text:
+        if letter[0] == "":
+            letters_list.append(None)
+        else:
+            letters_list.append(letter[0])
+    my_dict = {elem: letters_list.count(elem) for elem in letters_list}
+
+    return my_dict
+
+
+print(get_symbols_by_occurrences("hello"))
