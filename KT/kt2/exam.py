@@ -17,13 +17,13 @@ def switch_lasts_and_firsts(s: str) -> str:
     if len(s) <= 3:
         return s[::-1]
     else:
-        word = s.replace(s[-2:], s[0:2])
-        return word
+        first_two = s[0:2]
+        last_two = s[-2:]
+        new_string = last_two + s[2:-2] + first_two
+        return new_string
 
-
-print(switch_lasts_and_firsts("laka"))
+print(switch_lasts_and_firsts("123456"))
 print(switch_lasts_and_firsts("ambulance"))
-
 
 def take_partial(text: str, leave_count: int, take_count: int) -> str:
     """
