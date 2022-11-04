@@ -22,27 +22,34 @@ def switch_lasts_and_firsts(s: str) -> str:
         new_string = last_two + s[2:-2] + first_two
         return new_string
 
+
 print(switch_lasts_and_firsts("123456"))
 print(switch_lasts_and_firsts("ambulance"))
 
-def take_partial(text: str, leave_count: int, take_count: int) -> str:
+
+def get_symbols_by_occurrences(text: str) -> dict:
     """
-    Take only part of the string.
+    Return dict where key is the occurrence count and value is a list of corresponding symbols.
 
-    Ignore first leave_count symbols, then use next take_count symbols.
-    Repeat the process until the end of the string.
+    The order of the counts and the symbols is not important.
 
-    The following conditions are met (you don't have to check those):
-    leave_count >= 0
-    take_count >= 0
-    leave_count + take_count > 0
-
-    take_partial("abcdef", 2, 3) => "cde"
-    take_partial("abcdef", 0, 1) => "abcdef"
-    take_partial("abcdef", 1, 0) => ""
-    take_partial("Hello world", 3, 3) => "lo ld"
+    get_symbols_by_occurrences("hello") => {1: ['e', 'o', 'h'], 2: ['l']}
+    get_symbols_by_occurrences("abcaba") => {2: ['b'], 1: ['c'], 3: ['a']}
     """
-    pass
+    my_dict = {}
+    new_dict = {}
+    letters_list = list(text)
+    for elem in letters_list:
+        if elem in my_dict:
+            my_dict[elem] += 1
+        else:
+            my_dict[elem] = 1
+    for key, value in my_dict.items():
+        new_dict[value] = [key]
+        print(new_dict)
+
+
+print(get_symbols_by_occurrences("hello"))
 
 
 def min_diff(nums: list) -> int:
@@ -59,32 +66,10 @@ def min_diff(nums: list) -> int:
     :param nums: list of ints, at least 2 elements.
     :return: min diff between 2 numbers.
     """
-    pass
-
-
-def get_symbols_by_occurrences(text: str) -> dict:
-    """
-    Return dict where key is the occurrence count and value is a list of corresponding symbols.
-
-    The order of the counts and the symbols is not important.
-
-    get_symbols_by_occurrences("hello") => {1: ['e', 'o', 'h'], 2: ['l']}
-    get_symbols_by_occurrences("abcaba") => {2: ['b'], 1: ['c'], 3: ['a']}
-    """
-    letters_list = []
-    my_dict = {}
-    new_dict = {}
-    for letter in text:
-        letters_list.append(letter)
-        print(letters_list)
-    for elem in letters_list:
-        if elem in my_dict:
-            my_dict[elem] += 1
-        else:
-            my_dict[elem] = 1
-    for key, value in my_dict.items():
-        new_dict[value] = [key]
-        print(new_dict)
-
-
-print(get_symbols_by_occurrences("hello"))
+    n = len(nums)
+    diff = 10 ** 20
+    for i in range(n - 1):
+        for j in range(i+1, n):
+            if abs(nums[i] - nums[j]) < diff:
+                diff = abs(nums[i] - nums[j])
+    return diff
