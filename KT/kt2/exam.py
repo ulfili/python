@@ -17,7 +17,7 @@ def switch_lasts_and_firsts(s: str) -> str:
     if len(s) <= 3:
         return s[::-1]
     else:
-        word = s.replace(s[0:2], s[-2:])
+        word = s.replace(s[-2:], s[0:2])
         return word
 
 
@@ -73,14 +73,18 @@ def get_symbols_by_occurrences(text: str) -> dict:
     """
     letters_list = []
     my_dict = {}
+    new_dict = {}
     for letter in text:
-        if letter[0] == "":
-            letters_list.append(None)
+        letters_list.append(letter)
+        print(letters_list)
+    for elem in letters_list:
+        if elem in my_dict:
+            my_dict[elem] += 1
         else:
-            letters_list.append(letter[0])
-    my_dict = {elem: letters_list.count(elem) for elem in letters_list}
-
-    return my_dict
+            my_dict[elem] = 1
+    for key, value in my_dict.items():
+        new_dict[value] = [key]
+        print(new_dict)
 
 
 print(get_symbols_by_occurrences("hello"))
