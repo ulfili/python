@@ -14,7 +14,7 @@ def switch_lasts_and_firsts(s: str) -> str:
     :param s:
     :return: modified string
     """
-    if len(s) <= 4:
+    if len(s) < 4:
         return s[::-1]
     else:
         word = s.replace(s[0:2], s[-2:])
