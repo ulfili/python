@@ -41,15 +41,18 @@ def only_one_pair(numbers: list) -> bool:
     only_one_pair([1, 2, 1, 3, 1]) => False
     only_one_pair([1, 2, 1, 3, 1, 2]) => False
     """
-    for pair in numbers:
-        if pair in numbers:
-            return True
-        else:
-            return False
+    no_duplicates = list(set(numbers))
+    for a in no_duplicates:
+        numbers.remove(a)
+    print(numbers)
+    if len(numbers) == 1:
+        return True
+    else:
+        return False
 
 
 print(only_one_pair([1, 2, 1, 3, 1, 2]))
-# print(only_one_pair([1, 2, 3, 3]))
+print(only_one_pair([1, 2, 3, 3]))
 
 
 def pentabonacci(n: int) -> int:
