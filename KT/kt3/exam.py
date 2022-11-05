@@ -41,7 +41,15 @@ def only_one_pair(numbers: list) -> bool:
     only_one_pair([1, 2, 1, 3, 1]) => False
     only_one_pair([1, 2, 1, 3, 1, 2]) => False
     """
-    pass
+    for pair in numbers:
+        if pair in numbers:
+            return True
+        else:
+            return False
+
+
+print(only_one_pair([1, 2, 1, 3, 1, 2]))
+# print(only_one_pair([1, 2, 3, 3]))
 
 
 def pentabonacci(n: int) -> int:
@@ -86,4 +94,8 @@ def swap_dict_keys_and_value_lists(d: dict) -> dict:
     swap_dict_keys_and_value_lists({}) => {}
     swap_dict_keys_and_value_lists({1: [2]}) => {2: [1]}
     """
-    pass
+    swap_dict = {}
+
+
+
+print(swap_dict_keys_and_value_lists({"a": ["b", "c"]}))
