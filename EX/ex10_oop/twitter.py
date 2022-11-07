@@ -1,4 +1,6 @@
 """Twitter."""
+
+
 from operator import attrgetter
 import re
 
@@ -22,11 +24,14 @@ class Tweet:
 
 
 class Popularity:
+    """New class for easier sort."""
     def __init__(self, hashtag, retweets):
+        """Something."""
         self.hashtag = hashtag
         self.retweets = retweets
 
     def __repr__(self):
+        """Something."""
         return '{' + self.hashtag + ', ' + str(self.retweets) + '}'
 
 
@@ -140,7 +145,7 @@ if __name__ == '__main__':
     tweet1 = Tweet("@realDonaldTrump", "Despite the negative press covfefe #bigsmart", 1249, 54303)
     tweet2 = Tweet("@elonmusk", "Technically, alcohol is a solution #bigsmart", 366.4, 166500)
     tweet3 = Tweet("@CIA", "We can neither confirm nor deny that this is our first tweet. #heart", 2192, 284200)
-    tweet4 = Tweet("@messi", "Test #test #football #life", 6466, 54303 )
+    tweet4 = Tweet("@messi", "Test #test #football #life", 6466, 54303)
     tweets = [tweet1, tweet2, tweet3, tweet4]
 
     print(find_fastest_growing(tweets).user)  # -> "@elonmusk"
