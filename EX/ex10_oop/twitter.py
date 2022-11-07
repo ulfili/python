@@ -25,6 +25,7 @@ class Tweet:
 
 class Popularity:
     """New class for easier sort."""
+
     def __init__(self, hashtag, retweets):
         """Something."""
         self.hashtag = hashtag
