@@ -42,19 +42,13 @@ def find_fastest_growing(tweets: list) -> Tweet:
     :param tweets: Input list of tweets.
     :return: Fastest growing tweet.
     """
-    index = 0
-    tweet_num = 0
-    tweet_growing = tweets[0].retweets / tweets[0].time      # võrdlen esimest tweeti tesitega
+    max_growth = -100
+    max_tweet = None
     for tweet in tweets:
-        speed = tweet.retweets / tweet.time
-        # print("speed is: ", speed, "index is: ", index)
-        if speed < tweet_growing:
-            # print("growing ", tweet_growing,  "is less than current speed ", speed)
-            tweet_growing = speed
-            tweet_num = index
-            # print("fastest growing tweet index is: ", tweet_num)
-        index = index + 1
-    return tweets[tweet_num]
+        if tweet.retweets / tweet.time > max_growth:
+            max_growth = tweet.retweets / tweet.time
+            max_tweet = tweet
+    return max_tweet
 
 
 def sort_by_popularity(tweets: list) -> list:
