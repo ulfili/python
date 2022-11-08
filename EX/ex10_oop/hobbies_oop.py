@@ -63,9 +63,8 @@ def sort_by_most_hobbies(people_list: list) -> list:
     :param people_list: list of people to sort.
     :return: sorted list of people.
     """
-    returned_list = sorted(people_list, key=lambda person: len(person.hobbies), reverse=True)
-    returned_list_2 = sorted(returned_list, key=attrgetter("full_name"))
-    return returned_list_2
+    returned_list = sorted(people_list, key=lambda person: (-len(person.hobbies), person.full_name))
+    return returned_list
 
 
 def sort_by_least_hobbies(people_list: list) -> list:
