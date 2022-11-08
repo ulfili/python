@@ -58,7 +58,8 @@ def sort_tuples_by_length(tuples: list[tuple]) -> list:
     :param tuples: List of tuples in a random order.
     :return: Sorted list of tuples in descending order based on their length.
     """
-    return sorted(tuples, key=lambda x: (-len(tuples)))
+    sorted_tuple = (sorted(tuples, key=len, reverse=True))
+    return sorted_tuple
 
 
 class Person:
