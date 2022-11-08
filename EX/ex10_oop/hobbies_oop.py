@@ -1,4 +1,6 @@
 """Hobbies but OOP."""
+from operator import itemgetter, attrgetter
+
 
 class Person:
     """
@@ -44,14 +46,11 @@ def filter_by_hobby(people_list: list, hobby: str) -> list:
     :param hobby: hobby to filter by.
     :return: filtered list of people.
     """
-    m = []
-    for person in people:
-        hobb = person.hobbies
-        #print("people hobbies are :", hobb)
-        if hobby in hobb:
-            #print("Common hobbies presented by: ", person.full_name)
-            m.append(person.full_name)
-    return m
+    list_of_people = []
+    for person in people_list:
+        if hobby in person.hobbies:
+            list_of_people.append(person)
+    return list_of_people
 
 
 
