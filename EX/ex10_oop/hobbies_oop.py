@@ -89,7 +89,7 @@ def sort_people_and_hobbies(people_list: list) -> list:
     :param people_list: list of people to sort.
     :return: sorted list of people.
     """
-    returned_list = sorted(people_list, key=attrgetter("person.full_name", "person.hobbies"))
+    returned_list = sorted(people_list, key=attrgetter("full_name", "hobbies"))
     return returned_list
 
 
