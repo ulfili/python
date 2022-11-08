@@ -89,8 +89,9 @@ def sort_people_and_hobbies(people_list: list) -> list:
     :param people_list: list of people to sort.
     :return: sorted list of people.
     """
-    returned_list = sorted(people_list, key=attrgetter("full_name", "hobbies"))
-    return returned_list
+    new_list = sorted(people_list, key=lambda person: sorted(person.hobbies))
+    new_new = sorted(new_list, key=lambda person: person.full_name)
+    return new_new
 
 
 if __name__ == '__main__':
