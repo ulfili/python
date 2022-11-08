@@ -1,5 +1,4 @@
 """Hobbies but OOP."""
-from operator import itemgetter, attrgetter
 
 
 class Person:
@@ -89,9 +88,10 @@ def sort_people_and_hobbies(people_list: list) -> list:
     :param people_list: list of people to sort.
     :return: sorted list of people.
     """
-    new_list = sorted(people_list, key=lambda person: sorted(person.hobbies))
-    new_new = sorted(new_list, key=lambda person: person.full_name)
-    return new_new
+    for person in people_list:
+        sorted(person.hobbies)
+    returned_list = sorted(people_list, key=lambda person: person.full_name)
+    return returned_list
 
 
 if __name__ == '__main__':
