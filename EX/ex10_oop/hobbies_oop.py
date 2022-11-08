@@ -84,7 +84,7 @@ def sort_people_and_hobbies(people_list: list) -> list:
     """Return a list of people but sorted alphabetically by their full name and hobbies."""
     for person in people_list:
         person.hobbies.sort()
-    returned_list = sorted(people_list, key=lambda pers: person.full_name)
+    returned_list = sorted(people_list, key=lambda person: person.full_name)
     return returned_list
 
 
