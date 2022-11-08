@@ -53,10 +53,6 @@ def filter_by_hobby(people_list: list, hobby: str) -> list:
     return list_of_people
 
 
-
-
-
-
 def sort_by_most_hobbies(people_list: list) -> list:
     """
     Return a list of people sorted by amount of hobbies in descending order.
@@ -68,6 +64,9 @@ def sort_by_most_hobbies(people_list: list) -> list:
     :return: sorted list of people.
     """
     pass
+    returned_list = sorted(people, key=lambda person: len(person.hobbies))
+    returned_list_2 = sorted(returned_list, key=attrgetter("full_name"))
+    return returned_list_2
 
 
 def sort_by_least_hobbies(people_list: list) -> list:
