@@ -77,7 +77,8 @@ def sort_by_least_hobbies(people_list: list) -> list:
     :param people_list: list of people to sort.
     :return: sorted list of people.
     """
-    pass
+    returned_list = sorted(people_list, key=lambda person: (len(person.hobbies), person.full_name))
+    return returned_list
 
 
 def sort_people_and_hobbies(people_list: list) -> list:
