@@ -26,6 +26,9 @@ class AlchemicalStorage:
         """
         self.storage = []
 
+    def __repr__(self):
+        return "alchemical storage content is: " + str(self.storage)
+
 
     def add(self, element: AlchemicalElement):
         """
@@ -83,7 +86,9 @@ class AlchemicalStorage:
 
         :return: A list of all of the elements that were previously in the storage.
         """
-        return []
+        retlist = self.storage
+        self.storage = []
+        return retlist
 
 
     def get_content(self) -> str:
@@ -108,10 +113,6 @@ class AlchemicalStorage:
         return ''
 
 
-    def __repr__(self):
-        return "alchemical storage content is: " + str(self.storage)
-
-
 
 if __name__ == '__main__':
     element_one = AlchemicalElement('Fire')
@@ -132,6 +133,8 @@ if __name__ == '__main__':
     print(storage.pop("WATRE"))
     print(storage)
 
+    print(storage.extract())  # [<AE: Fire>, <AE: Water>]
+    print(storage)
     """
     print(storage.get_content())
     
