@@ -117,7 +117,7 @@ class AlchemicalStorage:
         for elem, num in sorted(elem_dict.items()):
             content += "\n" + " * " + elem + " x " + str(num)
         if len(elem_dict) == 0:
-            content += " Empty."
+            content += "\n" + " Empty."
         return content
 
 
