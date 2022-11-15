@@ -16,12 +16,18 @@ print(find_capital_letters("Tomato AppLE cat Dog HoMe"))
 
 def close_far(a: int, b: int, c: int) -> bool:
     """Docstring."""
-    if -2 < a - b < 2:
-        return True
-    if -2 < a - c < 2:
-        return True
+    if a > 0:
+        if -2 < a - b < 2:
+            return True
+        if -2 < a - c < 2:
+            return True
+    if a < 0:
+        if -2 < a + b < 2:
+            return True
+        if -2 < a + c < 2:
+            return True
     else:
         return False
 
 
-print(close_far(3, 2, 2))
+print(close_far(-3, 2, 2))
