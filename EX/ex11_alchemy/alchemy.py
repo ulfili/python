@@ -29,7 +29,6 @@ class AlchemicalStorage:
     def __repr__(self):
         return "alchemical storage content is: " + str(self.storage)
 
-
     def add(self, element: AlchemicalElement):
         """
         Add element to storage.
@@ -42,7 +41,6 @@ class AlchemicalStorage:
             self.storage.append(element)
         else:
             raise TypeError
-
 
     def pop(self, element_name: str) -> AlchemicalElement or None:
         """
@@ -67,7 +65,6 @@ class AlchemicalStorage:
             return None
         return self.storage.pop(index)
 
-
     def extract(self) -> list[AlchemicalElement]:
         """
         Return a list of all of the elements from storage and empty the storage itself.
@@ -89,7 +86,6 @@ class AlchemicalStorage:
         return_list = self.storage
         self.storage = []
         return return_list
-
 
     def get_content(self) -> str:
         """
@@ -118,11 +114,9 @@ class AlchemicalStorage:
             if element.name in elem_dict:
                 elem_dict[element.name] += 1
         for elem, num in elem_dict.items():
-            info = (" * " + elem + " x" + str(num))
-            if num == 0:
-                return content + " Empty"
-            else:
-                return content + info
+            content += " * " + elem + " x " + str(num) + "\n"
+        return content
+
 
 
 
