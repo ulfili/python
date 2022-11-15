@@ -116,7 +116,7 @@ class AlchemicalStorage:
         for elem, num in set(elem_dict.items()):
             content += " * " + elem + " x " + str(num) + "\n"
         if len(elem_dict) == 0:
-            content += "Empty"
+            content += " Empty."
         return content
 
 
@@ -153,7 +153,7 @@ if __name__ == '__main__':
     #  * Water x 1
     
     #print(storage.extract())  # [<AE: Fire>, <AE: Water>]
-    print(storage.get_content())
+    #print(storage.get_content())
     # Content:
     #  Empty
     
