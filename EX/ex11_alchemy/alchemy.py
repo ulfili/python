@@ -110,9 +110,10 @@ class AlchemicalStorage:
         content = "Content:\n"
         for element in self.storage:
             if element.name not in elem_dict:
-                elem_dict[element.name] = 1
+                elem_dict[element.name] = 0
             if element.name in elem_dict:
                 elem_dict[element.name] += 1
+        # print("elem dict is: " + str(elem_dict))
         for elem, num in sorted(elem_dict.items()):
             content += " * " + elem + " x " + str(num) + "\n"
         if len(elem_dict) == 0:
@@ -130,6 +131,7 @@ if __name__ == '__main__':
     element_six = AlchemicalElement('Earth')
     element_three = AlchemicalElement('Water')
     element_four = AlchemicalElement('Air')
+    element_seven = AlchemicalElement('Air')
     storage = AlchemicalStorage()
 
     print(element_one)  # <AE: Fire>
