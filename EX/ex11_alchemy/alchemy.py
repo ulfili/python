@@ -115,7 +115,8 @@ class AlchemicalStorage:
                 elem_dict[element.name] += 1
         # print("elem dict is: " + str(elem_dict))
         for elem, num in sorted(elem_dict.items()):
-            content += "\n" + " * " + elem + " x " + str(num)
+            content += " * " + elem + " x " + str(num) + "\n"
+        content = content[:-2]
         if len(elem_dict) == 0:
             content += " Empty."
         return content
