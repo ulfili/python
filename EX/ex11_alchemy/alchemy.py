@@ -113,8 +113,10 @@ class AlchemicalStorage:
                 elem_dict[element.name] = 1
             if element.name in elem_dict:
                 elem_dict[element.name] += 1
-        for elem, num in elem_dict.items():
+        for elem, num in set(elem_dict.items()):
             content += " * " + elem + " x " + str(num) + "\n"
+        if len(elem_dict) == 0:
+            content += "Empty"
         return content
 
 
@@ -129,7 +131,7 @@ if __name__ == '__main__':
     element_three = AlchemicalElement('Water')
     element_four = AlchemicalElement('Air')
     storage = AlchemicalStorage()
-
+    """
     print(element_one)  # <AE: Fire>
     print(element_two)  # <AE: Water>
     storage.add(element_one)
@@ -140,7 +142,7 @@ if __name__ == '__main__':
     print(storage)
     print(storage.pop("WATRE"))
     print(storage)
-
+    """
     #print(storage.extract())  # [<AE: Fire>, <AE: Water>]
     #print(storage)
 
