@@ -107,7 +107,7 @@ class AlchemicalStorage:
         :return: Content as a string.
         """
         elem_dict = {}
-        content = "Content:\n"
+        content = "Content: "
         for element in self.storage:
             if element.name not in elem_dict:
                 elem_dict[element.name] = 0
@@ -115,8 +115,7 @@ class AlchemicalStorage:
                 elem_dict[element.name] += 1
         # print("elem dict is: " + str(elem_dict))
         for elem, num in sorted(elem_dict.items()):
-            content += " * " + elem + " x " + str(num) + "\n"
-        content = content[:-2]
+            content += "\n" + " * " + elem + " x " + str(num)
         if len(elem_dict) == 0:
             content += " Empty."
         return content
