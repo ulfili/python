@@ -9,9 +9,11 @@ class AlchemicalElement:
     """
 
     def __init__(self, name: str):
+        """Alchemical element name."""
         self.name = name
 
     def __repr__(self):
+        """Element is name."""
         return "<AE: " + self.name + ">"
 
 
@@ -27,6 +29,7 @@ class AlchemicalStorage:
         self.storage = []
 
     def __repr__(self):
+        """Storage content."""
         return "alchemical storage content is: " + str(self.storage)
 
     def add(self, element: AlchemicalElement):
@@ -129,7 +132,6 @@ if __name__ == '__main__':
     element_four = AlchemicalElement('Air')
     element_seven = AlchemicalElement('Air')
     storage = AlchemicalStorage()
-
     print(element_one)  # <AE: Fire>
     print(element_two)  # <AE: Water>
     storage.add(element_one)
@@ -140,24 +142,18 @@ if __name__ == '__main__':
     print(storage)
     print(storage.pop("WATRE"))
     print(storage)
-
     print(storage.extract())  # [<AE: Fire>, <AE: Water>]
     print(storage)
-
     print(storage.get_content())
-    
     # Content:
     #  * Fire x 1
     #  * Water x 1
-    
     print(storage.extract())  # [<AE: Fire>, <AE: Water>]
     print(storage.get_content())
     # Content:
     #  Empty
-    
     storage.add(element_one)
     storage.add(element_two)
     storage.add(element_three)
-
     print(storage.pop('Water') == element_three)  # True
     print(storage.pop('Water') == element_two)  # True
