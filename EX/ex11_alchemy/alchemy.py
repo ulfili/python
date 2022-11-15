@@ -57,12 +57,12 @@ class AlchemicalStorage:
         index = -1    # et aru saada millal elementi ei ole
         i = 0         # elemendi loetelu algab nullist
         for element in self.storage:
-            print("element is: " + str(element))
+            # print("element is: " + str(element))
             if element.name == element_name:
                 index = i  # kui element on leitud, siis me salvestame indeksi numbri
-                print("element presents in our storage! " + str(element))
+                # print("element presents in our storage! " + str(element))
             i = i + 1    # iga elemendi indeks, salvestab viimase
-        print("index is :" + str(index))
+        # print("index is :" + str(index))
         if index == -1:
             return None
         return self.storage.pop(index)
@@ -86,9 +86,9 @@ class AlchemicalStorage:
 
         :return: A list of all of the elements that were previously in the storage.
         """
-        retlist = self.storage
+        return_list = self.storage
         self.storage = []
-        return retlist
+        return return_list
 
 
     def get_content(self) -> str:
@@ -110,7 +110,21 @@ class AlchemicalStorage:
 
         :return: Content as a string.
         """
-        return ''
+        elem_dict = {}
+        content = "Content:\n"
+        for element in self.storage:
+            if element.name not in elem_dict:
+                elem_dict[element.name] = 1
+            if element.name in elem_dict:
+                elem_dict[element.name] += 1
+        for elem, num in elem_dict.items():
+            info = (" * " + elem + " x" + str(num))
+            if num == 0:
+                return content + " Empty"
+            else:
+                return content + info
+
+
 
 
 
@@ -133,24 +147,23 @@ if __name__ == '__main__':
     print(storage.pop("WATRE"))
     print(storage)
 
-    print(storage.extract())  # [<AE: Fire>, <AE: Water>]
-    print(storage)
-    """
+    #print(storage.extract())  # [<AE: Fire>, <AE: Water>]
+    #print(storage)
+
     print(storage.get_content())
     
     # Content:
     #  * Fire x 1
     #  * Water x 1
     
-    print(storage.extract())  # [<AE: Fire>, <AE: Water>]
+    #print(storage.extract())  # [<AE: Fire>, <AE: Water>]
     print(storage.get_content())
     # Content:
     #  Empty
     
-    storage.add(element_one)
-    storage.add(element_two)
-    storage.add(element_three)
+    #storage.add(element_one)
+    #storage.add(element_two)
+    #storage.add(element_three)
 
-    print(storage.pop('Water') == element_three)  # True
-    print(storage.pop('Water') == element_two)  # True
-    """
+    #print(storage.pop('Water') == element_three)  # True
+    #print(storage.pop('Water') == element_two)  # True
