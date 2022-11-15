@@ -2,13 +2,12 @@
 import re
 
 
-def find_capital_letters(text: str) -> list:
+def find_capital_letters(text: str) -> str:
     pattern = r"[A-Z]"
-    my_list = []
+    capital_letters = ""
     for match in re.finditer(pattern, text):
-        found_letters = match.group()
-        my_list.append(found_letters)
-    return my_list
+        capital_letters += match.group()
+    return capital_letters
 
 
 print(find_capital_letters("Tomato AppLE cat Dog HoMe"))
