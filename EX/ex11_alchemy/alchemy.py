@@ -121,10 +121,6 @@ class AlchemicalStorage:
         return content
 
 
-
-
-
-
 if __name__ == '__main__':
     element_one = AlchemicalElement('Fire')
     element_two = AlchemicalElement('Water')
@@ -145,23 +141,23 @@ if __name__ == '__main__':
     print(storage.pop("WATRE"))
     print(storage)
 
-    #print(storage.extract())  # [<AE: Fire>, <AE: Water>]
-    #print(storage)
+    print(storage.extract())  # [<AE: Fire>, <AE: Water>]
+    print(storage)
 
-    #print(storage.get_content())
+    print(storage.get_content())
     
     # Content:
     #  * Fire x 1
     #  * Water x 1
     
-    #print(storage.extract())  # [<AE: Fire>, <AE: Water>]
+    print(storage.extract())  # [<AE: Fire>, <AE: Water>]
     print(storage.get_content())
     # Content:
     #  Empty
     
-    #storage.add(element_one)
-    #storage.add(element_two)
-    #storage.add(element_three)
+    storage.add(element_one)
+    storage.add(element_two)
+    storage.add(element_three)
 
-    #print(storage.pop('Water') == element_three)  # True
-    #print(storage.pop('Water') == element_two)  # True
+    print(storage.pop('Water') == element_three)  # True
+    print(storage.pop('Water') == element_two)  # True
