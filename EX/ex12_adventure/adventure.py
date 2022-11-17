@@ -22,7 +22,17 @@ class Adventurer:
         """String."""
         return self.name + ", the " + self.class_type + ", Power: " + str(self.power) + ", Experience: " + str(self.experience) + "."
 
+    def add_power(self, power: int):
+        self.power += power
+        return power
 
+    def add_experience(self, exp: int):
+        if 0 <= exp < 100:
+            self.experience += exp
+            if self.experience > 99:
+                self.power += self.experience // 10
+                self.experience = 0
+        return exp
 class Monster:
     """Adventurer opponent."""
 
@@ -60,13 +70,15 @@ if __name__ == "__main__":
     print(friend)  # -> "Peep, the Druid, Power: 25, Experience: 0."
     print(another_friend)  # -> "Toots, the Wizard, Power: 40, Experience: 0."
     print()
-    """
+
     print("Peep, sa tundud kuidagi nõrk, ma lisasin sulle natukene tugevust.")
     
     friend.add_power(20)
     print(friend)  # -> "Peep, the Druid, Power: 45, Experience: 0."
     print()
-    
+
+
+    """
     world.add_adventurer(hero)
     world.add_adventurer(friend)
     world.add_adventurer(another_friend)
