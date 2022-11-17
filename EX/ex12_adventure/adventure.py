@@ -27,11 +27,12 @@ class Adventurer:
         return power
 
     def add_experience(self, exp: int):
-        self.experience += exp
-        if self.experience > 99:
-            more_power = self.experience / 10
-            self.power += int(more_power)
-            self.experience = 0
+        if exp >= 0:
+            self.experience += exp
+            if self.experience > 99:
+                more_power = self.experience / 10
+                self.power += int(more_power)
+                self.experience = 0
         return exp
 class Monster:
     """Adventurer opponent."""
