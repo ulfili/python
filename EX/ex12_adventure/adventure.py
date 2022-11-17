@@ -20,7 +20,7 @@ class Adventurer:
 
     def __repr__(self):
         """String."""
-        return self.name + ", the " + self.class_type + ", Power: " + str(self.power) + ", Experience: " + str(self.experience)
+        return self.name + ", the " + self.class_type + ", Power: " + str(self.power) + ", Experience: " + str(self.experience) + "."
 
 
 class Monster:
