@@ -27,11 +27,11 @@ class Adventurer:
         return power
 
     def add_experience(self, exp: int):
-        if 0 <= exp < 100:
-            self.experience += exp
-            if self.experience > 99:
-                self.power += self.experience // 10
-                self.experience = 0
+        self.experience += exp
+        if self.experience > 99:
+            more_power = self.experience / 10
+            self.power += int(more_power)
+            self.experience = 0
         return exp
 class Monster:
     """Adventurer opponent."""
@@ -76,7 +76,9 @@ if __name__ == "__main__":
     friend.add_power(20)
     print(friend)  # -> "Peep, the Druid, Power: 45, Experience: 0."
     print()
-
+    print("Toots, some more expa for u!!!")
+    another_friend.add_experience(100)
+    print(another_friend)
 
     """
     world.add_adventurer(hero)
