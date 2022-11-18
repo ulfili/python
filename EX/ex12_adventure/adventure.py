@@ -54,7 +54,7 @@ class Monster:
 
     def __repr__(self):
         """String."""
-        return self.name + " of type " + self.type + ", Power: " + str(self.power)
+        return self.name + " of type " + self.type + ", Power: " + str(self.power) + "."
 
 
 class World:
@@ -162,6 +162,7 @@ if __name__ == "__main__":
     world.add_monster(zombie)
     world.add_monster(goblin_archer)
     print(world.get_monster_list())
+
 
     """
     print()
