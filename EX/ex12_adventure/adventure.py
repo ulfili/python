@@ -34,27 +34,80 @@ class Adventurer:
                 self.power += int(more_power)
                 self.experience = 0
         return exp
+
+
 class Monster:
     """Adventurer opponent."""
 
     def __init__(self, name: str, type: str, power: int):
         """Monsters information."""
         self.name = name
+        if type == "Zombie":
+            self.name = self.zombie_name
         self.type = type
         self.power = power
+
+    @property
+    def zombie_name(self) -> str:
+        """Undead + name."""
+        return "Undead " + str(self.name)
 
     def __repr__(self):
         """String."""
         return self.name + " of type " + self.type + ", Power: " + str(self.power)
 
 
+class World:
+    """Game logic hides here."""
+
+    def __init__(self, python_master: str):
+        """Python master is a friend. """
+        self.python_master = python_master
+        self.adventurer_list = []
+        self.monster_list = []
+        self.graveyard = []
+
+    def get_python_master(self):
+        """Get python master."""
+        return self.python_master
+
+    def get_adventurer_list(self) -> list:
+        """Adventurer list."""
+        return self.adventurer_list
+
+    def get_monster_list(self) -> list:
+        """Monster list."""
+        return self.monster_list
+
+    def add_adventurer(self, name: Adventurer):
+        """Adding adventurers into list."""
+        if isinstance(name, Adventurer):
+            self.adventurer_list.append(name)
+
+    def add_monster(self, name: Monster):
+        """Adding monsters into list."""
+        if isinstance(name, Monster):
+            self.monster_list.append(name)
+
+    def get_graveyard(self):
+        """Graveyard."""
+        return self.graveyard
+
+    def add(self, mons: Monster, adv: Adventurer):
+        """Something"""
+        if isinstance(mons, Monster):
+            self.graveyard.append(mons)
+        if isinstance(adv, Adventurer):
+            self.graveyard.append(adv)
+
+
 
 if __name__ == "__main__":
     print("Kord oli maailm.")
-    #world = World("Sõber")
-    #print(world.get_python_master())  # -> "Sõber"
-    #print(world.get_graveyard())  # -> []
-    #print()
+    world = World("Sõber")
+    print(world.get_python_master())  # -> "Sõber"
+    print(world.get_graveyard())  # -> []
+    print()
     print("Tutvustame tegelasi.")
     hero = Adventurer("Sander", "Paladin", 50)
     friend = Adventurer("Peep", "Druid", 25)
@@ -80,8 +133,10 @@ if __name__ == "__main__":
     print("Toots, some more expa for u!!!")
     another_friend.add_experience(100)
     print(another_friend)
+    print()
+    print(world.get_adventurer_list())  # -> Sander, Peep ja Toots
 
-    """
+
     world.add_adventurer(hero)
     world.add_adventurer(friend)
     world.add_adventurer(another_friend)
@@ -104,11 +159,16 @@ if __name__ == "__main__":
     print(zombie)  # -> "Undead Rat of type Zombie, Power: 10."
 
     world.add_monster(goblin_spear)
+    world.add_monster(zombie)
+    world.add_monster(goblin_archer)
+    print(world.get_monster_list())
 
+    """
     print()
     print("Mängime esimese seikluse läbi!")
     world.add_strongest_adventurer("Druid")
     world.add_strongest_monster()
+    
     print(world.get_active_adventurers())  # -> Peep
     print(world.get_active_monsters())  # -> [Goblin Spearman of type Goblin, Power: 10.]
     print()
