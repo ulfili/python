@@ -19,7 +19,7 @@ class Adventurer:
         self.experience = experience
 
     def __repr__(self):
-        """This is string.."""
+        """Something."""
         return self.name + ", the " + self.class_type + ", Power: " + str(self.power) + ", Experience: " + str(self.experience) + "."
 
     def add_power(self, power: int):
@@ -55,7 +55,7 @@ class Monster:
         return "Undead " + str(self.name)
 
     def __repr__(self):
-        """This is string."""
+        """Something."""
         return self.name + " of type " + self.type + ", Power: " + str(self.power) + "."
 
 
@@ -96,7 +96,7 @@ class World:
         return self.graveyard
 
     def add(self, mons: Monster, adv: Adventurer):
-        """Somethingю"""
+        """Something."""
         if isinstance(mons, Monster):
             self.graveyard.append(mons)
         if isinstance(adv, Adventurer):
