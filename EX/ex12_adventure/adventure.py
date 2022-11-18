@@ -19,14 +19,16 @@ class Adventurer:
         self.experience = experience
 
     def __repr__(self):
-        """String."""
+        """This is string.."""
         return self.name + ", the " + self.class_type + ", Power: " + str(self.power) + ", Experience: " + str(self.experience) + "."
 
     def add_power(self, power: int):
+        """Power add."""
         self.power += power
         return power
 
     def add_experience(self, exp: int):
+        """Adding experience."""
         if exp >= 0:
             self.experience += exp
             if self.experience > 99:
@@ -53,7 +55,7 @@ class Monster:
         return "Undead " + str(self.name)
 
     def __repr__(self):
-        """String."""
+        """This is string."""
         return self.name + " of type " + self.type + ", Power: " + str(self.power) + "."
 
 
@@ -61,7 +63,7 @@ class World:
     """Game logic hides here."""
 
     def __init__(self, python_master: str):
-        """Python master is a friend. """
+        """Python master is a friend."""
         self.python_master = python_master
         self.adventurer_list = []
         self.monster_list = []
@@ -94,12 +96,11 @@ class World:
         return self.graveyard
 
     def add(self, mons: Monster, adv: Adventurer):
-        """Something"""
+        """Somethingю"""
         if isinstance(mons, Monster):
             self.graveyard.append(mons)
         if isinstance(adv, Adventurer):
             self.graveyard.append(adv)
-
 
 
 if __name__ == "__main__":
@@ -115,7 +116,6 @@ if __name__ == "__main__":
     annoying_friend = Adventurer("XxX_Eepiline_Sõdalane_XxX", "Tulevikurändaja ja ninja", 999999)
     smart_cheater = Adventurer("T00ts", "Wizard", 40, 157)
     print(smart_cheater)
-    
 
     print(hero)  # -> "Sander, the Paladin, Power: 50, Experience: 0."
     # Ei, tüütu sõber, sa ei saa olla tulevikurändaja ja ninja, nüüd sa pead fighter olema.
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     print()
 
     print("Peep, sa tundud kuidagi nõrk, ma lisasin sulle natukene tugevust.")
-    
+
     friend.add_power(20)
     print(friend)  # -> "Peep, the Druid, Power: 45, Experience: 0."
     print()
@@ -135,7 +135,6 @@ if __name__ == "__main__":
     print(another_friend)
     print()
     print(world.get_adventurer_list())  # -> Sander, Peep ja Toots
-
 
     world.add_adventurer(hero)
     world.add_adventurer(friend)
@@ -163,13 +162,12 @@ if __name__ == "__main__":
     world.add_monster(goblin_archer)
     print(world.get_monster_list())
 
-
     """
     print()
     print("Mängime esimese seikluse läbi!")
     world.add_strongest_adventurer("Druid")
     world.add_strongest_monster()
-    
+
     print(world.get_active_adventurers())  # -> Peep
     print(world.get_active_monsters())  # -> [Goblin Spearman of type Goblin, Power: 10.]
     print()
