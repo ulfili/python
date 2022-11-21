@@ -140,7 +140,7 @@ class World:
                 undead_person = Monster(new_monster_name, new_monster_type, new_monster_power)
                 self.monster_list.append(undead_person)
             self.is_graveyard_active = False
-            self.graveyard.clear()
+            # self.graveyard.clear()
 
     def get_active_adventurers(self):
         """Sorting pers."""
