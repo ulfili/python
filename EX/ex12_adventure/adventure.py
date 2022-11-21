@@ -225,7 +225,7 @@ class World:
 
     def get_active_monsters(self):
         """Sorting active monsters."""
-        return sorted(self.active_monsters, key=lambda exp: exp.experience, reverse=True)
+        return sorted(self.active_monsters, key=lambda pow: pow.power, reverse=True)
 
     def add_monster_by_name(self, name: str):
         """Adding persons by name."""
@@ -235,28 +235,26 @@ class World:
                 self.monster_list.remove(person)
                 return
 
-    def add_strongest_monster(self, type: str):
+    def add_strongest_monster(self):
         """Adding by most power."""
         max_power = 0
         for person in self.monster_list:
-            if person.type == type:
-                if person.power > max_power:
-                    max_power = person.power
+            if person.power > max_power:
+                max_power = person.power
         for person in self.monster_list:
-            if (person.power == max_power) and (person.type == type):
+            if person.power == max_power:
                 self.active_monsters.append(person)
                 self.monster_list.remove(person)
                 return
 
-    def add_weakest_monster(self, type: str):
+    def add_weakest_monster(self):
         """Adding by least power."""
         min_power = 5000
         for person in self.monster_list:
-            if person.type == type:
-                if person.power < min_power:
-                    min_power = person.power
+            if person.power < min_power:
+                min_power = person.power
         for person in self.adventurer_list:
-            if (person.power == min_power) and (person.type == type):
+            if person.power == min_power:
                 self.active_monsters.append(person)
                 self.monster_list.remove(person)
                 return
@@ -322,7 +320,7 @@ if __name__ == "__main__":
 
     #world.add_monster(annoying_friend)
     # Ei, tüütu sõber, sa ei saa olla vaenlane.
-    #print(world.get_monster_list())  # -> []
+    print(world.get_monster_list())  # -> []
     world.add_adventurer(annoying_friend)
     print()
 
@@ -353,7 +351,7 @@ if __name__ == "__main__":
     print(world.get_active_adventurers())
     print()
 
-    #world.add_strongest_monster()
+    world.add_strongest_monster()
 
     print(world.get_active_adventurers())  # -> Peep
     print(world.get_active_monsters())  # -> [Goblin Spearman of type Goblin, Power: 10.]
@@ -368,7 +366,7 @@ if __name__ == "__main__":
     print()
 
     world.add_monster(gargantuan_badger)
-    #world.add_strongest_monster()
+    world.add_strongest_monster()
 
     #world.go_adventure(True)
     # Druid on loomade sõber ja ajab massiivse mägra ära.
