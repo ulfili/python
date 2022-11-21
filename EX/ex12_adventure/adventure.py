@@ -144,7 +144,7 @@ class World:
 
     def get_active_adventurers(self):
         """Sorting pers."""
-        return sorted(self.active_adventurers, key=lambda exp: exp.experience, reverse=True)
+        return sorted(self.active_adventurers, key=lambda exp: exp.experience)
 
     def add_strongest_adventurer(self, class_type: str):
         """Adding pers by most power."""
