@@ -106,7 +106,7 @@ class World:
             self.graveyard.append(adv)
 
     def remove_character(self, name):
-        """Removing not activ characters."""
+        """Something."""
         for person in self.adventurer_list:
             if person.name == name:
                 self.graveyard.append(person)
@@ -275,7 +275,6 @@ class World:
             return
 
 
-
 if __name__ == "__main__":
     print("Kord oli maailm.")
     world = World("Sõber")
@@ -318,7 +317,7 @@ if __name__ == "__main__":
     world.add_adventurer(test_fighter)
     print(world.get_adventurer_list())  # -> Sander, Peep ja Toots
 
-    #world.add_monster(annoying_friend)
+    world.add_monster(annoying_friend)
     # Ei, tüütu sõber, sa ei saa olla vaenlane.
     print(world.get_monster_list())  # -> []
     world.add_adventurer(annoying_friend)
@@ -340,8 +339,6 @@ if __name__ == "__main__":
     world.add_monster(gargantuan_badger)
     print(world.get_monster_list())
 
-
-
     print()
     print("Mängime esimese seikluse läbi!")
     print(world.adventurer_list)
@@ -357,7 +354,7 @@ if __name__ == "__main__":
     print(world.get_active_monsters())  # -> [Goblin Spearman of type Goblin, Power: 10.]
     print()
 
-    #world.go_adventure(True)
+    # world.go_adventure(True)
 
     world.add_strongest_adventurer("Druid")
     print(world.get_active_adventurers())  # -> [Peep, the Druid, Power: 45, Experience: 20.]
@@ -368,7 +365,7 @@ if __name__ == "__main__":
     world.add_monster(gargantuan_badger)
     world.add_strongest_monster()
 
-    #world.go_adventure(True)
+    # world.go_adventure(True)
     # Druid on loomade sõber ja ajab massiivse mägra ära.
     print(world.get_adventurer_list())  # -> Kõik 4 mängijat.
     print(world.get_monster_list())  # -> [Massive Badger of type Animal, Power: 1590.]
@@ -387,8 +384,5 @@ if __name__ == "__main__":
     world.active_adventurers.append(smart_cheater)
     print(world.get_active_adventurers())  # -> Peep
 
-
-
     print("Su sõber ütleb: \"Kui kõik need testid andsid sinu koodiga sama tulemuse "
           "mille ma siin ette kirjutasin, peaks kõik okei olema, proovi testerisse pushida! \" ")
-
