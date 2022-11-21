@@ -144,7 +144,7 @@ class World:
 
     def get_active_adventurers(self):
         """Sorting pers."""
-        return sorted(self.active_adventurers, key=lambda exp: exp.experience)
+        return sorted(self.active_adventurers, key=lambda exp: exp.experience, reverse=True)
 
     def add_strongest_adventurer(self, class_type: str):
         """Adding pers by most power."""
@@ -214,14 +214,14 @@ class World:
             if person.class_type == class_type:
                 self.active_adventurers.append(person)
                 self.adventurer_list.remove(person)
-                return
+        return
 
     def add_all_adventurers(self):
         """Adding all persons."""
         for person in self.adventurer_list:
             self.active_adventurers.append(person)
             self.adventurer_list.remove(person)
-            return
+        return
 
     def get_active_monsters(self):
         """Sorting active monsters."""
@@ -265,14 +265,14 @@ class World:
             if person.type == type:
                 self.active_monsters.append(person)
                 self.monster_list.remove(person)
-                return
+        return
 
     def add_all_monsters(self):
         """Adding all."""
         for person in self.monster_list:
             self.active_monsters.append(person)
             self.monster_list.remove(person)
-            return
+        return
 
 
 if __name__ == "__main__":
