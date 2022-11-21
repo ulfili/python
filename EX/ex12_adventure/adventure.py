@@ -214,7 +214,7 @@ class World:
             if person.class_type == class_type:
                 self.active_adventurers.append(person)
                 self.adventurer_list.remove(person)
-                return
+        return
 
     def add_all_adventurers(self):
         """Adding all persons."""
@@ -265,7 +265,7 @@ class World:
             if person.type == type:
                 self.active_monsters.append(person)
                 self.monster_list.remove(person)
-                return
+        return
 
     def add_all_monsters(self):
         """Adding all."""
