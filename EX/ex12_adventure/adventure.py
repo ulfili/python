@@ -91,7 +91,8 @@ class World:
 
     def add_monster(self, name: Monster):
         """Adding monsters into list."""
-        self.monster_list.append(name)
+        if isinstance(name, Monster):
+            self.monster_list.append(name)
 
     def get_graveyard(self):
         """Graveyard."""
