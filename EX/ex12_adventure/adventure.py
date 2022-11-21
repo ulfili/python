@@ -135,7 +135,7 @@ class World:
                 self.monster_list.append(creature)
             if isinstance(creature, Adventurer):
                 new_monster_name = "Undead" + creature.name
-                new_monster_type = "Zombie" + creature.type
+                new_monster_type = "Zombie" + creature.class_type
                 new_monster_power = creature.power
                 undead_person = Monster(new_monster_name, new_monster_type, new_monster_power)
                 self.monster_list.append(undead_person)
