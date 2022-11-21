@@ -151,13 +151,13 @@ class World:
         max_power = 0
         for person in self.adventurer_list:
             if person.class_type == class_type:
-                print("We found adventurer with type: ", class_type)
+                # print("We found adventurer with type: ", class_type)
                 if person.power > max_power:
                     max_power = person.power
         for person in self.adventurer_list:
             if (person.power == max_power) and (person.class_type == class_type):
                 self.active_adventurers.append(person)
-                print("We move adventurer: ", person.name, " from one list to another.")
+                # print("We move adventurer: ", person.name, " from one list to another.")
                 self.adventurer_list.remove(person)
                 return
 
@@ -286,11 +286,6 @@ if __name__ == "__main__":
     friend = Adventurer("Peep", "Druid", 25)
     another_friend = Adventurer("Toots", "Wizard", 40)
     annoying_friend = Adventurer("XxX_Eepiline_Sõdalane_XxX", "Tulevikurändaja ja ninja", 999999)
-    smart_cheater = Adventurer("T00ts", "Wizard", 40, 157)
-    test_druid = Adventurer("Test", "Druid", 50)
-    test_fighter = Adventurer("Test2", "Fighter", 35)
-    print(smart_cheater)
-
     print(hero)  # -> "Sander, the Paladin, Power: 50, Experience: 0."
     # Ei, tüütu sõber, sa ei saa olla tulevikurändaja ja ninja, nüüd sa pead fighter olema.
     # Ei maksa liiga tugevaks ka ennast alguses teha!
@@ -300,21 +295,13 @@ if __name__ == "__main__":
     print()
 
     print("Peep, sa tundud kuidagi nõrk, ma lisasin sulle natukene tugevust.")
-
     friend.add_power(20)
     print(friend)  # -> "Peep, the Druid, Power: 45, Experience: 0."
     print()
-    print("Toots, some more expa for u!!!")
-    another_friend.add_experience(100)
-    print(another_friend)
-    print()
-    print(world.get_adventurer_list())  # -> Sander, Peep ja Toots
 
     world.add_adventurer(hero)
     world.add_adventurer(friend)
     world.add_adventurer(another_friend)
-    world.add_adventurer(test_druid)
-    world.add_adventurer(test_fighter)
     print(world.get_adventurer_list())  # -> Sander, Peep ja Toots
 
     world.add_monster(annoying_friend)
@@ -334,22 +321,11 @@ if __name__ == "__main__":
     print(zombie)  # -> "Undead Rat of type Zombie, Power: 10."
 
     world.add_monster(goblin_spear)
-    world.add_monster(zombie)
-    world.add_monster(goblin_archer)
-    world.add_monster(gargantuan_badger)
-    print(world.get_monster_list())
 
     print()
     print("Mängime esimese seikluse läbi!")
-    print(world.adventurer_list)
     world.add_strongest_adventurer("Druid")
-    world.add_strongest_adventurer("Fighter")
-    print()
-    print(world.get_active_adventurers())
-    print()
-
     world.add_strongest_monster()
-
     print(world.get_active_adventurers())  # -> Peep
     print(world.get_active_monsters())  # -> [Goblin Spearman of type Goblin, Power: 10.]
     print()
@@ -371,18 +347,8 @@ if __name__ == "__main__":
     print(world.get_monster_list())  # -> [Massive Badger of type Animal, Power: 1590.]
 
     world.remove_character("Massive Badger")
-    world.remove_character("XxX_Eepiline_Sõdalane_XxX")
     print(world.get_monster_list())  # -> []
     print()
-    print("blahblah")
-    print(world.get_graveyard())
-    print(world.necromancers_active(True))
-    print(world.is_graveyard_active)
-    print(world.get_monster_list())
-    print()
-    world.active_adventurers.append(friend)
-    world.active_adventurers.append(smart_cheater)
-    print(world.get_active_adventurers())  # -> Peep
 
     print("Su sõber ütleb: \"Kui kõik need testid andsid sinu koodiga sama tulemuse "
           "mille ma siin ette kirjutasin, peaks kõik okei olema, proovi testerisse pushida! \" ")
