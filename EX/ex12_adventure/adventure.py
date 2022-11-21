@@ -158,7 +158,7 @@ class World:
             if (person.power == max_power) and (person.class_type == class_type):
                 self.active_adventurers.append(person)
                 # print("We move adventurer: ", person.name, " from one list to another.")
-                self.adventurer_list.remove(person)
+                # self.adventurer_list.remove(person)
                 return
 
     def add_weakest_adventurer(self, class_type: str):
@@ -171,7 +171,7 @@ class World:
         for person in self.adventurer_list:
             if (person.power == min_power) and (person.class_type == class_type):
                 self.active_adventurers.append(person)
-                self.adventurer_list.remove(person)
+                # self.adventurer_list.remove(person)
                 return
 
     def add_most_experienced_adventurer(self, class_type: str):
@@ -184,7 +184,7 @@ class World:
         for person in self.adventurer_list:
             if (person.experience == max_exp) and (person.class_type == class_type):
                 self.active_adventurers.append(person)
-                self.adventurer_list.remove(person)
+                # self.adventurer_list.remove(person)
                 return
 
     def add_least_experienced_adventurer(self, class_type: str):
@@ -197,7 +197,7 @@ class World:
         for person in self.adventurer_list:
             if (person.experience == min_exp) and (person.class_type == class_type):
                 self.active_adventurers.append(person)
-                self.adventurer_list.remove(person)
+                # self.adventurer_list.remove(person)
                 return
 
     def add_adventurer_by_name(self, name: str):
@@ -205,7 +205,7 @@ class World:
         for person in self.adventurer_list:
             if person.name == name:
                 self.active_adventurers.append(person)
-                self.adventurer_list.remove(person)
+                # self.adventurer_list.remove(person)
                 return
 
     def add_all_adventurers_of_class_type(self, class_type: str):
@@ -213,14 +213,14 @@ class World:
         for person in self.adventurer_list:
             if person.class_type == class_type:
                 self.active_adventurers.append(person)
-                self.adventurer_list.remove(person)
+                # self.adventurer_list.remove(person)
         return
 
     def add_all_adventurers(self):
         """Adding all persons."""
         for person in self.adventurer_list:
             self.active_adventurers.append(person)
-            self.adventurer_list.remove(person)
+            # self.adventurer_list.remove(person)
         return
 
     def get_active_monsters(self):
