@@ -205,7 +205,7 @@ class World:
         for person in self.adventurer_list:
             if person.name == name:
                 self.active_adventurers.append(person)
-                # self.adventurer_list.remove(person)
+                self.adventurer_list.remove(person)
                 return
 
     def add_all_adventurers_of_class_type(self, class_type: str):
@@ -213,14 +213,14 @@ class World:
         for person in self.adventurer_list:
             if person.class_type == class_type:
                 self.active_adventurers.append(person)
-                # self.adventurer_list.remove(person)
+                self.adventurer_list.remove(person)
         return
 
     def add_all_adventurers(self):
         """Adding all persons."""
         for person in self.adventurer_list:
             self.active_adventurers.append(person)
-            # self.adventurer_list.remove(person)
+            self.adventurer_list.remove(person)
         return
 
     def get_active_monsters(self):
