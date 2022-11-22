@@ -271,10 +271,13 @@ class World:
 
     def add_all_monsters_of_type(self, type: str):
         """Adding by type."""
+        remove_list = []
         for person in self.monster_list:
             if person.type == type:
                 self.active_monsters.append(person)
-                self.monster_list.remove(person)
+                remove_list.append(person)
+        for person in remove_list:
+            self.monster_list.remove(person)
         return
 
     def add_all_monsters(self):
