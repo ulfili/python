@@ -70,7 +70,7 @@ class World:
         self.graveyard = []
         self.active_adventurers = []
         self.active_monsters = []
-        self.is_graveyard_active = False
+        self.necromancers = False
 
     def get_python_master(self):
         """Get python master."""
@@ -119,15 +119,13 @@ class World:
             if person.name == name:
                 return self.graveyard.remove(person)
 
-    def necromancers_active(self, active: bool) -> bool:
+    def necromancers_active(self, necromancers: bool):
         """We are gonna check if players are alive."""
-        if len(self.graveyard) > 0:
-            self.is_graveyard_active = active
-        return self.is_graveyard_active
+        self.necromancers = necromancers
 
     def revive_graveyard(self):
         """Use this function if graveyard is not empty."""
-        if not self.is_graveyard_active:
+        if not self.necromancers:
             return
         for creature in self.graveyard:
             if isinstance(creature, Monster):
@@ -139,8 +137,8 @@ class World:
                 new_monster_power = creature.power
                 undead_person = Monster(new_monster_name, new_monster_type, new_monster_power)
                 self.monster_list.append(undead_person)
-            self.is_graveyard_active = False
-            self.graveyard.clear()
+        self.necromancers = False
+        self.graveyard.clear()
 
     def get_active_adventurers(self):
         """Sorting pers."""
