@@ -257,7 +257,7 @@ class World:
     def add_weakest_monster(self):
         """Adding by least power."""
         remove_list = []
-        min_power = 50000000
+        min_power = 5000000000000
         for person in self.monster_list:
             if person.power < min_power:
                 min_power = person.power
