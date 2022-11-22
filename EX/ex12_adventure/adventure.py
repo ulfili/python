@@ -219,8 +219,11 @@ class World:
 
     def add_all_adventurers(self):
         """Adding all persons."""
+        remove_elements = []
         for person in self.adventurer_list:
             self.active_adventurers.append(person)
+            remove_elements.append(person)
+        for person in remove_elements:
             self.adventurer_list.remove(person)
         return
 
@@ -238,6 +241,7 @@ class World:
 
     def add_strongest_monster(self):
         """Adding by most power."""
+        remove_list = []
         max_power = 0
         for person in self.monster_list:
             if person.power > max_power:
@@ -245,11 +249,14 @@ class World:
         for person in self.monster_list:
             if person.power == max_power:
                 self.active_monsters.append(person)
-                self.monster_list.remove(person)
-                return
+                remove_list.append(person)
+        for person in remove_list:
+            self.monster_list.remove(person)
+            return
 
     def add_weakest_monster(self):
         """Adding by least power."""
+        remove_list = []
         min_power = 5000
         for person in self.monster_list:
             if person.power < min_power:
@@ -257,8 +264,10 @@ class World:
         for person in self.adventurer_list:
             if person.power == min_power:
                 self.active_monsters.append(person)
-                self.monster_list.remove(person)
-                return
+                remove_list.append(person)
+        for person in remove_list:
+            self.adventurer_list.remove(person)
+            return
 
     def add_all_monsters_of_type(self, type: str):
         """Adding by type."""
@@ -270,10 +279,15 @@ class World:
 
     def add_all_monsters(self):
         """Adding all."""
+        remove_list = []
         for person in self.monster_list:
             self.active_monsters.append(person)
+            remove_list.append(person)
+        for person in remove_list:
             self.monster_list.remove(person)
         return
+
+
 
 
 if __name__ == "__main__":
