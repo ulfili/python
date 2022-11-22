@@ -241,33 +241,19 @@ class World:
 
     def add_strongest_monster(self):
         """Adding by most power."""
-        remove_list = []
-        max_power = 0
-        for person in self.monster_list:
-            if person.power > max_power:
-                max_power = person.power
-        for person in self.monster_list:
-            if person.power == max_power:
-                self.active_monsters.append(person)
-                remove_list.append(person)
-        for person in remove_list:
-            self.monster_list.remove(person)
+        if len(self.active_monsters) == 0:
             return
+        sorted(self.active_monsters, key=lambda pow: pow.power, reverse=True)
+        self.active_monsters.append(self.active_monsters)
+        self.monster_list.remove(self.monster_list)
 
     def add_weakest_monster(self):
         """Adding by least power."""
-        remove_list = []
-        min_power = 5000000000000
-        for person in self.monster_list:
-            if person.power < min_power:
-                min_power = person.power
-        for person in self.adventurer_list:
-            if person.power == min_power:
-                self.active_monsters.append(person)
-                remove_list.append(person)
-        for person in remove_list:
-            self.adventurer_list.remove(person)
+        if len(self.active_monsters) == 0:
             return
+        sorted(self.active_monsters, key=lambda pow: pow.power)
+        self.active_monsters.append(self.active_monsters)
+        self.monster_list.remove(self.monster_list)
 
     def add_all_monsters_of_type(self, type: str):
         """Adding by type."""
@@ -289,8 +275,6 @@ class World:
         for person in remove_list:
             self.monster_list.remove(person)
         return
-
-
 
 
 if __name__ == "__main__":
