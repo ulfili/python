@@ -208,10 +208,13 @@ class World:
 
     def add_all_adventurers_of_class_type(self, class_type: str):
         """Adding persons by type."""
+        remove_elements = []
         for person in self.adventurer_list:
             if person.class_type == class_type:
                 self.active_adventurers.append(person)
-                self.adventurer_list.remove(person)
+                remove_elements.append(person)
+        for person in remove_elements:
+            self.adventurer_list.remove(person)
         return
 
     def add_all_adventurers(self):
