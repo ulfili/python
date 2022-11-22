@@ -245,7 +245,7 @@ class World:
             return
         sorted_list = sorted(self.active_monsters, key=lambda pow: pow.power, reverse=True)
         self.active_monsters.append(sorted_list[0])
-        self.monster_list.remove(sorted_list[0])
+        self.monster_list.remove(sorted_list)
 
     def add_weakest_monster(self):
         """Adding by least power."""
@@ -253,7 +253,7 @@ class World:
             return
         sorted_list = sorted(self.active_monsters, key=lambda pow: pow.power)
         self.active_monsters.append(sorted_list[0])
-        self.monster_list.remove(sorted_list[0])
+        self.monster_list.remove(sorted_list)
 
     def add_all_monsters_of_type(self, type: str):
         """Adding by type."""
