@@ -2,32 +2,32 @@
 
 
 def function_a(a: str):
-    """Function a."""
+    """Function."""
 
 
 def function_b(b: str):
-    """Function b."""
+    """Function."""
 
 
 def function_c(c: str):
-    """Function c."""
+    """Function."""
 
 
 def function_d(d: str):
-    """Function d."""
+    """Function."""
 
 
-def function_e():
-    """Function e."""
+def function_e(e: str):
+    """Function."""
 
 
 def function_f(f: str):
-    """Function f."""
+    """Function."""
 
 
 def function_g(g: str):
-    """Function g."""
+    """Function."""
 
 
 def function_h(h: str):
-    """Function h."""
+    """Function."""
