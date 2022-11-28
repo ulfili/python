@@ -14,7 +14,6 @@ import os
 import googleapiclient.discovery
 
 
-
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://docs.google.com/spreadsheets/d/1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M']
 SAMPLE_RANGE_NAME = 'A1:E4'
@@ -79,15 +78,7 @@ def extract_video_id_from_response(response):
 
 
 def get_links_from_playlist(link: str, developer_key: str) -> list:
-    """
-    Return a list of links to songs in the Youtube playlist with the given address.
-    Example input
-        get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK',
-                                'ThisIsNotARealKey_____ThisIsNotARealKey')
-
-    Returns
-        ['https://youtube.com/watch?v=r_It_X7v-1E', 'https://youtube.com/watch?v=U4ogK0MIzqk', ... and so on]
-    """
+    """Return a list of links to songs in the Youtube playlist with the given address."""
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
     last_index = link.index("=")
@@ -112,9 +103,9 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
     return_list.extend(new_video_id_list)
     while pageToken != "None":
         next_request = youtube.playlistItems().list(
-        part="contentDetails",
-        pageToken=pageToken,
-        playlistId=playlist_id
+            part="contentDetails",
+            pageToken=pageToken,
+            playlistId=playlist_id
         )
         response = next_request.execute()
         new_video_id_list, pageToken = extract_video_id_from_response(response)
