@@ -9,6 +9,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+import os
+
+import googleapiclient.discovery
+
+
+
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://docs.google.com/spreadsheets/d/1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M']
 SAMPLE_RANGE_NAME = 'A1:E4'
@@ -54,5 +60,76 @@ def get_links_from_spreadsheet(id: str, token_file_name: str) -> list:
         print(err)
 
 
+scopes = ["https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK"]
+
+
+def extract_video_id_from_response(response):
+    """Something."""
+    pageToken = response.setdefault("nextPageToken", "None")
+    print(pageToken)
+    video_id_list = []
+    items_list = response["items"]
+    for item in items_list:
+        # print(item)
+        content = item["contentDetails"]
+        video_id = content["videoId"]
+        print("video id is: ", video_id)
+        video_id_list.append(video_id)
+    return video_id_list, pageToken
+
+
+def get_links_from_playlist(link: str, developer_key: str) -> list:
+    """
+    Return a list of links to songs in the Youtube playlist with the given address.
+    Example input
+        get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK',
+                                'ThisIsNotARealKey_____ThisIsNotARealKey')
+
+    Returns
+        ['https://youtube.com/watch?v=r_It_X7v-1E', 'https://youtube.com/watch?v=U4ogK0MIzqk', ... and so on]
+    """
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+    last_index = link.index("=")
+    playlist_id = link[last_index + 1:]
+    print(playlist_id)
+    api_service_name = "youtube"
+    api_version = "v3"
+
+    youtube = googleapiclient.discovery.build(
+        api_service_name, api_version, developerKey=developer_key)
+    return_list = []
+    request = youtube.playlistItems().list(
+        part="contentDetails",
+        # pageToken="EAAaBlBUOkNBVQ",
+        playlistId=playlist_id
+    )
+
+    response = request.execute()
+    print(response)
+    new_video_id_list, pageToken = extract_video_id_from_response(response)
+    print(new_video_id_list, pageToken)
+    return_list.extend(new_video_id_list)
+    while pageToken != "None":
+        next_request = youtube.playlistItems().list(
+        part="contentDetails",
+        pageToken=pageToken,
+        playlistId=playlist_id
+        )
+        response = next_request.execute()
+        new_video_id_list, pageToken = extract_video_id_from_response(response)
+        return_list.extend(new_video_id_list)
+        print(new_video_id_list, pageToken)
+    print(return_list)
+    full_link_list = []
+    youtube_link = "https://youtube.com/watch?v="
+    for id in return_list:
+        full_link = youtube_link + id
+        full_link_list.append(full_link)
+    return full_link_list
+
+
 if __name__ == '__main__':
-    get_links_from_spreadsheet('1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M', 'token.json')
+    # get_links_from_spreadsheet('1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M', 'token.json')
+    get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK',
+                            "AIzaSyAS_HhoP6Vq1OOcsXwQ1sTVZS91DyEK9mc")
