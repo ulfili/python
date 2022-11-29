@@ -6,9 +6,9 @@ def function_a(a: str):
     return True
 
 
-def function_b(b: str):
+def function_b(b: int):
     """Function."""
-    if b == 12307:
+    if b >= 2200:
         return False
     else:
         return True
