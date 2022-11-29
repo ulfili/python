@@ -10,6 +10,8 @@ def function_b(b: int):
     """Function."""
     a = int
     if b + 11 == a:
+        return True
+    else:
         return False
 
 
