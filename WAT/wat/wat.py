@@ -8,11 +8,10 @@ def function_a(a: str):
 
 def function_b(b: int):
     """Function."""
-    a = int
-    if b + 11 == a:
+    a = b + 11
+    if a:
         return True
-    else:
-        return False
+
 
 
 def function_c(c: str):
