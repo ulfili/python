@@ -8,9 +8,8 @@ def function_a(a: str):
 
 def function_b(b: int):
     """Function."""
-    if b >= 2200:
-        return False
-    else:
+    a = int
+    if b + 11 == a:
         return True
 
 
