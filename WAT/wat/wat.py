@@ -9,6 +9,8 @@ def function_a(a: str):
 def function_b(b: str):
     """Function."""
     if b == 12307:
+        return False
+    else:
         return True
 
 
