@@ -28,20 +28,22 @@ def drive_to_line(robot: FollowerBot):
 
     :param FollowerBot robot: instance of the robot that you need to make move
     """
-    robot.set_wheels_speed(3)
+    robot.set_wheels_speed(5)
     line_cross = False
     while not line_cross:
         robot.sleep(2)
         if 0 == min(robot.get_line_sensors()):
             line_cross = True
-            print("min = ", min(robot.get_line_sensors()))
+            # print("min = ", min(robot.get_line_sensors()))
     robot.set_wheels_speed(40)
     robot.sleep(1)
     robot.done()
 
+
 if __name__ == '__main__':
     robot = FollowerBot(track_image="line_2.png", starting_orientation=180, start_x=355, start_y=277, timeout=500)
     drive_to_line(robot)
+
 
 def follow_the_line(robot: FollowerBot):
     """
