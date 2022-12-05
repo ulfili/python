@@ -35,7 +35,7 @@ def drive_to_line(robot: FollowerBot):
         if 0 == min(robot.get_line_sensors()):
             line_cross = True
             # print("min = ", min(robot.get_line_sensors()))
-    robot.set_wheels_speed(40)
+    robot.set_wheels_speed(35)
     robot.sleep(1)
     robot.done()
 
