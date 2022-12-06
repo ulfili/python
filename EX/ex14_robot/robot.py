@@ -60,28 +60,33 @@ def follow_the_line(robot: FollowerBot):
         robot.sleep(2)
         if 0 == min(robot.get_line_sensors()):
             line_cross = True
-    robot.set_wheels_speed(20)
+    robot.set_wheels_speed(10)
     while finish_point:
         robot.sleep(0.01)
         if min(robot.get_line_sensors()) > 0:
             finish_point = False
-            print(robot.get_line_sensors())
-            print(robot.get_position())
+            #print(robot.get_line_sensors())
+            #print(robot.get_position())
         if robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() != 0:
-            robot.set_right_wheel_speed(10)
-            robot.set_left_wheel_speed(5)
+            robot.set_right_wheel_speed(40)
+            robot.set_left_wheel_speed(-25)
             robot.sleep(0.01)
+            print(robot.get_line_sensors())
+
         elif robot.get_left_line_sensor() != 0 and robot.get_right_line_sensor() == 0:
-            robot.set_right_wheel_speed(5)
-            robot.set_left_wheel_speed(10)
+            robot.set_right_wheel_speed(-25)
+            robot.set_left_wheel_speed(40)
             robot.sleep(0.01)
+            print(robot.get_line_sensors())
+
         else:
-            robot.set_wheels_speed(20)
+            robot.set_wheels_speed(30)
             robot.sleep(0.01)
+            print(robot.get_line_sensors())
 
     robot.done()
 
 
 if __name__ == '__main__':
-    robot = FollowerBot(track_image="track.png", start_x=122, start_y=273, starting_orientation=90, timeout=500)
+    robot = FollowerBot(track_image="something.png", start_x=274, start_y=276, starting_orientation=90, timeout=500)
     follow_the_line(robot)
