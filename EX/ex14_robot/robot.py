@@ -17,9 +17,6 @@ def test_run(robot: FollowerBot):
     robot.done()
 
 
-test_run(robot=FollowerBot())
-
-
 def drive_to_line(robot: FollowerBot):
     """
     Drive the robot until it meets a perpendicular black line, then drive forward 25cm.
@@ -38,11 +35,6 @@ def drive_to_line(robot: FollowerBot):
     robot.set_wheels_speed(35)
     robot.sleep(1)
     robot.done()
-
-
-if __name__ == '__main__':
-    robot = FollowerBot(track_image="line_2.png", starting_orientation=180, start_x=355, start_y=277, timeout=500)
-    drive_to_line(robot)
 
 
 def follow_the_line(robot: FollowerBot):
@@ -65,32 +57,33 @@ def follow_the_line(robot: FollowerBot):
     robot.set_wheels_speed(10)
     while finish_point:
         robot.sleep(0.01)
-        if min(robot.get_line_sensors()) > 0:  # peatub siis, kui kõik sensorid on suuremad 0-st
+        if min(robot.get_line_sensors()) > 0:
             finish_point = False
             # print(robot.get_line_sensors())
             # print(robot.get_position())
 
-        if robot.get_third_line_sensor_from_left() == 0 and robot.get_right_line_sensors() != 0:
-            robot.set_right_wheel_speed(50)
-            robot.set_left_wheel_speed(-25)
-            # robot.sleep(0.01)
-            print("rotate to left: ")
+        if robot.get_third_line_sensor_from_left() == 0 and robot.get_right_line_sensor() != 0:
+            robot.set_right_wheel_speed(14)
+            robot.set_left_wheel_speed(0)
+            robot.sleep(0.01)
+            print(robot.get_line_sensors())
+            print(robot.get_position())
 
-        elif robot.get_left_line_sensors() != 0 and robot.get_third_line_sensor_from_right() == 0:
-            robot.set_right_wheel_speed(-25)
-            robot.set_left_wheel_speed(25)
-            # robot.sleep(0.01)
-            print("rotate to right: ")
+        elif robot.get_left_line_sensor() != 0 and robot.get_third_line_sensor_from_right() == 0:
+            robot.set_right_wheel_speed(-14)
+            robot.set_left_wheel_speed(0)
+            robot.sleep(0.01)
+            print(robot.get_line_sensors())
+            print(robot.get_position())
 
         else:
             robot.set_wheels_speed(30)
-            # robot.sleep(0.01)
+            robot.sleep(0.01)
             print(robot.get_line_sensors())
             print(robot.get_position())
-        robot.sleep(0.01)
     robot.done()
 
 
 if __name__ == '__main__':
-    robot = FollowerBot(track_image="anotherone.png", start_x=86, start_y=177, starting_orientation=90)
+    robot = FollowerBot(track_image="sharp.png", start_x=275, start_y=585, starting_orientation=90)
     follow_the_line(robot)
