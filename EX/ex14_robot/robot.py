@@ -69,24 +69,27 @@ def follow_the_line(robot: FollowerBot):
             # print(robot.get_line_sensors())
             # print(robot.get_position())
         if robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() != 0:
-            robot.set_right_wheel_speed(40)
+            robot.set_right_wheel_speed(50)
             robot.set_left_wheel_speed(-25)
             robot.sleep(0.01)
             print(robot.get_line_sensors())
+            print(robot.get_position())
 
         elif robot.get_left_line_sensor() != 0 and robot.get_right_line_sensor() == 0:
             robot.set_right_wheel_speed(-25)
-            robot.set_left_wheel_speed(40)
+            robot.set_left_wheel_speed(50)
             robot.sleep(0.01)
             print(robot.get_line_sensors())
+            print(robot.get_position())
 
         else:
             robot.set_wheels_speed(20)
             robot.sleep(0.01)
             print(robot.get_line_sensors())
+            print(robot.get_position())
     robot.done()
 
 
 if __name__ == '__main__':
-    robot = FollowerBot(track_image="something.png", start_x=274, start_y=276, starting_orientation=90)
+    robot = FollowerBot(track_image="anotherone.png", start_x=86, start_y=177, starting_orientation=90)
     follow_the_line(robot)
