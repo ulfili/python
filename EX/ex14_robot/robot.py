@@ -53,6 +53,7 @@ def follow_the_line(robot: FollowerBot):
 
     :param FollowerBot robot: instance of the robot that you need to make move
     """
+    zero_list = [0, 0, 0, 0, 0, 0]
     robot._timeout = 5000
     line_cross = False
     finish_point = True
@@ -68,20 +69,26 @@ def follow_the_line(robot: FollowerBot):
             finish_point = False
             # print(robot.get_line_sensors())
             # print(robot.get_position())
+        if robot.get_line_sensors() == zero_list:
+            robot.set_right_wheel_speed(-25)
+            robot.set_left_wheel_speed(50)
+            robot.sleep(0.01)
+        elif robot.get_line_sensors() == zero_list:
+            robot.set_right_wheel_speed(50)
+            robot.set_left_wheel_speed(-25)
+            robot.sleep(0.01)
         if robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() != 0:
             robot.set_right_wheel_speed(50)
             robot.set_left_wheel_speed(-25)
             robot.sleep(0.01)
             print(robot.get_line_sensors())
             print(robot.get_position())
-
         elif robot.get_left_line_sensor() != 0 and robot.get_right_line_sensor() == 0:
             robot.set_right_wheel_speed(-25)
             robot.set_left_wheel_speed(50)
             robot.sleep(0.01)
             print(robot.get_line_sensors())
             print(robot.get_position())
-
         else:
             robot.set_wheels_speed(20)
             robot.sleep(0.01)
