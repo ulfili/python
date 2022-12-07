@@ -63,21 +63,28 @@ def follow_the_line(robot: FollowerBot):
             # print(robot.get_position())
 
         if robot.get_third_line_sensor_from_left() == 0 and robot.get_right_line_sensor() != 0:
-            robot.set_right_wheel_speed(30)
-            robot.set_left_wheel_speed(0)
+            robot.set_right_wheel_speed(-15)
+            robot.set_left_wheel_speed(20)
             if robot.get_second_line_sensor_from_left() == 0 and robot.get_right_line_sensor() != 0:
                 robot.set_right_wheel_speed(14)
                 robot.set_left_wheel_speed(0)
+                if robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() != 0:
+                    robot.set_right_wheel_speed(50)
+                    robot.set_left_wheel_speed(-25)
+                    robot.sleep(0.01)
             robot.sleep(0.01)
             print(robot.get_line_sensors())
             print(robot.get_position())
 
         elif robot.get_left_line_sensor() != 0 and robot.get_third_line_sensor_from_right() == 0:
-            robot.set_right_wheel_speed(-30)
-            robot.set_left_wheel_speed(0)
+            robot.set_right_wheel_speed(-14)
+            robot.set_left_wheel_speed(25)
             if robot.get_left_line_sensor() != 0 and robot.get_second_line_sensor_from_right() == 0:
                 robot.set_right_wheel_speed(-14)
                 robot.set_left_wheel_speed(0)
+                if robot.get_left_line_sensor() != 0 and robot.get_right_line_sensor() == 0:
+                    robot.set_right_wheel_speed(-25)
+                    robot.set_left_wheel_speed(50)
             robot.sleep(0.01)
             print(robot.get_line_sensors())
             print(robot.get_position())
@@ -91,6 +98,6 @@ def follow_the_line(robot: FollowerBot):
 
 
 if __name__ == '__main__':
-    #   robot = FollowerBot(start_x=123, start_y=251, starting_orientation=90)
+    # robot = FollowerBot(start_x=123, start_y=251, starting_orientation=90)
     robot = FollowerBot(track_image="sharp.png", start_x=275, start_y=585, starting_orientation=90)
     follow_the_line(robot)
