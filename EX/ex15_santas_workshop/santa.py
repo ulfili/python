@@ -1,11 +1,13 @@
 """SANTA'S WORKSHOP."""
 import csv
+from typing import Dict, Any
+
 import requests
-import json
+# import json
 
 
 class Child:
-    def __init__(self, name, country):
+    def __init__(self, name: str, country: str):
         self.name = name
         self.country = country
         self.type = "unknown"    # nice or naughty
@@ -22,6 +24,8 @@ class Child:
 
 
 class ChildrenStorage:
+    all_children: dict[Any, Any]
+
     def __init__(self):
         self.all_children = {}
 
@@ -29,7 +33,7 @@ class ChildrenStorage:
         with open(file_name, "rt") as csv_file:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
-                ch = Child(row[0], row[1])
+                ch = Child(row[0], row[1].strip())
                 ch.set_child_type(child_type)
                 self.all_children[ch.name] = ch
 
@@ -66,14 +70,6 @@ class Gift:
     def __repr__(self):
         return "Gift : " + self.name + ", cost: " + str(self.cost) + ", time: " + str(self.time) + ", weight: " + str(self.weight)
 
-    def add_cost(self, cost: int):
-        self.cost = cost
-
-    def add_time(self, time: int):
-        self.time = time
-
-    def add_weight(self, weight: int):
-        self.weight = weight
 
 class GiftStorage:
 
@@ -84,8 +80,10 @@ class GiftStorage:
         self.all_gifts[gift_name] = Gift(gift_name)
 
     def print_all_gifts(self):
+        ret_list = []
         for name, gift in self.all_gifts.items():
-            print(name, gift)
+            ret_list.append(str(name) + " " + str(gift))
+        return ret_list
 
     def get_info_from_server(self, gift_name: str):
         add = "%20"
@@ -93,7 +91,7 @@ class GiftStorage:
         adres = "https://cs.ttu.ee/services/xmas/gift?name=" + url_name
         r = requests.get(adres)
         gift_json = r.json()
-        #print(gift_json)
+        # print(gift_json)
         if gift_name in self.all_gifts:
             gift = self.all_gifts[gift_name]
             gift.cost = gift_json.get("material_cost", -1)
@@ -106,12 +104,31 @@ class GiftStorage:
             gift.weight = gift_json.get("weight_in_grams", -1)
             self.all_gifts[gift_name] = gift
 
-        print(self.all_gifts)
+        # print(self.all_gifts)
 
+    def get_info_from_file(self, filename: str, gift_name: str) -> bool:
+        with open(filename, "rt") as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            for row in csv_reader:
+                # print("Name is: ", row[0])
+                if gift_name == row[0]:
+                    # print("We get this gift in csv db!")
+                    if gift_name in self.all_gifts:
+                        gift = self.all_gifts[gift_name]
+                        gift.cost = float(row[1].strip())   # material_cost
+                        gift.time = float(row[2].strip())   # production_time
+                        gift.weight = float(row[3].strip())   # weight_in_grams
+                    else:
+                        gift = Gift(gift_name)
+                        gift.cost = float(row[1].strip())  # material_cost
+                        gift.time = float(row[2].strip())  # production_time
+                        gift.weight = float(row[3].strip())   # weight_in_grams
+                        self.all_gifts[gift_name] = gift
+                    return True
+        return False
 
     def write_to_csv(self, filename: str, data: dict):
         fieldnames = ['name', 'cost', 'time', 'weight']
-        print( len(data))
         with open(filename, 'w', newline='') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=",")
             csv_writer.writerow(fieldnames)
@@ -125,36 +142,38 @@ class GiftStorage:
         pass
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     print("Hello Santa!")
-    ch_storage = ChildrenStorage()
 
-    filename = "short_naugty.csv"
+    ch_storage = ChildrenStorage()
+    print("We created a ChildrenStorage")
+
+    filename = "ex15_naughty_list.csv"
     ch_storage.read_csv_children(filename, "naughty")
 
-    filename = "short_nice.csv"
+    filename = "ex15_nice_list.csv"
     ch_storage.read_csv_children(filename, "nice")
 
-    filename = "short_wishlist.csv"
+    filename = "ex15_wish_list.csv"
     ch_storage.read_wishlist_csv(filename)
+    print("We had read all 3 files and sava all to ChildrenStorage")
 
     ch_storage.set_default_gift()
 
-    # for name, ch in ch_storage.all_children.items():
-    #   print(ch)
-
     gift_storage = GiftStorage()
-    #teddy = Gift("My Teddy", 10, 10, 5)
-    gift_storage.add_gift("teddy")
-
+    print("We created a GiftStorage")
     for name, ch in ch_storage.all_children.items():
         wishlist = ch.wishlist
         for gift in wishlist:
             gift_storage.add_gift(gift)
 
-    #gift_storage.print_all_gifts()
-
     for gift in gift_storage.all_gifts:
-        gift_storage.get_info_from_server(gift)
+        print("Get info about gift: ", gift)
+        if gift_storage.get_info_from_file("data_base.csv", gift):
+            print("Update info from DB")
+        else:
+            gift_storage.get_info_from_server(gift)
+            print("Update info from Server")
 
     gift_storage.write_to_csv("data_base.csv", gift_storage.all_gifts)
+    gift_storage.print_all_gifts()"""
