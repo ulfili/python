@@ -7,29 +7,78 @@ import requests
 
 
 class Child:
+    """
+    A class representing a child.
+
+    Attributes:
+        name (str): The name of the child.
+        country (str): The country of the child.
+        type (str): The type of the child ("nice" or "naughty").
+        wishlist (list): A list of gifts that the child wants.
+
+    Methods:
+        __repr__(): Returns a string representation of the child.
+        set_child_type(type): Sets the type of the child.
+        add_wishlist(gifts): Adds a list of gifts to the child's wishlist.
+    """
     def __init__(self, name: str, country: str):
+        """
+        The constructor for Child.
+
+        Parameters:
+            name (str): The name of the child.
+            country (str): The country the child is from.
+        """
         self.name = name
         self.country = country
         self.type = "unknown"    # nice or naughty
         self.wishlist = []       # kingitused
 
     def __repr__(self):
+        """
+        A method that returns a string representation of the child.
+
+        Returns:
+            str: A string representation of the child.
+        """
         return "Child name: " + self.name + ", Country: " + self.country + ", Type: " + self.type + ", Wishlist: " + str(self.wishlist)
 
     def set_child_type(self, type):
+        """Sets child type."""
         self.type = type
 
     def add_wishlist(self, gifts: list):
+        """Adding gifts to wishlist."""
         self.wishlist = gifts
 
 
 class ChildrenStorage:
+    """
+    A class for storing children and their wishlists.
+
+    Attributes:
+        all_children (dict): A dictionary mapping child names to child objects.
+
+    Methods:
+       __init__(): Initializes an empty ChildrenStorage.
+        read_csv_children(file_name, child_type): Reads children from a CSV file and stores them in all_children.
+       read_wishlist_csv(file_name): Reads wishlists from a CSV file and updates the corresponding child objects in all_children.
+       set_default_gift(): Sets a default gift for children with empty or invalid wishlists.
+    """
     all_children: dict[Any, Any]
 
     def __init__(self):
+        """Initializes an empty ChildrenStorage."""
         self.all_children = {}
 
     def read_csv_children(self, file_name: str, child_type: str):
+        """
+        Reads children from a CSV file and stores them in all_children.
+
+        Parameters:
+            file_name (str): The name of the CSV file to read.
+            child_type (str): The type of the children ("nice" or "naughty").
+        """
         with open(file_name, "rt") as csv_file:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
@@ -38,6 +87,12 @@ class ChildrenStorage:
                 self.all_children[ch.name] = ch
 
     def read_wishlist_csv(self, file_name: str):
+        """
+        Reads wishlists from a CSV file and updates the corresponding child objects in all_children.
+
+        Parameters:
+            file_name (str): The name of the CSV file to read.
+        """
         with open(file_name, "rt") as csv_file:
             for row in csv_file:
                 gifts_list_2 = []
@@ -51,6 +106,7 @@ class ChildrenStorage:
                     ch.add_wishlist(gifts_list_2)
 
     def set_default_gift(self):
+        """Sets a default gift for children with empty or invalid wishlists."""
         default_gift = ["teddy bear"]
         for name, ch in self.all_children.items():
             if len(ch.wishlist) == 0:
@@ -60,32 +116,75 @@ class ChildrenStorage:
 
 
 class Gift:
+    """
+    A class representing a gift.
+
+    Attributes:
+        name (str): The name of the gift.
+       cost (int): The cost of the gift.
+       time (int): The time required to make the gift.
+        weight (int): The weight of the gift.
+
+    Methods:
+        __repr__(): Returns a string representation of the gift.
+       """
 
     def __init__(self, name: str, cost=0, time=0, weight=0):
+        """The constructor for Gift. Sets gift name, cost, time and weight."""
         self.name = name
         self.cost = cost
         self.time = time
         self.weight = weight
 
     def __repr__(self):
+        """Returns a string representation of the gift."""
         return "Gift : " + self.name + ", cost: " + str(self.cost) + ", time: " + str(self.time) + ", weight: " + str(self.weight)
 
 
 class GiftStorage:
+    """
+    A class for storing gifts.
+
+    Attributes:
+        all_gifts (dict): A dictionary mapping gift names to gift objects.
+
+    Methods:
+        __init__(): Initializes an empty GiftStorage.
+    """
 
     def __init__(self):
+        """Initializes an empty GiftStorage."""
         self.all_gifts = {}
 
     def add_gift(self, gift_name: str):
+        """
+        Adds a gift to all_gifts.
+
+        Args:
+            gift_name (str): The name of the gift to add.
+        """
         self.all_gifts[gift_name] = Gift(gift_name)
 
     def print_all_gifts(self):
+        """
+        Returns a list of strings representing all gifts in all_gifts.
+
+        Returns:
+            A list of strings representing all gifts in all_gifts. Each string is in the format "name cost time weight".
+        """
         ret_list = []
         for name, gift in self.all_gifts.items():
             ret_list.append(str(name) + " " + str(gift))
         return ret_list
 
     def get_info_from_server(self, gift_name: str):
+        """
+        This function queries the server at the given URL for information about the gift specified by the gift_name parameter.
+        If the gift already exists in the all_gifts dictionary, its information is updated.
+        Otherwise, a new gift object is created and added to the dictionary.
+
+        :param gift_name: str, the name of the gift to query
+        """
         add = "%20"
         url_name = gift_name.replace(" ", add)
         adres = "https://cs.ttu.ee/services/xmas/gift?name=" + url_name
@@ -107,6 +206,13 @@ class GiftStorage:
         # print(self.all_gifts)
 
     def get_info_from_file(self, filename: str, gift_name: str) -> bool:
+        """
+        Gets gift information for the given gift name from a CSV file. If the gift is found in the file, the cost, time, and weight of the gift are updated in the all_gifts dictionary. If the gift is not found in the file, this function does not modify the all_gifts dictionary.
+
+        @param filename: the name of the CSV file to read from
+        @param gift_name: the name of the gift to look for in the file
+        @return: True if the gift is found in the file, False otherwise
+        """
         with open(filename, "rt") as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             for row in csv_reader:
@@ -128,6 +234,8 @@ class GiftStorage:
         return False
 
     def write_to_csv(self, filename: str, data: dict):
+        """Writes info from server to new csv file."""
+
         fieldnames = ['name', 'cost', 'time', 'weight']
         with open(filename, 'w', newline='') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=",")
@@ -142,7 +250,7 @@ class GiftStorage:
         pass
 
 
-"""if __name__ == "__main__":
+if __name__ == "__main__":
     print("Hello Santa!")
 
     ch_storage = ChildrenStorage()
@@ -176,4 +284,4 @@ class GiftStorage:
             print("Update info from Server")
 
     gift_storage.write_to_csv("data_base.csv", gift_storage.all_gifts)
-    gift_storage.print_all_gifts()"""
+    gift_storage.print_all_gifts()
