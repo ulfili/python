@@ -16,28 +16,19 @@ def find_capital_letters(text: str) -> str:
 
 def close_far(a: int, b: int, c: int) -> bool:
     """Docstring."""
-    if a == b == c:    # 1 1 1
-        return False
-    if b == a + 1:     # 1 2 3
-        if c == b + 1:
-            return False
-    if b == c + 1:     # 1 1 0
-        if a == b:
-            return False
-    if b == a + 1:     # 0 1 1
-        if c == b:
-            return False
-    if c == a + 1:     # 1 0 1
-        if b == c:
-            return False
-
-    else:
+    if abs(a - b) <= 1 and abs(a - c) >= 2 and abs(b - c) >= 2:
         return True
+    if abs(a - c) <= 1 and abs(a - b) >= 2 and abs(b - c) >= 2:
+        return True
+    return False
 
 
-print(close_far(1, 2, 10))  # => True
-print(close_far(1, 2, 3))   # => False
-print(close_far(4, 1, 3))   # => True
+print(close_far(1, 2, 5))  # True
+print(close_far(1, 2, 3))  # False
+print(close_far(2, 3, 5))  # True
+print(close_far(1, 1, 2))  # False
+print(close_far(1, 3, 5))  # False
+
 
 
 def get_names_from_results(results_string: str, min_result: int) -> list:
