@@ -22,20 +22,15 @@ def close_far(a: int, b: int, c: int) -> bool:
 
 def get_names_from_results(results_string: str, min_result: int) -> list:
     """Given a string of names and scores, return a list of names where the score is higher than or equal to min_result."""
-    result_list = []
-    pattern = r"(\s|\W)(\d+)"
-    for match in re.finditer(pattern, results_string):
-        found_nums = match.group(2)
-        result_list.append(found_nums)
-    modified_str = re.sub(r"(\s|\W)(\d+)", "", results_string)
-    modified_str = re.sub(r'\s+', ' ', modified_str)
-    names = modified_str.split(",")
-    pairs = zip(names, result_list)
-    names_and_results = dict(pairs)
+    name_and_score = results_string.split(",")
     winners = []
-    for key, value in names_and_results.items():
-        if int(value) >= min_result:
-            winners.append(key)
+    for elem in name_and_score:
+        token_list = elem.split(" ")
+        if len(token_list) > 1:
+            score = token_list.pop()
+            name = " ".join(token_list)
+            if int(score) >= min_result:
+                winners.append(name)
     return winners
 
 
