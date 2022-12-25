@@ -22,16 +22,28 @@ def close_far(a: int, b: int, c: int) -> bool:
 
 def get_names_from_results(results_string: str, min_result: int) -> list:
     """Given a string of names and scores, return a list of names where the score is higher than or equal to min_result."""
-    replaced_str = results_string.replace(",", " ")
-    inf_list = replaced_str.split()
+    result_list = []
+    pattern = r"(\s|\W)(\d+)"
+    for match in re.finditer(pattern, results_string):
+        found_nums = match.group(2)
+        result_list.append(found_nums)
+    modified_str = re.sub(r"(\s|\W)(\d+)", "", results_string)
+    modified_str = re.sub(r'\s+', ' ', modified_str)
+    names = modified_str.split(",")
+    pairs = zip(names, result_list)
+    names_and_results = dict(pairs)
+    winners = []
+    for key, value in names_and_results.items():
+        if int(value) >= min_result:
+            winners.append(key)
+    return winners
 
-pass
 
-"""print(get_names_from_results("ago 123,peeter 11", 0)) # ["ago", "peeter"]
+print(get_names_from_results("ago 123,peeter 11", 0)) # ["ago", "peeter"]
 print(get_names_from_results("ago 123,peeter 11,33", 10)) # ["ago", "peeter"]  # 33 does not have the name
 print(get_names_from_results("ago 123,peeter 11", 100)) # ["ago"]
 print(get_names_from_results("ago 123,peeter 11,kitty11!! 33", 11)) # ["ago", "peeter",  "kitty11!!"]
-print(get_names_from_results("ago 123,peeter 11,kusti riin 14", 12)) # ["ago", "kusti riin"]"""
+print(get_names_from_results("ago 123,peeter 11,kusti riin 14", 12)) # ["ago", "kusti riin"]
 
 
 def tic_tac_toe(game: list) -> int:
