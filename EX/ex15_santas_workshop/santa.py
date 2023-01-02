@@ -8,14 +8,14 @@ class Child:
     """A class representing a child."""
 
     def __init__(self, name: str, country: str):
-        """The constructor for Child."""
+        """Child constructor."""
         self.name = name
         self.country = country
         self.type = "unknown"    # nice or naughty
         self.wishlist = []       # kingitused
 
     def __repr__(self):
-        """A method that returns a string representation of the child."""
+        """Return a string representation of the child."""
         return "Child name: " + self.name + ", Country: " + self.country + ", Type: " + self.type + ", Wishlist: " + str(self.wishlist)
 
     def set_child_type(self, type):
@@ -73,7 +73,7 @@ class Gift:
     """A class representing a gift."""
 
     def __init__(self, name: str, cost=0, time=0, weight=0):
-        """The constructor for Gift. Sets gift name, cost, time and weight."""
+        """Gift constructor."""
         self.name = name
         self.cost = cost
         self.time = time
