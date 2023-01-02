@@ -146,7 +146,7 @@ def test_gift_storage__get_info_from_file__gift_in_storage(gift_storage):
 
 
 def test_gift_storage__get_info_from_file__gift_not_present_in_db(gift_storage):
-    """Test gift storage.Read from file"""
+    """Test gift storage.Read from file."""
     gift_name = "Xbox Series XXX"
     assert len(gift_storage.all_gifts) == 0
 
@@ -157,7 +157,7 @@ def test_gift_storage__get_info_from_file__gift_not_present_in_db(gift_storage):
 
 
 def test_gift_storage__get_info_from_file__gift_not_in_storage(gift_storage):
-    """Test gift storage.Read from file"""
+    """Test gift storage.Read from file."""
     gift_name = "Xbox Series XXX"
     gift_storage.add_gift(gift_name)
     assert len(gift_storage.all_gifts) == 1
