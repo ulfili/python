@@ -151,7 +151,7 @@ class GiftStorage:
         return False
 
     def write_to_csv(self, filename: str, data: dict):
-        """Creating new csv."""
+        """Csv."""
         fieldnames = ['name', 'cost', 'time', 'weight']
         with open(filename, 'w', newline='') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=",")
