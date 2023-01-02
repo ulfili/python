@@ -5,22 +5,26 @@ from santa import ChildrenStorage, Child, Gift, GiftStorage
 
 @pytest.fixture()
 def children_storage():
+    """Children storage."""
     return ChildrenStorage()
 
 
 def test_child_class__repr():
+    """Check Child repr."""
     amanda = Child("Amanda", "England")
-    amandaStr = str(amanda)
-    expStr = "Child name: Amanda, Country: England, Type: unknown, Wishlist: []"
-    assert amandaStr == expStr
+    amanda_str = str(amanda)
+    exp_str = "Child name: Amanda, Country: England, Type: unknown, Wishlist: []"
+    assert amanda_str == exp_str
 
 
 def test_children_storage__empty_list(children_storage):
+    """Check empty list."""
     test_dict = children_storage.all_children
     assert len(test_dict) == 0
 
 
 def test_children_storage__set_default_gift__empty_wl(children_storage):
+    """Children storage. Default gift."""
     amanda = Child("Amanda", "England")
     children_storage.all_children["Amanda"] = amanda
     assert len(children_storage.all_children) == 1
@@ -32,6 +36,7 @@ def test_children_storage__set_default_gift__empty_wl(children_storage):
 
 
 def test_children_storage__set_default_gift__wl_dash(children_storage):
+    """Children storage. Default gift."""
     children_storage.read_csv_children("short_nice.csv", "nice")
     children_storage.read_wishlist_csv("short_wishlist.csv")
     amanda = children_storage.all_children["Amanda"]
@@ -46,6 +51,7 @@ def test_children_storage__set_default_gift__wl_dash(children_storage):
 
 
 def test_children_storage__read_csv_children(children_storage):
+    """Children storage. Csv."""
     children_storage.read_csv_children("short_nice.csv", "super")
     test_dict = children_storage.all_children
     assert len(test_dict) == 7
@@ -56,6 +62,7 @@ def test_children_storage__read_csv_children(children_storage):
 
 
 def test_children_storage__read_wishlist_csv(children_storage):
+    """Children storage. Csv."""
     children_storage.read_csv_children("short_naugty.csv", "super")
     children_storage.read_wishlist_csv("short_wishlist.csv")
     test_child = children_storage.all_children["Hollie"]
@@ -64,6 +71,7 @@ def test_children_storage__read_wishlist_csv(children_storage):
 
 
 def test_gift_class__repr():
+    """Check gift repr."""
     teddy = Gift("Teddy bear", 10, 10, 5)
     teddy_str = str(teddy)
     exp_str = "Gift : Teddy bear, cost: 10, time: 10, weight: 5"
@@ -72,21 +80,25 @@ def test_gift_class__repr():
 
 @pytest.fixture()
 def gift_storage():
+    """Gift storage."""
     return GiftStorage()
 
 
 def test_gift_storage__empty(gift_storage):
+    """Test gift storage."""
     test_storage = gift_storage.all_gifts
     assert len(test_storage) == 0
 
 
 def test_gift_storage__add_gifts(gift_storage):
+    """Test gift storage."""
     gift_storage.add_gift("teddy")
     test_storage = gift_storage.all_gifts
     assert len(test_storage) == 1
 
 
 def test_gift_storage__print_all_gifts(gift_storage):
+    """Test gift storage."""
     gift_storage.add_gift("teddy")
     all_gifts_list = gift_storage.print_all_gifts()
     exp_str = "teddy Gift : teddy, cost: 0, time: 0, weight: 0"
@@ -94,6 +106,7 @@ def test_gift_storage__print_all_gifts(gift_storage):
 
 
 def test_gift_storage__write_to_csv(gift_storage):
+    """Test gift storage.Csv."""
     gift_storage.add_gift("teddy")
     filename = "test_db.csv"
     gift_storage.write_to_csv(filename, gift_storage.all_gifts)
@@ -106,6 +119,7 @@ def test_gift_storage__write_to_csv(gift_storage):
 
 
 def test_gift_storage__get_info_from_file__gift_present_in_db(gift_storage):
+    """Test gift storage.Read from file."""
     gift_name = "Xbox Series X"
     assert len(gift_storage.all_gifts) == 0
     result = gift_storage.get_info_from_file("data_base.csv", gift_name)
@@ -118,6 +132,7 @@ def test_gift_storage__get_info_from_file__gift_present_in_db(gift_storage):
 
 
 def test_gift_storage__get_info_from_file__gift_in_storage(gift_storage):
+    """Test gift storage.Read from file."""
     gift_name = "Xbox Series X"
     gift_storage.add_gift(gift_name)
     assert len(gift_storage.all_gifts) == 1
@@ -131,6 +146,7 @@ def test_gift_storage__get_info_from_file__gift_in_storage(gift_storage):
 
 
 def test_gift_storage__get_info_from_file__gift_not_present_in_db(gift_storage):
+    """Test gift storage.Read from file"""
     gift_name = "Xbox Series XXX"
     assert len(gift_storage.all_gifts) == 0
 
@@ -141,6 +157,7 @@ def test_gift_storage__get_info_from_file__gift_not_present_in_db(gift_storage):
 
 
 def test_gift_storage__get_info_from_file__gift_not_in_storage(gift_storage):
+    """Test gift storage.Read from file"""
     gift_name = "Xbox Series XXX"
     gift_storage.add_gift(gift_name)
     assert len(gift_storage.all_gifts) == 1
@@ -152,6 +169,7 @@ def test_gift_storage__get_info_from_file__gift_not_in_storage(gift_storage):
 
 
 def test_gift_storage__get_info_from_server__gift_not_in_server(gift_storage):
+    """Test gift storage.Read from server."""
     gift_name = "Xbox Series XXX"
     gift_storage.get_info_from_server(gift_name)
     assert len(gift_storage.all_gifts) == 1
@@ -162,6 +180,7 @@ def test_gift_storage__get_info_from_server__gift_not_in_server(gift_storage):
 
 
 def test_gift_storage__get_info_from_server__gift_in_server(gift_storage):
+    """Test gift storage.Read from server."""
     gift_name = "Xbox Series X"
     gift_storage.get_info_from_server(gift_name)
     assert len(gift_storage.all_gifts) == 1
@@ -172,6 +191,7 @@ def test_gift_storage__get_info_from_server__gift_in_server(gift_storage):
 
 
 def test_gift_storage__get_info_from_server__gift_in_db_and_server(gift_storage):
+    """Test gift storage.Read from server."""
     gift_name = "Xbox Series X"
     gift_storage.add_gift(gift_name)
     gift_storage.get_info_from_server(gift_name)
