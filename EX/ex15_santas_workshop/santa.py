@@ -19,11 +19,11 @@ class Child:
         return "Child name: " + self.name + ", Country: " + self.country + ", Type: " + self.type + ", Wishlist: " + str(self.wishlist)
 
     def set_child_type(self, type):
-        """Sets child type."""
+        """Set child type."""
         self.type = type
 
     def add_wishlist(self, gifts: list):
-        """Adding gifts to wishlist."""
+        """Add gifts to wishlist."""
         self.wishlist = gifts
 
 
@@ -33,11 +33,11 @@ class ChildrenStorage:
     all_children: dict[Any, Any]
 
     def __init__(self):
-        """Initializes an empty ChildrenStorage."""
+        """Initialize an empty ChildrenStorage."""
         self.all_children = {}
 
     def read_csv_children(self, file_name: str, child_type: str):
-        """Reads children from a CSV file and stores them in all_children."""
+        """Read children from a CSV file and stores them in all_children."""
         with open(file_name, "rt") as csv_file:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
@@ -46,7 +46,7 @@ class ChildrenStorage:
                 self.all_children[ch.name] = ch
 
     def read_wishlist_csv(self, file_name: str):
-        """Reads wishlists from a CSV file and updates the corresponding child objects in all_children."""
+        """Read wishlists from a CSV file and updates the corresponding child objects in all_children."""
         with open(file_name, "rt") as csv_file:
             for row in csv_file:
                 gifts_list_2 = []
@@ -60,7 +60,7 @@ class ChildrenStorage:
                     ch.add_wishlist(gifts_list_2)
 
     def set_default_gift(self):
-        """Sets a default gift for children with empty or invalid wishlists."""
+        """Set a default gift for children with empty or invalid wishlists."""
         default_gift = ["teddy bear"]
         for name, ch in self.all_children.items():
             if len(ch.wishlist) == 0:
@@ -80,7 +80,7 @@ class Gift:
         self.weight = weight
 
     def __repr__(self):
-        """Returns a string representation of the gift."""
+        """Return a string representation of the gift."""
         return "Gift : " + self.name + ", cost: " + str(self.cost) + ", time: " + str(self.time) + ", weight: " + str(self.weight)
 
 
@@ -88,22 +88,22 @@ class GiftStorage:
     """A class for storing gifts."""
 
     def __init__(self):
-        """Initializes an empty GiftStorage."""
+        """Initialize an empty GiftStorage."""
         self.all_gifts = {}
 
     def add_gift(self, gift_name: str):
-        """Adds a gift to all_gifts."""
+        """Add a gift to all_gifts."""
         self.all_gifts[gift_name] = Gift(gift_name)
 
     def print_all_gifts(self):
-        """Returns a list of strings representing all gifts in all_gifts."""
+        """Return a list of strings representing all gifts in all_gifts."""
         ret_list = []
         for name, gift in self.all_gifts.items():
             ret_list.append(str(name) + " " + str(gift))
         return ret_list
 
     def get_info_from_server(self, gift_name: str):
-        """This function queries the server at the given URL for information about the gift specified by the gift_name parameter."""
+        """Get info from server."""
         add = "%20"
         url_name = gift_name.replace(" ", add)
         adres = "https://cs.ttu.ee/services/xmas/gift?name=" + url_name
@@ -125,11 +125,7 @@ class GiftStorage:
         # print(self.all_gifts)
 
     def get_info_from_file(self, filename: str, gift_name: str) -> bool:
-        """
-        Gets gift information for the given gift name from a CSV file. If the gift is found in the file, the cost,
-        time, and weight of the gift are updated in the all_gifts dictionary. If the gift is not found in the file,
-        this function does not modify the all_gifts dictionary.
-        """
+        """Get gift information for the given gift name from a CSV file."""
         with open(filename, "rt") as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             for row in csv_reader:
