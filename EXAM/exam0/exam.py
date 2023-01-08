@@ -35,11 +35,11 @@ def get_names_from_results(results_string: str, min_result: int) -> list:
     return winners
 
 
-print(get_names_from_results("ago 123,peeter 11", 0)) # ["ago", "peeter"]
-print(get_names_from_results("ago 123,peeter 11,33", 10)) # ["ago", "peeter"]  # 33 does not have the name
-print(get_names_from_results("ago 123,peeter 11", 100)) # ["ago"]
-print(get_names_from_results("ago 123,peeter 11,kitty11!! 33", 11)) # ["ago", "peeter",  "kitty11!!"]
-print(get_names_from_results("ago 123,peeter 11,kusti riin 14", 12)) # ["ago", "kusti riin"]
+print(get_names_from_results("ago 123,peeter 11", 0))  # ["ago", "peeter"]
+print(get_names_from_results("ago 123,peeter 11,33", 10))  # ["ago", "peeter"]  # 33 does not have the name
+print(get_names_from_results("ago 123,peeter 11", 100))  # ["ago"]
+print(get_names_from_results("ago 123,peeter 11,kitty11!! 33", 11))  # ["ago", "peeter",  "kitty11!!"]
+print(get_names_from_results("ago 123,peeter 11,kusti riin 14", 12))  # ["ago", "kusti riin"]
 
 
 def check_line(game, line_nr):
@@ -125,7 +125,7 @@ def tic_tac_toe(game: list) -> int:
     return 0
 
 
-print(tic_tac_toe([[1, 2, 1], [2, 1, 2], [2, 2, 1]]))   # => 1
+"""print(tic_tac_toe([[1, 2, 1], [2, 1, 2], [2, 2, 1]]))   # => 1
 print(tic_tac_toe([[1, 0, 1], [2, 1, 2], [2, 2, 0]]))   # => 0
 print(tic_tac_toe([[2, 2, 2], [0, 2, 0], [0, 1, 0]]))   # => 2
 
@@ -135,17 +135,45 @@ print(tic_tac_toe([[2, 2, 0], [0, 2, 0], [1, 2, 1]]))   # => 2
 print(tic_tac_toe([[2, 2, 0], [0, 2, 0], [1, 1, 2]]))   # => 2
 print(tic_tac_toe([[2, 2, 1], [0, 1, 0], [1, 1, 2]]))   # => 1
 print(tic_tac_toe([[2, 2, 1], [1, 0, 0], [1, 1, 2]]))   # => 1
+"""
 
+def rainbows(field: str) -> int:
+    """
+    Count rainbows.
+
+    #5
+
+    Function has to be recursive.
+
+    assert rainbows("rainbowThisIsJustSomeNoise") == 1  # Lisaks vikerkaarele on veel sümboleid
+    assert rainbows("WoBniar") == 1  # Vikerkaar on tagurpidi ja sisaldab suuri tähti
+    assert rainbows("rainbowobniar") == 1  # Kaks vikerkaart jagavad tähte seega üks neist ei ole valiidne
+
+    :param field: string to search rainbows from
+    :return: number of rainbows in the string
+    """
+    if len(field) < 7:
+        return 0
+    if field[:7].lower() == "rainbow":
+        return 1 + rainbows(field[7:])
+    return rainbows(field[1:])
+
+
+print(rainbows("rainbowThisIsJustSomeNoise"))  # 1
+print(rainbows("WoBniar"))  # 1
+print(rainbows("rainbowobniar"))  # 1
 
 
 def longest_substring(text: str) -> str:
     """Find the longest substring."""
     s_list = []
+    if len(text) == 0:
+        return ""
     for j in range(len(text)):
-        #print("big loop")
+        # print("big loop")
         start = j
         for i in range(len(text) - start):
-            #print("small loop")
+            # print("small loop")
             finish = i + 1 + start
             s = text[start:finish]
             s_upper = s.upper()
