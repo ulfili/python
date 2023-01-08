@@ -30,27 +30,18 @@ def odd_sums_of_consecutive_elements(nums: list) -> list:
     :param nums:
     :return:
     """
-    sums_list = []
     odd_nums = []
     for i in range(len(nums) - 1):
-        new_nums = (nums[i] + nums[i + 1])
-        sums_list.append(new_nums)
-    #print(sums_list)
-    for elem in sums_list:
-        #print(elem)
-        if elem % 2 > 0:
-            odd_nums.append(elem)
-            return odd_nums
-        if elem % 2 == 0:
-            return []
-    if len(nums) <= 1:
-        return []
+        if (nums[i] + nums[i + 1]) % 2 == 1:
+            odd_nums.append(nums[i] + nums[i + 1])
+    return odd_nums
 
 
 print(odd_sums_of_consecutive_elements([1, 2, 3, 5]))  # => [3, 5]
 print(odd_sums_of_consecutive_elements([8, 10]))  # => []
 print(odd_sums_of_consecutive_elements([9]))  # => []
 print(odd_sums_of_consecutive_elements([11, 8]))  # => [19]
+print(odd_sums_of_consecutive_elements([3, 5]))  # => []
 
 
 def g_happy(s: str) -> bool:
