@@ -151,23 +151,27 @@ def longest_alphabet(text: str) -> str:
     longest_alphabet("a") => "a"
     longest_alphabet("xyab") => "ab"
     """
+    if not text:
+        return ""
     # Initialize the result to the first character
     result = text[0]
     current_substring = text[0]
-    for i in range(1, len(text) - 1):
+    for i in range(1, len(text)):
         # Check if the current character is consecutive with the previous character
         if ord(text[i]) == ord(text[i - 1]) + 1:
             # If it is, add it to the current substring
             current_substring += text[i]
         else:
-            # If it's not, check if the current substring is longer than the result
-            if len(current_substring) > len(result):
+            # If it's not, check if the current substring is a better match
+            if (len(current_substring) > len(result)) or (
+                    len(current_substring) == len(result) and current_substring < result):
                 result = current_substring
             # Reset the current substring to the current character
             current_substring = text[i]
-    # Check if the final current substring is longer than the result
-    if len(current_substring) > len(result):
-        result = current_substring
+            # Check if the final current substring is a better match
+        if (len(current_substring) > len(result)) or (
+                len(current_substring) == len(result) and current_substring < result):
+            result = current_substring
     return result
 
 
