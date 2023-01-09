@@ -154,7 +154,7 @@ def longest_alphabet(text: str) -> str:
     # Initialize the result to the first character
     result = text[0]
     current_substring = text[0]
-    for i in range(1, len(text)):
+    for i in range(1, len(text) - 1):
         # Check if the current character is consecutive with the previous character
         if ord(text[i]) == ord(text[i - 1]) + 1:
             # If it is, add it to the current substring
