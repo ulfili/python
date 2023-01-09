@@ -110,7 +110,7 @@ class CandyShop:
         return {"name": least_popular_candy[0], "filling": least_popular_candy[1]}
 
 
-def collect_candies_by_filling(self) -> dict[str, list[Candy]]:
+    def collect_candies_by_filling(self) -> dict[str, list[Candy]]:
         """
         Group candies by filling.
 
@@ -120,7 +120,18 @@ def collect_candies_by_filling(self) -> dict[str, list[Candy]]:
 
         :return: dict of candies divided by filling
         """
-        pass
+        # Initialize a dictionary to store the candies by filling
+        candies_by_filling = {}
+        for candy in self.candies:
+            # Get the filling of the current candy
+            filling = candy.filling
+            # If the filling is not in the dictionary, add it as a key with an empty list as the value
+            if filling not in candies_by_filling:
+                candies_by_filling[filling] = []
+            # Add the candy to the list for the filling
+            candies_by_filling[filling].append(candy)
+        # Return the dictionary of candies by filling
+        return candies_by_filling
 
 if __name__ == '__main__':
     # Candy shop
