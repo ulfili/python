@@ -65,7 +65,17 @@ def same_length(texts: list[str]) -> list[str]:
     same_length([]) => []
     same_length(["_", "ab_", "a"]) => ["ab_", "a__", "___"]
     """
-    pass
+    if len(texts) == 0:
+        return []
+
+    # Find the longest element in the list
+    max_length = max(len(text) for text in texts)
+
+    # Append "_" to every shorter element so that all the lengths are equal
+    equal_length_texts = [text + "_" * (max_length - len(text)) for text in texts]
+
+    # Return a list of those equal-length elements in reverse alphabetical order
+    return sorted(equal_length_texts, reverse=True)
 
 
 def max_average(data: list, n: int) -> float:
@@ -82,7 +92,11 @@ def max_average(data: list, n: int) -> float:
 
     :return Maximum average achievable with current parameters.
     """
-    pass
+    # Calculate the maximum average using a window width of n
+    max_average = sum(data[:n]) / n
+    for i in range(1, len(data) - n + 1):
+        max_average = max(max_average, sum(data[i:i + n]) / n)
+    return max_average
 
 
 def fuel_calculator(fuel: int) -> int:
@@ -101,8 +115,28 @@ def fuel_calculator(fuel: int) -> int:
     fuel_calculator(10) -> 1 + 0 = 1
     fuel_calculator(151) -> 48 + 14 + 2 + 0 = 64
     """
-    pass
-
+    # Base case: fuel is negative or zero
+    if fuel <= 0:
+        return 0
+    # Recursive case: fuel is positive
+    else:
+        # Calculate fuel needed for the current mass
+        current_fuel = max(0, fuel // 3 - 2)
+        # Calculate fuel needed for the fuel itself
+        additional_fuel = fuel_calculator(current_fuel)
+        # Return the total fuel needed
+        return current_fuel + additional_fuel
+    """Here is solution that uses loop:
+    total_fuel = 0
+    while fuel > 0:
+        # Calculate fuel needed for the current mass
+        current_fuel = max(0, fuel // 3 - 2)
+        # Add fuel needed for the current mass to the total fuel
+        total_fuel += current_fuel
+        # Update fuel to be the fuel needed for the fuel itself
+        fuel = current_fuel
+    return total_fuel
+    """
 
 def longest_alphabet(text: str) -> str:
     """
@@ -117,7 +151,24 @@ def longest_alphabet(text: str) -> str:
     longest_alphabet("a") => "a"
     longest_alphabet("xyab") => "ab"
     """
-    pass
+    # Initialize the result to the first character
+    result = text[0]
+    current_substring = text[0]
+    for i in range(1, len(text)):
+        # Check if the current character is consecutive with the previous character
+        if ord(text[i]) == ord(text[i - 1]) + 1:
+            # If it is, add it to the current substring
+            current_substring += text[i]
+        else:
+            # If it's not, check if the current substring is longer than the result
+            if len(current_substring) > len(result):
+                result = current_substring
+            # Reset the current substring to the current character
+            current_substring = text[i]
+    # Check if the final current substring is longer than the result
+    if len(current_substring) > len(result):
+        result = current_substring
+    return result
 
 
 class Donut:
