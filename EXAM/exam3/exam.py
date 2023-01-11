@@ -230,6 +230,10 @@ class Student:
         self.gpa = gpa
         self.name = name
 
+    def __repr__(self):
+        """Repr."""
+        return "Name: " + self.name + " GPA: " + str(self.gpa) + " Age: " + str(self.age)
+
 
 class University:
     """Represent university model."""
@@ -244,7 +248,14 @@ class University:
         :param name: university name
         :param gpa_required: university required gpa
         """
-        pass
+        self.name = name
+        self.gpa_required = gpa_required
+        self.students_list = []
+
+    def __repr__(self):
+        """Repr."""
+        return "University name: " + self.name + " GPA required: " + str(self.gpa_required)
+
 
     def can_enroll_student(self, student: Student) -> bool:
         """
@@ -261,7 +272,16 @@ class University:
 
         :return: bool
         """
-        pass
+        if len(student.name) == 13:
+            if student.age >= 16:
+                if student not in university.students_list:
+                    return True
+        if student.gpa >= university.gpa_required:
+            if student.age >= 16:
+                if student not in university.students_list:
+                    return True
+
+        return False
 
     def enroll_student(self, student: Student):
         """
@@ -301,7 +321,11 @@ class University:
 
         :return: list of Student objects
         """
-        pass
+        """students_list = []
+        for student in students:
+            if student in university.students_list:
+                students_list.append(student)
+        return students_list"""
 
     def get_student_highest_gpa(self) -> list:
         """
@@ -312,26 +336,40 @@ class University:
         pass
 
 
+
+if __name__ == "__main__":
+    university = University("Taltech", 60)
+    student1 = Student("Bob", 61, 18)
+    student2 = Student("Mari", 59, 20)
+    student3 = Student("Tom", 65, 22)
+    student4A = Student("1234567890123", 30, 15)
+    student4B = Student("1234567890123", 30, 16)
+
+
+
+    print(student1, university.can_enroll_student(student1))  # True
+    print(student2, university.can_enroll_student(student2))  # False
+    print(student3, university.can_enroll_student(student3))  # True
+    print(student4A, university.can_enroll_student(student4A))  # False
+    print(student4B, university.can_enroll_student(student4B))  # True
+
+    university.students_list.append(student1)
+    print(student1, university.can_enroll_student(student1))  # False
+    university.students_list.append(student4B)
+    print(student4B, university.can_enroll_student(student4B))  # False
+
+    print(university.can_unenroll_student(student1))  # False; student is not yet in university
+
+    university.enroll_student(student1)
+    print(university.get_students())  # [student]
+    print(university.get_student_highest_gpa())  # [student]; since this student is the only one
+
+    print(university.can_unenroll_student(student1))  # True
+    university.unenroll_student(student1)
+    print(university.get_students())  # []
+
 class ComputerPart:
-    """A computer part."""
-
-    def __init__(self, name: str, cost: float):
-        """
-        Initialize computer part.
-
-        Each computer part has a name and a cost.
-        """
-        pass
-
-    def get_cost(self) -> float:
-        """Return the cost of the computer part."""
-        pass
-
-    def __repr__(self) -> str:
-        """Return the name of the computer part."""
-        pass
-
-
+    pass
 class Computer:
     """A computer at an internet cafe."""
 
