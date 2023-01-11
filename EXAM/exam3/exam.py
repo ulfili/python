@@ -292,7 +292,8 @@ class University:
         :param student: Student
         Function does not return anything
         """
-        pass
+        if self.can_enroll_student(student):   # is True
+            university.students_list.append(student)
 
     def can_unenroll_student(self, student: Student) -> bool:
         """
@@ -304,7 +305,9 @@ class University:
 
         :return: bool
         """
-        pass
+        if student in university.students_list:
+            return True
+        return False
 
     def unenroll_student(self, student: Student):
         """
@@ -313,7 +316,8 @@ class University:
         Before unenrolling, you have to make sure the student can be unenrolled.
         Function does not return anything
         """
-        pass
+        if self.can_unenroll_student(student):
+            university.students_list.remove(student)
 
     def get_students(self) -> list:
         """
@@ -321,11 +325,7 @@ class University:
 
         :return: list of Student objects
         """
-        """students_list = []
-        for student in students:
-            if student in university.students_list:
-                students_list.append(student)
-        return students_list"""
+        return self.students_list
 
     def get_student_highest_gpa(self) -> list:
         """
@@ -333,18 +333,28 @@ class University:
 
         :return: list of Student objects
         """
-        pass
+        highest_gpa_list = []
+        highest_gpa = 0
+        for student in self.students_list:
+            if student.gpa > highest_gpa:
+                highest_gpa = student.gpa
+        print("highest_gpa", highest_gpa)
+
+        for student in self.students_list:
+            if student.gpa == highest_gpa:
+                highest_gpa_list.append(student)
+        return highest_gpa_list
+
 
 
 
 if __name__ == "__main__":
     university = University("Taltech", 60)
-    student1 = Student("Bob", 61, 18)
+    student1 = Student("Bob", 65, 18)
     student2 = Student("Mari", 59, 20)
     student3 = Student("Tom", 65, 22)
     student4A = Student("1234567890123", 30, 15)
     student4B = Student("1234567890123", 30, 16)
-
 
 
     print(student1, university.can_enroll_student(student1))  # True
@@ -353,20 +363,27 @@ if __name__ == "__main__":
     print(student4A, university.can_enroll_student(student4A))  # False
     print(student4B, university.can_enroll_student(student4B))  # True
 
-    university.students_list.append(student1)
-    print(student1, university.can_enroll_student(student1))  # False
-    university.students_list.append(student4B)
-    print(student4B, university.can_enroll_student(student4B))  # False
-
-    print(university.can_unenroll_student(student1))  # False; student is not yet in university
-
     university.enroll_student(student1)
+    print(student1, university.can_enroll_student(student1))
+
+    university.enroll_student(student4B)
+    print(student4B, university.can_enroll_student(student4B))
+    print(university.students_list)
+    university.enroll_student(student3)
+
+    print(student1, university.can_unenroll_student(student1))  # True
+    print(student2, university.can_unenroll_student(student2))  # False
+
+    """university.unenroll_student(student1)
+    print(university.students_list)"""
+
     print(university.get_students())  # [student]
     print(university.get_student_highest_gpa())  # [student]; since this student is the only one
 
     print(university.can_unenroll_student(student1))  # True
     university.unenroll_student(student1)
     print(university.get_students())  # []
+
 
 class ComputerPart:
     pass
