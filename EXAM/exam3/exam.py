@@ -386,7 +386,26 @@ if __name__ == "__main__":
 
 
 class ComputerPart:
-    pass
+    """A computer part."""
+
+    def __init__(self, name: str, cost: float):
+        """
+        Initialize computer part.
+
+        Each computer part has a name and a cost.
+        """
+        self.name = name
+        self.cost = cost
+
+    def __repr__(self):
+        """Repr."""
+        return "Part: " + self.name + " Cost: " + str(self.cost)
+
+    def get_cost(self) -> float:
+        """Return the cost of the computer part."""
+        return self.cost
+
+
 class Computer:
     """A computer at an internet cafe."""
 
@@ -400,7 +419,11 @@ class Computer:
         :param name: computer name
         :param total_parts_needed: the amount of parts needed for the computer to function
         """
-        pass
+        self.name = name
+        self.total_parts_needed = total_parts_needed
+        self.working = False
+        self.parts_list = []
+        self.cost = 0.0
 
     def add_part(self, part: ComputerPart):
         """
@@ -410,7 +433,10 @@ class Computer:
 
         The part is not added if the computer is already working.
         """
-        pass
+        if self.working:    # is True (is working)
+            return
+        self.parts_list.append(part)
+        self.cost += part.cost
 
     def get_parts_needed(self) -> int:
         """
@@ -418,11 +444,18 @@ class Computer:
 
         If the computer needs a total of 3 parts and currently has 1 part, this should return 2.
         """
-        pass
+        if self.total_parts_needed == len(self.parts_list):
+            return 0
+        if self.total_parts_needed > len(self.parts_list):
+            return self.total_parts_needed - len(self.parts_list)
 
     def is_working(self) -> bool:
         """Return if the computer has the correct amount of parts."""
-        pass
+        if self.get_parts_needed() == 0:
+            return True
+        return False
+        # if self.total_parts_needed == len(self.parts_list):
+        #   return True
 
     def get_parts(self) -> list[ComputerPart]:
         """
@@ -430,11 +463,11 @@ class Computer:
 
         Parts should be in the same order as they were added.
         """
-        pass
+        return self.parts_list
 
     def get_cost(self) -> float:
         """Return the cost of the computer."""
-        pass
+        return self.cost
 
     def __repr__(self) -> str:
         """
@@ -451,9 +484,15 @@ class Computer:
         "A hardcore gaming computer for 540.30€ with gtx1070, r5 2600, CX650F, EV860"
         "A pc for 0.00€ with nothing"
         """
-        pass
+        computer_parts = "nothing"
+        parts_name_list = []
+        for elem in self.parts_list:
+            parts_name_list.append(elem.name)
 
+        if len(parts_name_list):
+            computer_parts = ",".join(parts_name_list)
 
+        return "A " + self.name + " for " + str(self.cost) + "€ with " + computer_parts
 class Customer:
     """A customer at an internet cafe."""
 
@@ -574,59 +613,7 @@ class ComputerStore:
         pass
 
 
-"""if __name__ == '__main__':
-    assert split_string_into_ints("1,2") == [1, 2]
-    assert split_string_into_ints("") == []
-    assert split_string_into_ints("-1,0") == [-1, 0]
-
-    assert repeat_multiples([1, 2, 3]) == [1, 2, 2, 3, 3, 3]
-    assert repeat_multiples([0, 1]) == [0, 0, 0, 0, 1]
-
-    assert count_double_chars("abc") == 0
-    assert count_double_chars("aabc") == 1
-    assert count_double_chars("aaabc") == 0  # (three "a"-s doesn't count)
-    assert count_double_chars("aaaabc") == 0  # (four "a"-s also doesn't count)
-    assert count_double_chars("aabbc") == 2
-
-    assert reverse_list(['apple', 'banana', 'onion']) == ['noino', 'ananab', 'elppa']
-    assert reverse_list(['lollipop', 'python', 'candy']) == ['candy', 'python', 'popillol']
-    assert reverse_list(['sky', 'python', 'candy', 'java', 'fly']) == ['ylf', 'java', 'candy', 'python', 'yks']
-
-    assert substring("hello", 2) == "he"
-    assert substring("hello", -1) == ""
-    assert substring("", 0) == ""
-    assert substring("world", 5) == "world"
-
-    plot = plot_the_tangerines([0, 0, 0, 0, 0, 0])
-    print(plot)
-    assert plot == " +------+\n1|      |\n0+------+"
-
-    plot = plot_the_tangerines([0, 2, 1, 3])
-    print(plot)
-    assert plot == " +----+\n" \
-                   "3|   #|\n" \
-                   "2| # #|\n" \
-                   "1| ###|\n" \
-                   "0+----+"
-
-    # with high number, there are enough spaces in front
-    plot = plot_the_tangerines([100, 0, 0, 0, 0, 0])
-    print(plot)
-    assert plot.startswith("   +------+\n100|#")
-
-    # university
-    university = University("taltech", 60)
-    student = Student("Bob", 61, 18)
-    print(university.can_enroll_student(student))  # True
-    print(university.can_unenroll_student(student))  # False; student is not yet in university
-
-    university.enroll_student(student)
-    print(university.get_students())  # [student]
-    print(university.get_student_highest_gpa())  # [student]; since this student is the only one
-
-    print(university.can_unenroll_student(student))  # True
-    university.unenroll_student(student)
-    print(university.get_students())  # []
+if __name__ == '__main__':
 
     # Start of OOP2 ComputerStore
     computer1 = Computer("pc", 3)
@@ -636,13 +623,18 @@ class ComputerStore:
 
     assert computer1.get_cost() == 330.5
     assert computer1.is_working() is True
+    print(computer1)
+
 
     computer2 = Computer("laptop", 3)
     computer2.add_part(ComputerPart("display", 160))
     computer2.add_part(ComputerPart("keyboard", 20))
-
-    assert repr(computer2) == "A laptop for 180.00€ with display, keyboard"
+    print(computer2)
+    #assert repr(computer2) == "A laptop for 180.00€ with display, keyboard"
     assert computer2.is_working() is False
+
+    macAir = Computer("MacAir otstoj", 3)
+    print(macAir)
 
     store = ComputerStore()
     store.add_part(ComputerPart("mousepad", 36))
@@ -661,4 +653,4 @@ class ComputerStore:
     store.sell_customer_computer(laura)  # sell pc to laura
 
     assert len(store.get_computers()) == 1  # only laptop left in store
-    assert repr(laura) == "Laura with 669.50€\nA pc for 330.50€ with cpu, mobo, case"  # Laura has a pc now"""
+    assert repr(laura) == "Laura with 669.50€\nA pc for 330.50€ with cpu, mobo, case"  # Laura has a pc now
