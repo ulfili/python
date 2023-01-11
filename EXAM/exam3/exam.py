@@ -152,8 +152,8 @@ def substring(s: str, count: int) -> str:
     """
     if count <= 0:
         return ""
-    return s[0:count]
-
+    # return s[0:count]
+    return s[0] + substring(s[1:], count - 1)
 
 print(substring("hello", 2))  # == "he"
 print(substring("hi", 2))  # == "hi"
