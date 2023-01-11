@@ -150,7 +150,16 @@ def substring(s: str, count: int) -> str:
     :param count: int, count <= len(string).
     :return: first count symbols from string.
     """
-    pass
+    if count <= 0:
+        return ""
+    return s[0:count]
+
+
+print(substring("hello", 2))  # == "he"
+print(substring("hi", 2))  # == "hi"
+print(substring("house", -1))  # == ""
+print(substring("house", 0))  # == ""
+
 
 
 def plot_the_tangerines(integers: list[int]) -> str:
@@ -590,7 +599,7 @@ class ComputerStore:
         computer4 costs 10 and 0 parts missing (it is already functional)
         The store chooses to build computer1!
 
-        If the store doesnt have enough spare parts to build a computer, return None.
+        If the store doesn't have enough spare parts to build a computer, return None.
 
         The store adds the cheapest available parts to the computer until it is built.
 
@@ -613,7 +622,7 @@ class ComputerStore:
         pass
 
 
-if __name__ == '__main__':
+"""if __name__ == '__main__':
 
     # Start of OOP2 ComputerStore
     computer1 = Computer("pc", 3)
@@ -654,3 +663,4 @@ if __name__ == '__main__':
 
     assert len(store.get_computers()) == 1  # only laptop left in store
     assert repr(laura) == "Laura with 669.50€\nA pc for 330.50€ with cpu, mobo, case"  # Laura has a pc now
+"""
