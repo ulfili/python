@@ -361,8 +361,6 @@ class University:
         return highest_gpa_list
 
 
-
-
 if __name__ == "__main__":
     Taltech = University("Taltech", 60)
     student1 = Student("Bob", 65, 18)
@@ -410,7 +408,7 @@ class ComputerPart:
         Each computer part has a name and a cost.
         """
         self.name = name
-        self.cost = round(cost, 2)
+        self.cost = cost
 
     def get_cost(self) -> float:
         """Return the cost of the computer part."""
@@ -482,7 +480,7 @@ class Computer:
 
     def get_cost(self) -> float:
         """Return the cost of the computer."""
-        return round(self.cost, 2)
+        return self.cost
 
     def __repr__(self) -> str:
         """
@@ -499,6 +497,8 @@ class Computer:
         "A hardcore gaming computer for 540.30€ with gtx1070, r5 2600, CX650F, EV860"
         "A pc for 0.00€ with nothing"
         """
+        num = self.cost
+        num_str = "{:.2f}".format(num)
         computer_parts = "nothing"
         parts_name_list = []
         for elem in self.parts_list:
@@ -507,7 +507,7 @@ class Computer:
         if len(parts_name_list):
             computer_parts = ",".join(parts_name_list)
 
-        return "A " + self.name + " for " + str(self.cost) + "€ with " + computer_parts
+        return "A " + self.name + " for " + num_str + "€ with " + computer_parts
 
 
 class Customer:
@@ -520,8 +520,8 @@ class Customer:
         Each customer must have a name, money and it should also keep track of owned computers.
         """
         self.name = name
-        self.money = round(money, 2)
-        self.computer_list = []
+        self.money = money
+        self.customer_computer_list = []
 
     def can_buy_computer(self, computer: Computer) -> bool:
         """Return if this customer has enough money to buy a computer."""
@@ -538,12 +538,14 @@ class Customer:
         Returns True or False whether the computer was bought.
         """
         if self.can_buy_computer(computer):
+            self.money = self.money - computer.cost
+            self.customer_computer_list.append(computer)
             return True
         return False
 
     def get_computers(self) -> list[Computer]:
         """Return all computers owned by this customer."""
-        return self.computer_list
+        return self.customer_computer_list
 
     def __repr__(self) -> str:
         """
@@ -566,8 +568,15 @@ class Customer:
         example2:
         "Karl with 0.00€"
         """
-        for computer in self.computer_list:
-            return self.name + " with " + str(self.money) + " €\n" + computer
+        num = self.money
+        num_str = "{:.2f}".format(num)
+        all_pc_info = ""
+        computers_list = []
+        for elem in self.customer_computer_list:
+            computers_list.append(repr(elem))
+        if len(computers_list):
+            all_pc_info = "\n".join(computers_list)
+        return self.name + " with " + num_str + all_pc_info
 
 
 class ComputerStore:
