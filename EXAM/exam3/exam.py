@@ -634,7 +634,11 @@ class ComputerStore:
 
         If the computer is built successfully, return the built computer. Else return None.
         """
-        pass
+        if len(self.working_computers_list) == 0:
+            return None
+        if len(self.part_store) == 0:
+            return None
+
 
     def sell_customer_computer(self, customer: Customer):
         """
