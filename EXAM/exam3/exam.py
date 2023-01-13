@@ -412,15 +412,13 @@ class ComputerPart:
         self.name = name
         self.cost = cost
 
-    def __repr__(self):
-        """Repr."""
-        return "Part: " + self.name + " Cost: " + str(self.cost)
-
     def get_cost(self) -> float:
         """Return the cost of the computer part."""
         return self.cost
 
-
+    def __repr__(self):
+        """Repr."""
+        return self.name
 class Computer:
     """A computer at an internet cafe."""
 
