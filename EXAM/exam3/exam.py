@@ -410,7 +410,7 @@ class ComputerPart:
         Each computer part has a name and a cost.
         """
         self.name = name
-        self.cost = cost
+        self.cost = round(cost, 2)
 
     def get_cost(self) -> float:
         """Return the cost of the computer part."""
@@ -419,6 +419,8 @@ class ComputerPart:
     def __repr__(self):
         """Repr."""
         return self.name
+
+
 class Computer:
     """A computer at an internet cafe."""
 
@@ -480,7 +482,7 @@ class Computer:
 
     def get_cost(self) -> float:
         """Return the cost of the computer."""
-        return self.cost
+        return round(self.cost, 2)
 
     def __repr__(self) -> str:
         """
@@ -518,7 +520,7 @@ class Customer:
         Each customer must have a name, money and it should also keep track of owned computers.
         """
         self.name = name
-        self.money = money
+        self.money = round(money, 2)
         self.computer_list = []
 
     def can_buy_computer(self, computer: Computer) -> bool:
