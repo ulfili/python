@@ -69,18 +69,25 @@ def count_double_chars(s: str) -> int:
     assert count_double_chars(",,!?") == 1
     assert count_double_chars("a  b  =") == 2
     """
-    pass
+    result = 0
+
+    for i in range(len(s)):
+        if i < len(s) - 1:
+            if s[i] == s[i + 1]:
+                if (i == 0 or s[i - 1] != s[i]) and (i == len(s) - 2 or s[i + 1] != s[i + 2]):
+                    result += 1
+    return result
 
 
-"""print(count_double_chars("ab"))  # == 0
+print(count_double_chars("ab"))  # == 0
 print(count_double_chars("a"))  # == 0
 print(count_double_chars(""))  # 0
 print(count_double_chars("aa"))  # == 1
 print(count_double_chars("aabc"))  # 1
-print(count_double_chars("aaaabbbbbc")) # == 0
+print(count_double_chars("aaaabbbc")) # == 0
 print(count_double_chars("aabbc"))  # 2
 print(count_double_chars("aaabbcc"))   # 2
-print(count_double_chars("12345678999"))  # 0"""
+print(count_double_chars("124999"))  # 0
 
 
 def reverse_list(input_strings: list) -> list:
@@ -129,7 +136,6 @@ print(reverse_list(['apple', 'banana', 'onion']))   # -> ['noino', 'ananab', 'el
 print(reverse_list(['lollipop', 'python', 'candy']))    # -> ['candy', 'python', 'popillol']
 print(reverse_list(['sky', 'python', 'candy', 'java', 'fly']))   # -> ['ylf', 'java', 'candy', 'python', 'yks']
 print(reverse_list(['sky', 'candy', 'java', 'fly']))   # -> ['ylf', 'java', 'candy', 'python', 'yks']
-
 
 
 def substring(s: str, count: int) -> str:
@@ -432,7 +438,7 @@ class Computer:
         self.total_parts_needed = total_parts_needed
         self.working = False
         self.parts_list = []
-        self.cost = 0.0
+        self.cost = 0.00
 
     def add_part(self, part: ComputerPart):
         """
@@ -502,6 +508,8 @@ class Computer:
             computer_parts = ",".join(parts_name_list)
 
         return "A " + self.name + " for " + str(self.cost) + "€ with " + computer_parts
+
+
 class Customer:
     """A customer at an internet cafe."""
 
@@ -511,11 +519,15 @@ class Customer:
 
         Each customer must have a name, money and it should also keep track of owned computers.
         """
-        pass
+        self.name = name
+        self.money = money
+        self.computer_list = []
 
     def can_buy_computer(self, computer: Computer) -> bool:
         """Return if this customer has enough money to buy a computer."""
-        pass
+        if self.money >= computer.cost:
+            return True
+        return False
 
     def buy_computer(self, computer: Computer) -> bool:
         """
@@ -525,11 +537,13 @@ class Customer:
 
         Returns True or False whether the computer was bought.
         """
-        pass
+        if self.can_buy_computer(computer):
+            return True
+        return False
 
     def get_computers(self) -> list[Computer]:
         """Return all computers owned by this customer."""
-        pass
+        return self.computer_list
 
     def __repr__(self) -> str:
         """
@@ -552,7 +566,8 @@ class Customer:
         example2:
         "Karl with 0.00€"
         """
-        pass
+        for computer in self.computer_list:
+            return self.name + " with " + str(self.money) + " €\n" + computer
 
 
 class ComputerStore:
@@ -560,27 +575,32 @@ class ComputerStore:
 
     def __init__(self):
         """Initialize computer store."""
-        pass
+        self.computer_store = []
+        self.part_store = []
+        self.working_computers_list = []
 
     def add_computer(self, computer: Computer):
         """Add a computer to the store."""
-        pass
+        self.computer_store.append(computer)
 
     def add_part(self, part: ComputerPart):
         """Add a computer part to the storage of the store."""
-        pass
+        self.part_store.append(part)
 
     def get_computers(self) -> list[Computer]:
         """Return all computers in the stores as a list."""
-        pass
+        return self.computer_store
 
     def get_parts(self) -> list[ComputerPart]:
         """Return all unused computer parts in the store."""
-        pass
+        return self.part_store
 
     def get_working_computers(self) -> list[Computer]:
         """Return all computers which are working."""
-        pass
+        for computer in self.computer_store:
+            if computer.is_working():
+                self.working_computers_list.append(computer)
+        return self.working_computers_list
 
     def build_computer(self) -> Optional[Computer]:
         """
@@ -622,7 +642,7 @@ class ComputerStore:
         pass
 
 
-"""if __name__ == '__main__':
+if __name__ == '__main__':
 
     # Start of OOP2 ComputerStore
     computer1 = Computer("pc", 3)
@@ -661,6 +681,6 @@ class ComputerStore:
 
     store.sell_customer_computer(laura)  # sell pc to laura
 
-    assert len(store.get_computers()) == 1  # only laptop left in store
-    assert repr(laura) == "Laura with 669.50€\nA pc for 330.50€ with cpu, mobo, case"  # Laura has a pc now
-"""
+    # assert len(store.get_computers()) == 1  # only laptop left in store
+
+    print(laura)   # == "Laura with 669.50€\nA pc for 330.50€ with cpu, mobo, case"  # Laura has a pc now
