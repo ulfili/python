@@ -28,7 +28,7 @@ def find_names_from_text(text: str) -> list:
     return names_list
 
 
-print(find_names_from_text('AAA, BBB, CC'))   #  =>
+print(find_names_from_text('AAAddddd, BBB, CC'))   #  =>
 print(find_names_from_text("hello World and John Smith"))    #  => ["World", "John", "Smith"]
 print(find_names_from_text("hello world"))   #  => []
 print(find_names_from_text(""))    # => []
@@ -53,7 +53,8 @@ def growing_triplets(numbers: list) -> list:
     :return:
     """
     return_list = []
-
+    if len(numbers) < 3:
+        return []
     for i in range(len(numbers)):
         if i < len(numbers) - 1:
             if numbers[i - 1] < numbers[i] < numbers[i + 1]:
