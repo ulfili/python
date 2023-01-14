@@ -22,18 +22,21 @@ def find_names_from_text(text: str) -> list:
     find_names_from_text("YES")  => ["YES"]
     """
     names_list = []
-    pattern = r"[A-Z]+[a-z]+|[A-Z]+|[A-Z][a-z]+|[A-Z]+[a-z]|[A-Z]+[a-z]+[A-Z]+"
-    for match in re.finditer(pattern, text):
-        found_words = match.group()
-        names_list.append(found_words)
+    if len(text) == 0:
+        return []
+
+    words_list = text.split(" ")
+    for word in words_list:
+        if word[0] == word[0].upper():
+             names_list.append(word)
     return names_list
 
 
-print(find_names_from_text('AAAddddd, BBB, CC'))   #  =>
+print(find_names_from_text('AAAddddd BBB CC'))   #   =>
 print(find_names_from_text("hello World and John Smith"))    #  => ["World", "John", "Smith"]
 print(find_names_from_text("hello world"))   #  => []
 print(find_names_from_text(""))    # => []
-print(find_names_from_text("CrjSTYZvSTyRsKPfLqh, RLrRsFSQEysEjYm, ZGepflEvpXmRKGI , PlJKDMgcnwJLGE JNujjzMjIkCP SslvhdfcrIOrRctIQBY"))     # => ["Exam"]
+print(find_names_from_text("CrjSTYZvSTyRsKPfLqh RLrRsFSQEysEjYm ZGepflEvpXmRKGI"))     # => ["Exam"]
 print(find_names_from_text("YES"))     # => ["YES"]
 
 
