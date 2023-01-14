@@ -28,14 +28,12 @@ def find_names_from_text(text: str) -> list:
     return names_list
 
 
-
-print(find_names_from_text("hello World"))   #  => ["World"]
+print(find_names_from_text('AAA, BBB, CC'))   #  =>
 print(find_names_from_text("hello World and John Smith"))    #  => ["World", "John", "Smith"]
 print(find_names_from_text("hello world"))   #  => []
 print(find_names_from_text(""))    # => []
 print(find_names_from_text("Exam"))     # => ["Exam"]
 print(find_names_from_text("YES"))     # => ["YES"]
-
 
 
 def growing_triplets(numbers: list) -> list:
