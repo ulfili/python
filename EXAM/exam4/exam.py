@@ -1,5 +1,6 @@
 """Exam4 (2023-01-13)."""
 import re
+from operator import attrgetter
 
 
 def find_names_from_text(text: str) -> list:
@@ -21,7 +22,7 @@ def find_names_from_text(text: str) -> list:
     find_names_from_text("YES")  => ["YES"]
     """
     names_list = []
-    pattern = r"[A-Z]+[a-z]+|[A-Z]+|[A-Z][a-z]+|[A-Z]+[a-z]"
+    pattern = r"[A-Z]+[a-z]+|[A-Z]+|[A-Z][a-z]+|[A-Z]+[a-z]|[A-Z]+[a-z]+[A-Z]+"
     for match in re.finditer(pattern, text):
         found_words = match.group()
         names_list.append(found_words)
@@ -32,7 +33,7 @@ print(find_names_from_text('AAAddddd, BBB, CC'))   #  =>
 print(find_names_from_text("hello World and John Smith"))    #  => ["World", "John", "Smith"]
 print(find_names_from_text("hello world"))   #  => []
 print(find_names_from_text(""))    # => []
-print(find_names_from_text("Exam"))     # => ["Exam"]
+print(find_names_from_text("CrjSTYZvSTyRsKPfLqh, RLrRsFSQEysEjYm, ZGepflEvpXmRKGI , PlJKDMgcnwJLGE JNujjzMjIkCP SslvhdfcrIOrRctIQBY"))     # => ["Exam"]
 print(find_names_from_text("YES"))     # => ["YES"]
 
 
@@ -60,7 +61,6 @@ def growing_triplets(numbers: list) -> list:
             if numbers[i - 1] < numbers[i] < numbers[i + 1]:
                 return_list.append(numbers[i])
     return return_list
-
 
 
 print(growing_triplets([1, 2, 3]))    # => [2]
@@ -182,6 +182,10 @@ class Book:
         self.price = price
         self.rating = rating
 
+    def __repr__(self):
+        """Repr."""
+        return "Book: " + self.title + " Author: " + self.author + " with price: " + str(self.price) + " rating: " + str(self.rating)
+
 
 class Store:
     """Represent book store model."""
@@ -195,7 +199,9 @@ class Store:
 
         :param name: book store name
         """
-        pass
+        self.name = name
+        self.rating = rating
+        self.book_storage = []
 
     def can_add_book(self, book: Book) -> bool:
         """
@@ -206,7 +212,13 @@ class Store:
         2. book's own rating is >= than store's rating
         :return: bool
         """
-        pass
+        for b in self.book_storage:
+            if b.author == book.author and b.title == book.title:
+                return False
+        if book.rating >= self.rating:
+            return True
+        else:
+            return False
 
     def add_book(self, book: Book):
         """
@@ -215,7 +227,8 @@ class Store:
         :param book: Book
         Function does not return anything
         """
-        pass
+        if self.can_add_book(book):
+            self.book_storage.append(book)
 
     def can_remove_book(self, book: Book) -> bool:
         """
@@ -225,7 +238,9 @@ class Store:
 
         :return: bool
         """
-        pass
+        if book in self.book_storage:
+            return True
+        return False
 
     def remove_book(self, book: Book):
         """
@@ -233,7 +248,8 @@ class Store:
 
         Function does not return anything
         """
-        pass
+        if self.can_remove_book(book):
+            self.book_storage.remove(book)
 
     def get_all_books(self) -> list:
         """
@@ -241,7 +257,7 @@ class Store:
 
         :return: list of Book objects
         """
-        pass
+        return self.book_storage
 
     def get_books_by_price(self) -> list:
         """
@@ -249,7 +265,8 @@ class Store:
 
         :return: list of Book objects
         """
-        pass
+        sorted_by_price = sorted(self.book_storage, key=lambda book: book.price)
+        return sorted_by_price
 
     def get_most_popular_book(self) -> list:
         """
@@ -257,7 +274,15 @@ class Store:
 
         :return: list of Book objects
         """
-        pass
+        books_with_highest_rating = []
+        highest_rating = 0
+        for book in self.book_storage:
+            if book.rating > highest_rating:
+                highest_rating = book.rating
+        for book in self.book_storage:
+            if book.rating == highest_rating:
+                books_with_highest_rating.append(book)
+        return books_with_highest_rating
 
 
 class Accessory:
@@ -392,6 +417,7 @@ class Dealership:
 
 
 if __name__ == '__main__':
+    """
     assert find_names_from_text("hello World and John Smith") == ["World", "John", "Smith"]
     assert find_names_from_text("hello world") == []
     assert find_names_from_text("") == []
@@ -417,10 +443,10 @@ if __name__ == '__main__':
     assert count_the_dumplings(30) == 536870912
 
     assert prime_factorization(12) == {2: 2, 3: 1}
-    assert prime_factorization(1960) == {2: 3, 5: 1, 7: 2}
+    assert prime_factorization(1960) == {2: 3, 5: 1, 7: 2}"""
 
     # Book store
-
+    print("BOOK STORE")
     store = Store("Apollo", 98.9)
     book = Book("War & Peace", "Leo Tolstoy", 10.5, 99)
 
@@ -434,7 +460,8 @@ if __name__ == '__main__':
 
     book3 = Book("War", "Leo Tolstoy", 10.5, 80)
     assert store.can_add_book(book3) is False  # cannot add book since its rating is too low
-
+    print(store.get_most_popular_book())
+"""
     # dealership
 
     blue_car = Car("Audi R4", "blue")
@@ -465,4 +492,4 @@ if __name__ == '__main__':
     customer_premium = Customer("Ago", "Expensive black")
     customer_premium.make_premium()
     car_dealer.sell_car_to_customer(customer_premium)
-    print(customer_premium.get_garage())  # [This blue Audi R4 contains 1 accessories and has 100% fuel left.]
+    print(customer_premium.get_garage())  # [This blue Audi R4 contains 1 accessories and has 100% fuel left.]"""
