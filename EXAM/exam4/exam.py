@@ -52,7 +52,21 @@ def growing_triplets(numbers: list) -> list:
     :param numbers:
     :return:
     """
-    pass
+    return_list = []
+
+    for i in range(len(numbers)):
+        if i < len(numbers) - 1:
+            if numbers[i - 1] < numbers[i] < numbers[i + 1]:
+                return_list.append(numbers[i])
+    return return_list
+
+
+
+print(growing_triplets([1, 2, 3]))    # => [2]
+print(growing_triplets([1, 2, 3, 4]))   # => [2, 3]
+print(growing_triplets([1, 5, 3, 4]))   # => []
+print(growing_triplets([1, 2]))     # => []
+print(growing_triplets([]))   # => []
 
 
 def encode_string_with_hex_key(input_str: str, key: str) -> str:
