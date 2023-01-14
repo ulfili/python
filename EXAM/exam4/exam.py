@@ -59,10 +59,9 @@ def growing_triplets(numbers: list) -> list:
     return_list = []
     if len(numbers) < 3:
         return []
-    for i in range(len(numbers)):
-        if i < len(numbers) - 1:
-            if numbers[i - 1] < numbers[i] < numbers[i + 1]:
-                return_list.append(numbers[i])
+    for i in range(1, len(numbers) - 1):
+        if numbers[i - 1] < numbers[i] < numbers[i + 1]:
+            return_list.append(numbers[i])
     return return_list
 
 
