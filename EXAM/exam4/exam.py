@@ -32,12 +32,12 @@ def find_names_from_text(text: str) -> list:
     return names_list
 
 
-print(find_names_from_text('AAAddddd BBB CC'))   #   =>
+"""print(find_names_from_text('AAAddddd BBB CC'))   #   =>
 print(find_names_from_text("hello World and John Smith"))    #  => ["World", "John", "Smith"]
 print(find_names_from_text("hello world"))   #  => []
 print(find_names_from_text(""))    # => []
 print(find_names_from_text("CrjSTYZvSTyRsKPfLqh RLrRsFSQEysEjYm ZGepflEvpXmRKGI"))     # => ["Exam"]
-print(find_names_from_text("YES"))     # => ["YES"]
+print(find_names_from_text("YES"))     # => ["YES"]"""
 
 
 def growing_triplets(numbers: list) -> list:
@@ -68,7 +68,7 @@ def growing_triplets(numbers: list) -> list:
 
 print(growing_triplets([1, 2, 3]))    # => [2]
 print(growing_triplets([1, 2, 3, 4]))   # => [2, 3]
-print(growing_triplets([1, 5, 3, 4]))   # => []
+print(growing_triplets([1, 2, 3, 4, 5, 6, 4]))   # => [2, 3, 4, 5]
 print(growing_triplets([1, 2]))     # => []
 print(growing_triplets([]))   # => []
 
@@ -119,7 +119,20 @@ def sum_of_multipliers(first_num: int, second_num: int, limit: int) -> int:
     :param limit: limit
     :return: sum of multiplies
     """
-    pass
+    result = 0
+    mult_list = []
+    for i in range(first_num, limit + 1, first_num):
+        mult_list.append(i)
+    for u in range(second_num, limit + 1, second_num):
+        mult_list.append(u)
+    print(sorted(mult_list))
+    print(set(mult_list))
+    for i in set(mult_list):
+        result += i
+    return result
+
+print(sum_of_multipliers(3, 3, 20))  #  => 63
+print(sum_of_multipliers(3, 1, 20))   # => 210
 
 
 def count_the_dumplings(day: int) -> int:
