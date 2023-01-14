@@ -21,7 +21,7 @@ def find_names_from_text(text: str) -> list:
     find_names_from_text("YES")  => ["YES"]
     """
     names_list = []
-    pattern = r"[A-ZÕÄÖÜ][a-zõäöü]+|[A-ZÕÄÖÜ]+"
+    pattern = r"[A-Z]+[a-z]+|[A-Z]+|[A-Z][a-z]+|[A-Z]+[a-z]"
     for match in re.finditer(pattern, text):
         found_words = match.group()
         names_list.append(found_words)
