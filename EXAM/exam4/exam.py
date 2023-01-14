@@ -306,7 +306,8 @@ class Accessory:
 
     def __init__(self, name: str, value: int):
         """Initialize accessory."""
-        pass
+        self.name = name
+        self.value = value
 
     def __repr__(self):
         """
@@ -314,7 +315,7 @@ class Accessory:
 
         Returns string in form "{name}, value : {value}."
         """
-        pass
+        return self.name + ", value : " + str(self.value) + "."
 
 
 class Car:
@@ -322,11 +323,15 @@ class Car:
 
     def __init__(self, name: str, color: str):
         """Initialize car."""
-        pass
+        self.name = name
+        self.color = color
+        self.accessory_list = []
+        self.premium = False
+        self.fuel = 100
 
     def add_accessory(self, accessory: Accessory):
         """Add accessory to the car."""
-        pass
+        self.accessory_list.append(accessory)
 
     def get_value(self) -> int:
         """
@@ -335,15 +340,16 @@ class Car:
         Regular car base price is 9500, for premium car its 42 500.
         All the values of accessories are summed up.
         """
-        pass
+        return len(self.accessory_list)
 
     def get_fuel_left(self):
         """Return how much fuel is left in percentage."""
-        pass
+        return self.fuel
 
     def get_accessories_by_value(self):
         """Return accessories sorted by value (descending i.e. higher to lower)."""
-        pass
+        return_list = sorted(self.accessory_list, key=lambda ac: ac.value, reverse=True)
+        return return_list
 
     def __repr__(self):
         """
@@ -351,7 +357,7 @@ class Car:
 
         Should return "This {color} {name} contains {accessory_amount} accessories and has {fuel}% fuel left."
         """
-        pass
+        return "This " + self.color + self.name + " contains " + str(self.get_value()) + " accessories and has " + str(self.fuel) + "% fuel left."
 
 
 class Customer:
@@ -371,7 +377,9 @@ class Customer:
 
         For example: "Cheap Red", "Expensive Yellow".
         """
-        pass
+        self.name = name
+        self.wish = wish
+        self.garage = []
 
     def get_garage(self):
         """
@@ -477,7 +485,7 @@ if __name__ == '__main__':
     book3 = Book("War", "Leo Tolstoy", 10.5, 80)
     assert store.can_add_book(book3) is False  # cannot add book since its rating is too low
     print(store.get_most_popular_book())
-"""
+
     # dealership
 
     blue_car = Car("Audi R4", "blue")
@@ -508,4 +516,4 @@ if __name__ == '__main__':
     customer_premium = Customer("Ago", "Expensive black")
     customer_premium.make_premium()
     car_dealer.sell_car_to_customer(customer_premium)
-    print(customer_premium.get_garage())  # [This blue Audi R4 contains 1 accessories and has 100% fuel left.]"""
+    print(customer_premium.get_garage())  # [This blue Audi R4 contains 1 accessories and has 100% fuel left.]
