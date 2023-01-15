@@ -386,7 +386,7 @@ class Customer:
 
         Both regular and premium cars are kept in garage.
         """
-        pass
+        return sorted(self.garage, key=lambda value: len(self.garage))
 
     def make_premium(self):
         """Make customer a premium customer, premium cars can be sold to the customer now."""
@@ -411,11 +411,12 @@ class Dealership:
 
     def __init__(self, name: str):
         """Initialize dealership."""
-        pass
+        self.name = name
+        self.storage = []
 
     def add_car(self, car: Car):
         """Add car to the dealership."""
-        pass
+        self.storage.append(car)
 
     def get_all_regular_cars(self):
         """Return all the regular cars sorted by value (ascending, lower to higher)."""
