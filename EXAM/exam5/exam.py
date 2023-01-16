@@ -1,4 +1,5 @@
 """Exam5 (2023-01-14)."""
+from enum import Enum
 
 
 def count_camel_case_words(text: str) -> int:
@@ -312,7 +313,7 @@ if __name__ == "__main__":
     print(str(garazService.get_service_cars()))
 
 
-class Species:
+class Species(Enum):
     """Different species."""
 
     Dragon = 1
@@ -359,7 +360,7 @@ class Monster:
 
         "A {species} worth {bounty} coins"
         """
-        return "A " + str(self.species) + " worth " + str(self.bounty) + " coins"
+        return "A " + str(self.species.name) + " worth " + str(self.bounty) + " coins"
 
 
 class Village:
