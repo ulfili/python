@@ -258,10 +258,14 @@ class Service:
         After the repair, car is no longer in queue (is removed).
         :return: chosen and repaired car
         """
+        repaired_car = ""
         for car in self.cars_in_service:
             if len(car.make) + len(car.color) == 13:
-                return car
-        return self.cars_in_service[0]
+                repaired_car = car
+        if len(self.cars_in_service) > 1:
+            repaired_car = self.cars_in_service[0]
+        self.cars_in_service.remove(repaired_car)
+        return repaired_car
 
     def get_the_car_with_the_biggest_engine(self) -> list:
         """
@@ -313,15 +317,16 @@ class Monster:
 
     def __init__(self, species: Species, bounty: int):
         """Initialize monster."""
-        pass
+        self.species = species
+        self.bounty = bounty
 
     def get_species(self) -> Species:
         """Return the species of the monster."""
-        pass
+        return self.species
 
     def get_bounty(self) -> int:
         """Return the bounty for this monster."""
-        pass
+        return self.bounty
 
     def is_alive(self) -> bool:
         """Whether the monster is alive."""
