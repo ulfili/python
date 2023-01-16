@@ -30,14 +30,14 @@ def count_camel_case_words(text: str) -> int:
     return result
 
 
-"""print(count_camel_case_words("hello"))   # => 1
+print(count_camel_case_words("hello"))   # => 1
 print(count_camel_case_words(""))  # => 0
 print(count_camel_case_words("helloWorld"))   #  => 2
 print(count_camel_case_words("HelloWorld"))   # => 2
 print(count_camel_case_words("aBC"))   # => 3
 print(count_camel_case_words("ABC"))    #=> 3
 print(count_camel_case_words("a"))    #=> 1
-print(count_camel_case_words("What"))    # => 1"""
+print(count_camel_case_words("What"))    # => 1
 
 
 def odd_index_sum(nums: list) -> int:
@@ -57,12 +57,12 @@ def odd_index_sum(nums: list) -> int:
     return result
 
 
-"""print(odd_index_sum([1, 2, 3]))   # => 2
+print(odd_index_sum([1, 2, 3]))   # => 2
 print(odd_index_sum([]))   # => 0
 print(odd_index_sum([1]))     # => 0
 print(odd_index_sum([2, 3]))    # => 3
 print(odd_index_sum([0, -1, -4, -3]))    # => -4
-print(odd_index_sum([0, -1, -4, -3, 6, 7]))    # => 3"""
+print(odd_index_sum([0, -1, -4, -3, 6, 7]))    # => 3
 
 
 def prettify_string(input_string: str) -> str:
@@ -83,12 +83,33 @@ def prettify_string(input_string: str) -> str:
     no new space should be added." => "There should be space after me- and also space after me; next sentence should be capitalized! I need to be capitalized but
     no new space should be added."
     """
-    pass
+    space = False
+    result = ""
+    for c in input_string:
+        if space:
+            if c != " ":
+                result += " "
+            space = False
+        if c in ",.!?:;-":
+            space = True
+        result += c
+    cap = True
+    input_string = result
+    result = ""
+    for c in input_string:
+        if cap:
+            if c != " ":
+                c = c.upper()
+                cap = False
+        if c in ".!?-":
+            cap = True
+        result += c
+    return result
 
-"""
+
 print(prettify_string("hello.im string."))   # Hello. Im string
 print(prettify_string("Hello!i am input of this func,make me pretty."))   # Hello! I am input of this func, make me pretty.
-"""
+
 
 def get_max_nums(nums: list) -> list:
     """
@@ -113,13 +134,13 @@ def get_max_nums(nums: list) -> list:
             highest_nums_list.append(num)
     return highest_nums_list
 
-"""
+
 print(get_max_nums([1, 2, 34, 4, 5, 34, 34]))   # => [34, 34, 34]
 print(get_max_nums([-1, -1, -1, -1, -1, -6]))   # => [-1, -1, -1, -1, -1]
 print(get_max_nums([3, 4, 5, 6, 3]))  # => [6]
 print(get_max_nums([6]))  # => [6]
 print(get_max_nums([]))   # => []
-"""
+
 
 def mirror_ends(s: str) -> str:
     """
@@ -136,7 +157,12 @@ def mirror_ends(s: str) -> str:
     mirror_ends("abAAca") => "bc"
     mirror_ends("") => ""
     """
-    pass
+    if len(s) <= 1:
+        return ""
+    elif s[0] == s[-1]:
+        return mirror_ends(s[1:-1])
+    else:
+        return s[0] + mirror_ends(s[1:-1] + s[-1])
 
 
 def invert_repetitions(s: str) -> str:
@@ -405,7 +431,10 @@ class Village:
 
         If there are no population, no monsters are not bothering the village.
         """
-        return self.monsters
+        if self.initial_population == 0:
+            return []
+        else:
+            return self.monsters
 
     def add_monster(self, monster: Monster) -> None:
         """Add monster to the village."""
@@ -413,7 +442,8 @@ class Village:
 
     def add_money(self, amount) -> None:
         """Add money to the village."""
-        self.village_money = amount
+        if amount > 0:
+            self.village_money += amount
 
     def advance_day(self) -> None:
         """
@@ -422,6 +452,7 @@ class Village:
         The age of the village is increased by one.
         """
         self.village_age += 1
+        self.initial_population = max(0, self.initial_population - len(self.monsters))
 
     def pay(self, amount: int) -> bool:
         """
@@ -430,8 +461,8 @@ class Village:
         If the village does not have enough money, return False.
         Otherwise spend the amount and return True.
         """
-        if self.village_money >= amount:
-            self.village_money = self.village_money - amount
+        if (amount > 0) and (self.village_money >= amount):
+            self.village_money -= - amount
             return True
         return False
 
@@ -474,8 +505,11 @@ class Witcher:
         """
         if len(self.slain_monsters) == 0:
             return []
-        slain_set = set(self.slain_monsters)
-        return sorted(slain_set, key=lambda species: species.name)
+        hunted_species = []
+        for monster in self.slain_monsters:
+            hunted_species.append(monster.get_species())
+        hunted_species_set = set(hunted_species)
+        return sorted(hunted_species_set, key=lambda species: species.name)
 
     def hunt_most_expensive(self, village: Village) -> bool:
         """
@@ -487,14 +521,18 @@ class Witcher:
         Otherwise return False.
         The monster is slain even if there is no money to pay.
         """
-        most_expensive_monster = max(village.monsters, key=lambda monster: monster.bounty)
-        if village.village_money > 0:
-            most_expensive_monster.slay()
-            village.pay(most_expensive_monster)
-            return True
-        else:
-            most_expensive_monster.slay()
-            return False
+        if village.monsters:
+            most_expensive_monster = max(village.monsters, key=lambda monster: monster.bounty)
+            if village.pay(most_expensive_monster.bounty):
+                most_expensive_monster.slay()
+                self.slain_monsters.append(most_expensive_monster)
+                self.witcher_money += most_expensive_monster.bounty
+                return True
+            else:
+                most_expensive_monster.slay()
+                self.slain_monsters.append(most_expensive_monster)
+        return False
+
     def __repr__(self) -> str:
         """
         Return string representation.
