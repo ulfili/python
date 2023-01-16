@@ -329,6 +329,7 @@ class Monster:
         self.species = species
         self.bounty = bounty
         self.is_dead = False
+
     def get_species(self) -> Species:
         """Return the species of the monster."""
         return self.species
@@ -462,7 +463,10 @@ class Witcher:
 
         Each value should be in the list once, so there can be max 3 objects in the result.
         """
-        pass
+        if len(self.slain_monsters) == 0:
+            return []
+        slain_set = set(self.slain_monsters)
+        return sorted(slain_set, key=lambda species: species.name)
 
     def hunt_most_expensive(self, village: Village) -> bool:
         """
@@ -474,7 +478,15 @@ class Witcher:
         Otherwise return False.
         The monster is slain even if there is no money to pay.
         """
-        pass
+        if len(self.slain_monsters) == 0:
+            return False
+        most_expensive_monster = max(self.slain_monsters, key=lambda monster: monster.bounty)
+        if village.village_money > 0:
+            if most_expensive_monster in self.slain_monsters:
+                return True
+        return False
+
+
 
     def __repr__(self) -> str:
         """
@@ -482,7 +494,7 @@ class Witcher:
 
         "{name} of {school} school with {number of monsters} monsters slain"
         """
-        pass
+        return self.name + " of " + self.school + " school with " + str(len(self.slain_monsters)) + " monsters slain"
 
 
 if __name__ == '__main__':
