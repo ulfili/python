@@ -213,8 +213,8 @@ class Service:
         If car can be added, return True. Otherwise return False.
         """
         for c in self.cars_in_service:
-            if c.make == car.make and c.color == car.color:
-                return False
+            if c.make != car.make and c.color != car.color:
+                return True
         if len(self.cars_in_service) + 1 < self.max_car_num:
             return True
         return False
