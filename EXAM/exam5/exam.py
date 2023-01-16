@@ -213,7 +213,9 @@ class Service:
         If car can be added, return True. Otherwise return False.
         """
         for c in self.cars_in_service:
-            if c.make != car.make and c.color != car.color:
+            if c.make == car.make and c.color == car.color:
+                return False
+            else:
                 return True
         if len(self.cars_in_service) + 1 < self.max_car_num:
             return True
@@ -225,7 +227,7 @@ class Service:
 
         The function does not return anything.
         """
-        if self.can_add_to_service_queue(car):
+        if self.can_add_to_service_queue(car):   # if True
             self.cars_in_service.append(car)
 
     def get_service_cars(self) -> list:
