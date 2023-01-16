@@ -150,10 +150,8 @@ def count_the_dumplings(day: int) -> int:
     count_the_dumplings(3) => 4
     count_the_dumplings(30) ==> 536870912
     """
-    if day == 0:
-        return 0
-    if day == 1:
-        return 1
+    if day <= 1:
+        return day
     return 2 * count_the_dumplings(day - 1)
 
 
