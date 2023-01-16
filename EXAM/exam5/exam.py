@@ -165,24 +165,33 @@ def invert_repetitions(s: str) -> str:
     'kloo' -> 'kkllo'
     'ababbab' -> 'aabbaabaabb' (easier) or 'aabbaaabaaaabbb' (harder)
     """
-    return_str = ""
-    if len(s) == 2:
-        if s[0] == s[1]:
-            return s[0]
-    if len(s) == 0:
-        return ""
-    if len(s) == 1:
-        return s + s
-    for i in range(len(s) - 1):
-        if s[i - i] != s[i] != s[i + 1]:
-            return_str = s + s[i] * 2
-    return return_str
+    # easier option
+    result = ""
+    prev_char = ""
+    for char in s:
+        if char != prev_char:
+            result += char * 2
+        prev_char = char
+    return result
+    # harder option
+    result = ""
+    prev_char = ""
+    repeat_count = 1
+    for char in s:
+        if char == prev_char:
+            repeat_count += 1
+        else:
+            result += prev_char * repeat_count
+            repeat_count = 1
+        prev_char = char
+    result += prev_char * repeat_count
+    return result
 
 
 print(invert_repetitions(""))  # ""
 print(invert_repetitions("a"))   # aa
 print(invert_repetitions("abc"))  # aabbcc
-print(invert_repetitions("aabc"))  # aabcc
+print(invert_repetitions("aabc"))  # aabbcc
 
 class Car:
     """Represent car model."""
@@ -478,16 +487,14 @@ class Witcher:
         Otherwise return False.
         The monster is slain even if there is no money to pay.
         """
-        if len(self.slain_monsters) == 0:
-            return False
-        most_expensive_monster = max(self.slain_monsters, key=lambda monster: monster.bounty)
+        most_expensive_monster = max(village.monsters, key=lambda monster: monster.bounty)
         if village.village_money > 0:
-            if most_expensive_monster in self.slain_monsters:
-                return True
-        return False
-
-
-
+            most_expensive_monster.slay()
+            village.pay(most_expensive_monster)
+            return True
+        else:
+            most_expensive_monster.slay()
+            return False
     def __repr__(self) -> str:
         """
         Return string representation.
