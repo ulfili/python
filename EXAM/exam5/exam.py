@@ -174,7 +174,7 @@ def invert_repetitions(s: str) -> str:
 
     Repeated character (2 or more consecutive same characters) has to be replaced with single character.
 
-    Easier option: repeat single characters twice. (gives 60% points)
+    Easier option: repeat single characters twice. (gives 60% points )
 
     Harder option: add 1 additional character each time you need to repeat the same char.
     "abbabba" => "aabaaabaaaa"
