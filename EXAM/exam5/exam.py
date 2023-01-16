@@ -259,13 +259,13 @@ class Service:
         :return: chosen and repaired car
         """
         repaired_car = ""
-        if len(self.cars_in_service) >= 1:
-            repaired_car = self.cars_in_service[0]
-            self.cars_in_service.remove(repaired_car)
         for car in self.cars_in_service:
             if len(car.make) + len(car.color) == 13:
                 self.cars_in_service.remove(car)
                 return car
+        if len(self.cars_in_service) >= 1:
+            repaired_car = self.cars_in_service[0]
+            self.cars_in_service.remove(repaired_car)
         return repaired_car
 
     def get_the_car_with_the_biggest_engine(self) -> list:
