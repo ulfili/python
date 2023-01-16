@@ -265,20 +265,23 @@ class Service:
 
 
 if __name__ == "__main__":
- # Car service
+    # Car service
 
     car1 = Car("blue", "honda", 1800)
-    service = Service("autoLUX", 5)
-
-    print(service.can_add_to_service_queue(car1))  # True
-    service.add_car_to_service_queue(car1)
-    print(service.get_service_cars())  # [car]
-
     car2 = Car("blue", "honda", 1500)
     car3 = Car("yellow", "peugeot", 2000)
+    car4 = Car("black", "lamborgini", 50000)
+    car5 = Car("white", "toyota", 2500)
 
-    print(service.can_add_to_service_queue(
-        car2))  # False; since there is already car in service with the same make and color
+    service = Service("autoLUX", 3)
+
+    print(service.can_add_to_service_queue(car1))
+    print(service.can_add_to_service_queue(car2))
+    print(service.can_add_to_service_queue(car3))
+    service.add_car_to_service_queue(car1)
+    service.add_car_to_service_queue(car4)
+    service.add_car_to_service_queue(car3)
+    print(service.get_the_car_with_the_biggest_engine())
 
 
 class Species:
