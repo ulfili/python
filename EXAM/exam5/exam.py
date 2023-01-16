@@ -18,7 +18,6 @@ def count_camel_case_words(text: str) -> int:
     count_camel_case_words("a") => 1
     count_camel_case_words("What") => 1
     """
-    string_list = []
     if len(text) == 0:
         return 0
     result = 0
@@ -57,13 +56,12 @@ def odd_index_sum(nums: list) -> int:
     return result
 
 
-
-print(odd_index_sum([1, 2, 3]))   # => 2
+"""print(odd_index_sum([1, 2, 3]))   # => 2
 print(odd_index_sum([]))   # => 0
 print(odd_index_sum([1]))     # => 0
 print(odd_index_sum([2, 3]))    # => 3
 print(odd_index_sum([0, -1, -4, -3]))    # => -4
-print(odd_index_sum([0, -1, -4, -3, 6, 7]))    # => 3
+print(odd_index_sum([0, -1, -4, -3, 6, 7]))    # => 3"""
 
 
 def prettify_string(input_string: str) -> str:
@@ -87,6 +85,10 @@ def prettify_string(input_string: str) -> str:
     pass
 
 
+print(prettify_string("hello.im string."))   # Hello. Im string
+print(prettify_string("Hello!i am input of this func,make me pretty."))   # Hello! I am input of this func, make me pretty.
+
+
 def get_max_nums(nums: list) -> list:
     """
     Return list with maximum numbers from the original list.
@@ -100,8 +102,22 @@ def get_max_nums(nums: list) -> list:
     :param nums: list of integers.
     :return: list of maximum numbers from the original list.
     """
-    pass
+    highest_num = -1000000000
+    highest_nums_list = []
+    for num in nums:
+        if num > highest_num:
+            highest_num = num
+    for num in nums:
+        if num == highest_num:
+            highest_nums_list.append(num)
+    return highest_nums_list
 
+
+print(get_max_nums([1, 2, 34, 4, 5, 34, 34]))   # => [34, 34, 34]
+print(get_max_nums([-1, -1, -1, -1, -1, -6]))   # => [-1, -1, -1, -1, -1]
+print(get_max_nums([3, 4, 5, 6, 3]))  # => [6]
+print(get_max_nums([6]))  # => [6]
+print(get_max_nums([]))   # => []
 
 def mirror_ends(s: str) -> str:
     """
