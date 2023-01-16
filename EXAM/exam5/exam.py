@@ -259,13 +259,13 @@ class Service:
         :return: chosen and repaired car
         """
         repaired_car = ""
+        if len(self.cars_in_service) >= 1:
+            repaired_car = self.cars_in_service[0]
+            self.cars_in_service.remove(repaired_car)
         for car in self.cars_in_service:
             if len(car.make) + len(car.color) == 13:
                 self.cars_in_service.remove(car)
                 return car
-        if len(self.cars_in_service) >= 1:
-            repaired_car = self.cars_in_service[0]
-            self.cars_in_service.remove(repaired_car)
         return repaired_car
 
     def get_the_car_with_the_biggest_engine(self) -> list:
@@ -311,6 +311,7 @@ if __name__ == "__main__":
     garazService.repair()
     print(str(garazService.get_service_cars()))
 
+
 class Species:
     """Different species."""
 
@@ -326,7 +327,7 @@ class Monster:
         """Initialize monster."""
         self.species = species
         self.bounty = bounty
-
+        self.is_dead = False
     def get_species(self) -> Species:
         """Return the species of the monster."""
         return self.species
@@ -337,7 +338,7 @@ class Monster:
 
     def is_alive(self) -> bool:
         """Whether the monster is alive."""
-        pass
+        return True
 
     def slay(self) -> bool:
         """
@@ -346,7 +347,11 @@ class Monster:
         If monster is already dead, return False.
         Otherwise kill the monster and return True.
         """
-        pass
+        if self.is_dead:
+            return False
+        else:
+            self.is_dead = True
+            return True
 
     def __repr__(self) -> str:
         """
@@ -354,7 +359,7 @@ class Monster:
 
         "A {species} worth {bounty} coins"
         """
-        pass
+        return "A " + str(self.species) + " worth " + str(self.bounty) + " coins"
 
 
 class Village:
@@ -369,15 +374,19 @@ class Village:
 
     def __init__(self, name: str, initial_population: int):
         """Initialize village."""
-        pass
+        self.name = name
+        self.initial_population = initial_population
+        self.monsters = []
+        self.village_money = 100
+        self.village_age = 0
 
     def get_name(self) -> str:
         """Return name of the village."""
-        pass
+        return self.name
 
     def get_population(self) -> int:
         """Return population of the village."""
-        pass
+        return self.initial_population
 
     def get_monsters(self) -> list:
         """
@@ -385,15 +394,15 @@ class Village:
 
         If there are no population, no monsters are not bothering the village.
         """
-        pass
+        return self.monsters
 
     def add_monster(self, monster: Monster) -> None:
         """Add monster to the village."""
-        pass
+        self.monsters.append(monster)
 
     def add_money(self, amount) -> None:
         """Add money to the village."""
-        pass
+        self.village_money = amount
 
     def advance_day(self) -> None:
         """
@@ -401,7 +410,7 @@ class Village:
 
         The age of the village is increased by one.
         """
-        pass
+        self.village_age += 1
 
     def pay(self, amount: int) -> bool:
         """
@@ -410,7 +419,10 @@ class Village:
         If the village does not have enough money, return False.
         Otherwise spend the amount and return True.
         """
-        pass
+        if self.village_money >= amount:
+            self.village_money = self.village_money - amount
+            return True
+        return False
 
     def __repr__(self) -> str:
         """
@@ -418,7 +430,7 @@ class Village:
 
         "{name}, population {population}, age {age}"
         """
-        pass
+        return self.name + ", population " + str(self.initial_population) + ", age " + str(self.village_age)
 
 
 class Witcher:
@@ -430,15 +442,18 @@ class Witcher:
 
     def __init__(self, name: str, school: str):
         """Initialize witcher."""
-        pass
+        self.name = name
+        self.school = school
+        self.witcher_money = 0
+        self.slain_monsters = []
 
     def get_money(self) -> int:
         """Return the amount of money the witcher has."""
-        pass
+        return self.witcher_money
 
     def get_slain(self) -> list:
         """Return a list of slain monsters in the order they are slain."""
-        pass
+        return self.slain_monsters
 
     def get_hunted_species(self) -> list:
         """
@@ -469,38 +484,15 @@ class Witcher:
         pass
 
 
-"""if __name__ == '__main__':
-    assert count_camel_case_words("") == 0
-    assert count_camel_case_words("helloWorld") == 2
-    assert count_camel_case_words("ABC") == 3
-
-    assert odd_index_sum([]) == 0
-    assert odd_index_sum([1]) == 0
-    assert odd_index_sum([1, 2]) == 2
-    assert odd_index_sum([1, 2, 4, 3]) == 5
-
-    assert prettify_string("Hello,I am the input of this function.please make me pretty!") \
-           == "Hello, I am the input of this function. Please make me pretty!"
-
-    assert get_max_nums([1, 2, 3]) == [3]
-    assert get_max_nums([]) == []
-    assert get_max_nums([1, 2, 34, 4, 5, 34, 34]) == [34, 34, 34]
-
-    assert mirror_ends("abc") == "ac"
-    assert mirror_ends("abca") == "bc"
-    assert mirror_ends("abcba") == ""
-
-    assert invert_repetitions("") == ""
-    assert invert_repetitions("a") == "aa"
-    assert invert_repetitions("aa") == "a"
-    assert invert_repetitions("11122") == "12"
-    assert invert_repetitions("aabaab") == "abbabb"
-
-
+if __name__ == '__main__':
     # Witcher
     tallinn = Village("Tallinn", 7)
     godzilla_species = Species.Beast
     godzilla = Monster(godzilla_species, 200)
+    dracula = Monster(Species.Vampire, 100)
+    print("we will try to kill dracula")
+    print(dracula.slay())
+    print(dracula.slay())
     print(godzilla.get_species() == Species.Beast)  # True
     print(str(godzilla.get_species()))  # Species.Beast
     modzilla = Monster(Species.Dragon, 200)
@@ -533,4 +525,4 @@ class Witcher:
     # enum examples
     species_list = [Species.Beast, Species.Vampire, Species.Beast]
     print(species_list[0] == species_list[1])  # False
-    print(species_list[0] == species_list[2])  # True"""
+    print(species_list[0] == species_list[2])  # True
