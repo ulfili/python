@@ -27,18 +27,17 @@ def count_camel_case_words(text: str) -> int:
     for i in range(1, len(text)):
         if text[i] == text[i].upper():
             result += 1
-
     return result
 
-print(count_camel_case_words("hello"))   # => 1
+
+"""print(count_camel_case_words("hello"))   # => 1
 print(count_camel_case_words(""))  # => 0
 print(count_camel_case_words("helloWorld"))   #  => 2
 print(count_camel_case_words("HelloWorld"))   # => 2
 print(count_camel_case_words("aBC"))   # => 3
 print(count_camel_case_words("ABC"))    #=> 3
 print(count_camel_case_words("a"))    #=> 1
-print(count_camel_case_words("What"))    # => 1
-
+print(count_camel_case_words("What"))    # => 1"""
 
 
 def odd_index_sum(nums: list) -> int:
@@ -52,7 +51,19 @@ def odd_index_sum(nums: list) -> int:
     odd_index_sum([0, -1, -4, -3]) => -4
     odd_index_sum([0, -1, -4, -3, 6, 7]) => 3
     """
-    pass
+    result = 0
+    for i in range(1, len(nums), 2):
+        result += nums[i]
+    return result
+
+
+
+print(odd_index_sum([1, 2, 3]))   # => 2
+print(odd_index_sum([]))   # => 0
+print(odd_index_sum([1]))     # => 0
+print(odd_index_sum([2, 3]))    # => 3
+print(odd_index_sum([0, -1, -4, -3]))    # => -4
+print(odd_index_sum([0, -1, -4, -3, 6, 7]))    # => 3
 
 
 def prettify_string(input_string: str) -> str:
