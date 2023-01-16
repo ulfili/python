@@ -1,5 +1,6 @@
 """Exam3 (2023-01-10)."""
 from typing import Optional
+from operator import attrgetter
 
 
 def split_string_into_ints(numbers: str) -> list:
@@ -505,7 +506,7 @@ class Computer:
             parts_name_list.append(elem.name)
 
         if len(parts_name_list):
-            computer_parts = ",".join(parts_name_list)
+            computer_parts = ", ".join(parts_name_list)
 
         return "A " + self.name + " for " + num_str + "€ with " + computer_parts
 
@@ -634,11 +635,21 @@ class ComputerStore:
 
         If the computer is built successfully, return the built computer. Else return None.
         """
-        if len(self.working_computers_list) == 0:
+        suitable_computers = []
+        if not self.part_store:
             return None
-        if len(self.part_store) == 0:
+        for comp in self.computer_store:
+            if comp.get_parts_needed() > 0:
+                suitable_computers.append(comp)
+        if not suitable_computers:
             return None
+        suitable_computers = sorted(suitable_computers, key=attrgetter("total_parts_needed", "cost"))
+        computer_to_return = suitable_computers.pop(0)   # take one pc from store
 
+        self.part_store = sorted(self.part_store, key=attrgetter("cost"))
+        for i in range(computer_to_return.get_parts_needed()):
+            computer_to_return.add_part(self.part_store.pop(0))
+        return computer_to_return
 
     def sell_customer_computer(self, customer: Customer):
         """
@@ -652,7 +663,18 @@ class ComputerStore:
 
         If a computer is successfully built and it is cheap enough to buy, then the customer buys that computer.
         """
-        pass
+        most_expensive_computer = None
+        for computer in self.computer_store:
+            if computer.total_parts_needed == len(computer.parts_list) and (most_expensive_computer is None or computer.cost > most_expensive_computer.cost):
+                most_expensive_computer = computer
+        if most_expensive_computer:
+            if customer.buy_computer(most_expensive_computer):
+                return most_expensive_computer
+            else:
+                return None
+        else:
+            return None
+
 
 
 if __name__ == '__main__':
@@ -672,7 +694,7 @@ if __name__ == '__main__':
     computer2.add_part(ComputerPart("display", 160))
     computer2.add_part(ComputerPart("keyboard", 20))
     print(computer2)
-    #assert repr(computer2) == "A laptop for 180.00€ with display, keyboard"
+    assert repr(computer2) == "A laptop for 180.00€ with display, keyboard"
     assert computer2.is_working() is False
 
     macAir = Computer("MacAir otstoj", 3)
@@ -684,6 +706,7 @@ if __name__ == '__main__':
     store.add_computer(computer2)
 
     assert len(store.get_computers()) == 2  # 2 computers are in the store
+    #
     assert len(store.get_working_computers()) == 1  # 1 computer is working
 
     store.build_computer()  # add mousepad to laptop
