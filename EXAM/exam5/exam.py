@@ -84,10 +84,10 @@ def prettify_string(input_string: str) -> str:
     """
     pass
 
-
+"""
 print(prettify_string("hello.im string."))   # Hello. Im string
 print(prettify_string("Hello!i am input of this func,make me pretty."))   # Hello! I am input of this func, make me pretty.
-
+"""
 
 def get_max_nums(nums: list) -> list:
     """
@@ -112,13 +112,13 @@ def get_max_nums(nums: list) -> list:
             highest_nums_list.append(num)
     return highest_nums_list
 
-
+"""
 print(get_max_nums([1, 2, 34, 4, 5, 34, 34]))   # => [34, 34, 34]
 print(get_max_nums([-1, -1, -1, -1, -1, -6]))   # => [-1, -1, -1, -1, -1]
 print(get_max_nums([3, 4, 5, 6, 3]))  # => [6]
 print(get_max_nums([6]))  # => [6]
 print(get_max_nums([]))   # => []
-
+"""
 
 def mirror_ends(s: str) -> str:
     """
@@ -164,8 +164,21 @@ def invert_repetitions(s: str) -> str:
     'kloo' -> 'kkllo'
     'ababbab' -> 'aabbaabaabb' (easier) or 'aabbaaabaaaabbb' (harder)
     """
-    pass
+    return_str = ""
+    if len(s) == 0:
+        return ""
+    if len(s) == 1:
+        return s + s
+    for i in range(len(s) - 1):
+        if s[i - i] != s[i] != s[i + 1]:
+            return_str = s + s[i] * 2
+    return return_str
 
+
+print(invert_repetitions(""))  # ""
+print(invert_repetitions("a"))   # aa
+print(invert_repetitions("abc"))  # aabbcc
+print(invert_repetitions("aabc"))  # aabcc
 
 class Car:
     """Represent car model."""
@@ -215,9 +228,9 @@ class Service:
         for c in self.cars_in_service:
             if c.make == car.make and c.color == car.color:
                 return False
-        if len(self.cars_in_service) + 1 >= self.max_car_num:
-            return False
-        return True
+        if len(self.cars_in_service) + 1 < self.max_car_num:
+            return True
+        return False
 
     def add_car_to_service_queue(self, car: Car):
         """
