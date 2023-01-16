@@ -231,7 +231,7 @@ class Service:
         for c in self.cars_in_service:
             if c.make == car.make and c.color == car.color:
                 return False
-        if len(self.cars_in_service) + 1 < self.max_car_num:
+        if len(self.cars_in_service) < self.max_car_num:
             return True
         return False
 
@@ -263,7 +263,7 @@ class Service:
             if len(car.make) + len(car.color) == 13:
                 self.cars_in_service.remove(car)
                 return car
-        if len(self.cars_in_service) > 1:
+        if len(self.cars_in_service) >= 1:
             repaired_car = self.cars_in_service[0]
             self.cars_in_service.remove(repaired_car)
         return repaired_car
@@ -293,8 +293,10 @@ if __name__ == "__main__":
     car3 = Car("yellow", "peugeot", 2000)
     car4 = Car("black", "lamborgini", 50000)
     car5 = Car("white", "toyota", 2500)
+    whiteToyota = Car("purple", "toyotaChr", 2500)
 
     service = Service("autoLUX", 3)
+    garazService = Service("Garaz u dadi Vasya", 1)
 
     print(service.can_add_to_service_queue(car1))
     print(service.can_add_to_service_queue(car2))
@@ -303,7 +305,11 @@ if __name__ == "__main__":
     service.add_car_to_service_queue(car4)
     service.add_car_to_service_queue(car3)
     print(service.get_the_car_with_the_biggest_engine())
-
+    print("DADYA VASYA")
+    print(garazService.can_add_to_service_queue(whiteToyota))
+    print(str(garazService.get_service_cars()))
+    garazService.repair()
+    print(str(garazService.get_service_cars()))
 
 class Species:
     """Different species."""
