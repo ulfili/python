@@ -224,7 +224,7 @@ class Service:
         pass
 
 
-class Species(Enum):
+class Species:
     """Different species."""
 
     Dragon = 1
