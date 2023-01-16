@@ -119,6 +119,7 @@ print(get_max_nums([3, 4, 5, 6, 3]))  # => [6]
 print(get_max_nums([6]))  # => [6]
 print(get_max_nums([]))   # => []
 
+
 def mirror_ends(s: str) -> str:
     """
     Return the first non-matching symbol pair from both ends.
@@ -181,6 +182,10 @@ class Car:
         self.make = make
         self.engine_size = engine_size
 
+    def __repr__(self):
+        """Repr."""
+        return "Car make: " + self.make + ", color: " + self.color + ", engine size: " + str(self.engine_size)
+
 
 class Service:
     """Represent car service model."""
@@ -193,7 +198,9 @@ class Service:
         :param name: service name
         :param max_car_num: max car number service can take for repair at one time
         """
-        pass
+        self.name = name
+        self.max_car_num = max_car_num
+        self.cars_in_service = []
 
     def can_add_to_service_queue(self, car: Car) -> bool:
         """
@@ -205,7 +212,12 @@ class Service:
 
         If car can be added, return True. Otherwise return False.
         """
-        pass
+        for c in self.cars_in_service:
+            if c.make == car.make and c.color == car.color:
+                return False
+        if len(self.cars_in_service) < self.max_car_num:
+            return True
+        return False
 
     def add_car_to_service_queue(self, car: Car):
         """
@@ -213,11 +225,12 @@ class Service:
 
         The function does not return anything.
         """
-        pass
+        if self.can_add_to_service_queue(car):
+            self.cars_in_service.append(car)
 
     def get_service_cars(self) -> list:
         """Get all cars is service."""
-        pass
+        return self.cars_in_service
 
     def repair(self) -> Car:
         """
@@ -229,7 +242,10 @@ class Service:
         After the repair, car is no longer in queue (is removed).
         :return: chosen and repaired car
         """
-        pass
+        for car in self.cars_in_service:
+            if len(car.make) + len(car.color) == 13:
+                return car
+        return self.cars_in_service[0]
 
     def get_the_car_with_the_biggest_engine(self) -> list:
         """
@@ -237,7 +253,32 @@ class Service:
 
         :return: car (cars) with the biggest engine size
         """
-        pass
+        biggest_engine = 0
+        biggest_engine_cars = []
+        for car in self.cars_in_service:
+            if car.engine_size > biggest_engine:
+                biggest_engine = car.engine_size
+        for car in self.cars_in_service:
+            if car.engine_size == biggest_engine:
+                biggest_engine_cars.append(car)
+        return biggest_engine_cars
+
+
+if __name__ == "__main__":
+ # Car service
+
+    car1 = Car("blue", "honda", 1800)
+    service = Service("autoLUX", 5)
+
+    print(service.can_add_to_service_queue(car1))  # True
+    service.add_car_to_service_queue(car1)
+    print(service.get_service_cars())  # [car]
+
+    car2 = Car("blue", "honda", 1500)
+    car3 = Car("yellow", "peugeot", 2000)
+
+    print(service.can_add_to_service_queue(
+        car2))  # False; since there is already car in service with the same make and color
 
 
 class Species:
@@ -424,19 +465,6 @@ class Witcher:
     assert invert_repetitions("11122") == "12"
     assert invert_repetitions("aabaab") == "abbabb"
 
-    # Car service
-
-    car = Car("blue", "honda", 1800)
-    service = Service("autoLUX", 5)
-
-    print(service.can_add_to_service_queue(car))  # True
-    service.add_car_to_service_queue(car)
-    print(service.get_service_cars())  # [car]
-
-    car2 = Car("blue", "honda", 1500)
-
-    print(service.can_add_to_service_queue(
-        car2))  # False; since there is already car in service with the same make and color
 
     # Witcher
     tallinn = Village("Tallinn", 7)
