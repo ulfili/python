@@ -1,5 +1,6 @@
 """Exam4 (2023-01-13)."""
 import re
+import string
 from operator import attrgetter
 
 
@@ -93,7 +94,24 @@ def encode_string_with_hex_key(input_str: str, key: str) -> str:
 
     :return Encoded string
     """
-    pass
+    alphabet = string.ascii_lowercase
+    result = ""
+    for i, c in enumerate(input_str):
+        if c in string.ascii_letters:
+            shift = key[i]
+            if shift.isdigit():
+                shift_nr = int(shift)
+            else:
+                shift_nr = 10 + alphabet.index(shift)
+            current_pos = alphabet.index(c)
+            new_pos = current_pos + shift_nr
+
+            if new_pos >= len(alphabet):
+                new_pos = new_pos - len(alphabet)
+            result += alphabet[new_pos]
+        else:
+            result += c
+    return result
 
 
 def sum_of_multipliers(first_num: int, second_num: int, limit: int) -> int:
@@ -150,12 +168,15 @@ def count_the_dumplings(day: int) -> int:
     count_the_dumplings(3) => 4
     count_the_dumplings(30) ==> 536870912
     """
-    if day <= 1:
-        return day
+    if day <= 0:
+        return 0
+    if day == 1:
+        return 1
     return 2 * count_the_dumplings(day - 1)
 
 
 print(count_the_dumplings(30))    # ==> 536870912)
+
 
 def prime_factorization(number: int) -> int:
     """
@@ -181,8 +202,16 @@ def prime_factorization(number: int) -> int:
     :param number: a number greater than 1
     :return: dict of prime factors and their counts.
     """
-    pass
-
+    factors = {}
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            factors[i] = 0
+            while number % i == 0:
+                factors[i] += 1
+                number = number // i
+    if number > 1:
+        factors[number] = 1
+    return factors
 
 class Book:
     """Represent book model."""
