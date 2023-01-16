@@ -215,11 +215,9 @@ class Service:
         for c in self.cars_in_service:
             if c.make == car.make and c.color == car.color:
                 return False
-            else:
-                return True
-        if len(self.cars_in_service) + 1 < self.max_car_num:
-            return True
-        return False
+        if len(self.cars_in_service) + 1 >= self.max_car_num:
+            return False
+        return True
 
     def add_car_to_service_queue(self, car: Car):
         """
