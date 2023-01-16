@@ -165,6 +165,9 @@ def invert_repetitions(s: str) -> str:
     'ababbab' -> 'aabbaabaabb' (easier) or 'aabbaaabaaaabbb' (harder)
     """
     return_str = ""
+    if len(s) == 2:
+        if s[0] == s[1]:
+            return s[0]
     if len(s) == 0:
         return ""
     if len(s) == 1:
