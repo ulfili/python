@@ -124,6 +124,10 @@ def get_max_nums(nums: list) -> list:
     :param nums: list of integers.
     :return: list of maximum numbers from the original list.
     """
+    """if nums == []:
+        return []
+    max_nr = max(nums)
+    return [nr for nr in nums if nr == max_nr]"""
     highest_num = -1000000000
     highest_nums_list = []
     for num in nums:
@@ -157,12 +161,11 @@ def mirror_ends(s: str) -> str:
     mirror_ends("abAAca") => "bc"
     mirror_ends("") => ""
     """
-    if len(s) <= 1:
+    if len(s) < 2:
         return ""
-    elif s[0] == s[-1]:
+    if s[0] == s[-1]:
         return mirror_ends(s[1:-1])
-    else:
-        return s[0] + mirror_ends(s[1:-1] + s[-1])
+    return s[0] + s[-1]
 
 
 def invert_repetitions(s: str) -> str:
