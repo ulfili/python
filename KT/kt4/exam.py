@@ -76,16 +76,18 @@ def max_block(s: str) -> int:
     elem_dict = {}
     elem_list = []
     for elem in s:
-        elem_list.append(elem)
+        elem_list.append(elem.upper())
     # print(elem_list)
     for elem2 in elem_list:
         elem_dict[elem2] = elem_list.count(elem2)
-    # print(elem_dict)
+    print(elem_dict)
     max_value = max(elem_dict.values())
     return max_value
 
 
 print(max_block("hoooplaa"))
+print(max_block("hoooplaaaaaAaaaaa"))
+print(max_block("!!!!!!!+++++-"))
 print(max_block(""))
 
 
