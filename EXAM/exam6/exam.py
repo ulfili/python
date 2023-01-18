@@ -438,7 +438,7 @@ class Class:
         | Some really long name |      3      |
         ---------------------------------------
         """
-        longest_name = ""
+        longest_name = "Name"
         for st in self.students:
             if len(st.name) > len(longest_name):
                 longest_name = st.name
@@ -461,11 +461,13 @@ class Class:
 if __name__ == '__main__':
 
     # Teacher, grade, student
-    mari = Student("Mari Maa")
+    mari = Student("M")
     annamaria = Student("Anna Maria Jurgenson - Ivanova")
     jyri = Student("Jyri Jogi")
     teele = Student("Teele Tee")
-    cl = Class("Anna", [mari, jyri, teele, annamaria])
+    #cl = Class("Anna", [mari, jyri, teele, annamaria])
+    cl = Class("Anna", [])
+
 
     #cl.remove_student(annamaria)
 
