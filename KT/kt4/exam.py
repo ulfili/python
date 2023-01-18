@@ -40,7 +40,27 @@ def sum_elements_around_last_three(nums: list) -> int:
     :param nums: given list of ints
     :return: sum of elements before and after last 3
     """
-    pass
+    result = 0
+    if len(nums) <= 2:
+        return result
+    for elem in nums:
+        if 3 not in nums:
+            return result
+    for i in range(1, len(nums) - 1):
+        if nums[i] == 3:
+            # print("3 index is", i)
+            result = nums[i - 1] + nums[i + 1]
+            # print("result for ", nums, "is", result)
+    return result
+
+
+print(sum_elements_around_last_three([1, 2, 4]))
+print(sum_elements_around_last_three([1, 2]))
+print(sum_elements_around_last_three([1, 3, 4, 5, 3]))  # 5 (4 + 1)
+print(sum_elements_around_last_three([1, 3, 4, 6, 3, 1, 3]))  # 7 (6 + 1)
+print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 4, 5, 6]))
+
+
 
 
 def max_block(s: str) -> int:
