@@ -146,7 +146,58 @@ def bingo(matrix: list, numbers: list) -> tuple:
     :param numbers: list of winning numbers (size always at least 4)
     :return: tuple of booleans (corners, diagonals, full_game)
     """
-    pass
+    ret_tuple = []
+    corners = []
+    corner_win = False
+    corners.append(matrix[0][0])
+    corners.append(matrix[0][4])
+    corners.append(matrix[4][0])
+    corners.append(matrix[4][4])
+    for num in corners:
+        if num in numbers:
+            ret_tuple.append(True)
+        else:
+            ret_tuple.append(False)
+    if ret_tuple[0] and ret_tuple[1] and ret_tuple[2] and ret_tuple[3]:
+        corner_win = True
+
+    diagonal = []
+    for i in range(5):
+        diagonal.append(matrix[i][i])
+        diagonal.append(matrix[4-i][i])
+    # print("diagonal", diagonal)
+    # print("winning nr ", numbers)
+
+    diag_win = True
+    for elem in diagonal:
+        if elem not in numbers:
+            # print("This elem not on numbers!!!", elem)
+            diag_win = False
+            break
+
+    full_win = False
+    matrix_list = []
+    for row in matrix:
+        matrix_list.extend(row)
+    print(matrix_list)
+
+    if len(numbers) >= 25:
+        full_win = True
+        for elem in matrix_list:
+            if elem not in numbers:
+                # print("This elem not on numbers!!!", elem)
+                full_win = False
+                break
+
+    result = (corner_win, diag_win, full_win)
+    return result
+
+
+print(bingo([[ 5,  7, 11, 15, 21],
+        [22, 25, 26, 27,  9],
+        [34,  2, 48, 54, 58],
+        [59, 61, 33, 81, 24],
+        [90, 37,  3,  6, 32],], [5, 7, 11, 15, 21, 22, 25, 26, 27, 9, 34, 2, 48, 54, 58, 59, 61, 33, 81, 24, 90, 37, 3, 6, 32]))
 
 
 def reverse_substring(s: str, substring: str) -> str:
