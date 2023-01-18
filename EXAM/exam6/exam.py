@@ -91,7 +91,38 @@ def mix_string(s1: str, s2: str) -> str:
     mix_string("AA", "") -> "AA"
     mix_string("mxdsrn", "ie tig") -> "mixed string"
     """
-    pass
+
+    result_str = ""
+    short_str = s1
+    long_str = s2
+    if len(s1) > len(s2):
+        long_str = s1
+        short_str = s2
+
+    if len(short_str) == 0:
+        return long_str
+
+    # print("short", short_str, "long", long_str)
+    i = 0
+    for i in range(len(short_str)):
+        ch1 = s1[i]
+        ch2 = s2[i]
+        result_str += ch1 + ch2
+    if len(s1) == len(s2):
+        return result_str
+    # print(long_str[i:])
+    result_str += long_str[i+1:]
+    # print(result_str)
+    return result_str
+
+
+print(mix_string("AAA", "bbb"))  # "AbAbAb"
+
+print(mix_string("AAAAA", "BBbb"))  # "AbAbAb"
+print(mix_string("AAAA", "BBbbB"))  # "AbAbAb"
+print(mix_string("AAA", ""))  # "AAA"
+print(mix_string("AAA", "B"))  # "ABAA"
+
 
 
 def bingo(matrix: list, numbers: list) -> tuple:
