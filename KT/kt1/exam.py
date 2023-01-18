@@ -17,13 +17,9 @@ def capitalize_string(s: str) -> str:
     return result
 
 
-print(capitalize_string("abc"))  #  => "Abc"
-print(capitalize_string("ABc"))  #  => "ABc"
-print(capitalize_string(""))  #  => ""
-
-
-
-
+print(capitalize_string("abc"))  # => "Abc"
+print(capitalize_string("ABc"))  # => "ABc"
+print(capitalize_string(""))  # => ""
 
 
 def has_seven(nums):
@@ -38,7 +34,24 @@ def has_seven(nums):
     has_seven([7, 1, 7, 1, 7]) => True
     has_seven([7, 1, 7, 1, 1, 7]) => False
     """
-    pass
+    seven = 7
+    for elem in nums:
+        if seven not in nums:
+            return False
+    if nums.count(7) != 3:
+        return False
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i - 1]:
+            return False
+    return True
+
+
+print(has_seven([7, 1, 7, 1, 7]))  # True
+print(has_seven([1, 2, 3]))  # False
+print(has_seven([7, 1, 2, 7, 1, 7]))  # True
+print(has_seven([7, 1, 2, 7, 1]))  # False
+print(has_seven([7, 1, 1, 7, 1, 7]))  # False
+
 
 
 def list_move(initial_list: list, amount: int, factor: int) -> list:
