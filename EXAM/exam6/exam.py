@@ -40,6 +40,8 @@ def count_digits_chars_symbols(string: str) -> str:
     count_digits_chars_symbols("545#¤%") => The input has 3 digits and 3 symbols
     count_digits_chars_symbols("545dd#¤%") => The input has 2 chars, 3 digits and 3 symbols
     """
+    if len(string) == 0:
+        return ""
     nums = 0
     char = 0
     symb = 0
@@ -76,7 +78,7 @@ def count_digits_chars_symbols(string: str) -> str:
     return return_str
 
 
-print(count_digits_chars_symbols("!!!aaa"))
+print(count_digits_chars_symbols(""))
 print(count_digits_chars_symbols("545#¤%"))    # => The input has 3 digits and 3 symbols
 print(count_digits_chars_symbols("545dd#¤%"))    # => The input has 2 chars, 3 digits and 3 symbols
 
