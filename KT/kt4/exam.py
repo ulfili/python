@@ -61,8 +61,6 @@ print(sum_elements_around_last_three([1, 3, 4, 6, 3, 1, 3]))  # 7 (6 + 1)
 print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 4, 5, 6]))
 
 
-
-
 def max_block(s: str) -> int:
     """
     Given a string, return the length of the largest "block" in the string.
@@ -73,7 +71,22 @@ def max_block(s: str) -> int:
     max_block("abbCCCddBBBxx") => 3
     max_block("") => 0
     """
-    pass
+    if len(s) == 0:
+        return 0
+    elem_dict = {}
+    elem_list = []
+    for elem in s:
+        elem_list.append(elem)
+    # print(elem_list)
+    for elem2 in elem_list:
+        elem_dict[elem2] = elem_list.count(elem2)
+    # print(elem_dict)
+    max_value = max(elem_dict.values())
+    return max_value
+
+
+print(max_block("hoooplaa"))
+print(max_block(""))
 
 
 def create_dictionary_from_directed_string_pairs(pairs: list) -> dict:
