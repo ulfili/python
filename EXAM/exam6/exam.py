@@ -326,7 +326,10 @@ class Grade:
         This function should save the previous grade in a dictionary previous_grades, where key is the date and value
         is the value of the grade. Value and date should be updated.
         """
-        pass
+        self.previous_grades[self.date] = self.value
+        self.value = new_grade
+        self.date = date
+        # self.previous_grades[date] = self.value
 
 
 class Student:
@@ -345,7 +348,7 @@ class Student:
         grades for the same assignment are kept in the Grade object previous grades dictionary).
         Note that this function is only used when a student does an assignment for the first time.
         """
-        pass
+        self.grades[grade.assignment] = grade
 
     def redo_assignment(self, new_grade: int, assignment: str, date: str):
         """
@@ -354,7 +357,7 @@ class Student:
         This function is only used when an assignment has been attempted at least once before. Keep in mind that you
         need to also keep the history of grades, not create a new grade!
         """
-        pass
+        self.grades[assignment].change_grade(new_grade, date)
 
     def calculate_weighted_average(self):
         """
@@ -371,7 +374,14 @@ class Student:
         Also make sure not to miss out when a grade is noted as "!". If there is no attempt to redo this, then "!"
         should be equivalent to grade "1".
         """
-        pass
+        summ = 0
+        count = 0
+        for assig, grade in self.grades.items():
+            if grade.value == "!":
+                grade.value = 1
+            summ += grade.weight * grade.value
+            count += grade.weight
+        return round(summ / count)
 
 
 class Class:
@@ -384,15 +394,15 @@ class Class:
 
     def add_student(self, student: Student):
         """Add student to the class."""
-        pass
+        self.students.append(student)
 
     def add_students(self, students: list):
         """Add several students to the class."""
-        pass
+        self.students.extend(students)
 
     def remove_student(self, student: Student):
         """Remove student from the class."""
-        pass
+        self.students.remove(student)
 
     def get_grade_sheet(self):
         """
@@ -427,73 +437,47 @@ class Class:
         | Mari                  |      5      |
         | Some really long name |      3      |
         ---------------------------------------
-
         """
-        pass
+        longest_name = ""
+        for st in self.students:
+            if len(st.name) > len(longest_name):
+                longest_name = st.name
+        longest_name += " "
+        table_line = "-"*(len(longest_name)+len(" | Final grade | "))
+        name_line = "| Name" + (" "*(len(longest_name) - 4)) + "| Final grade |"
+
+        table_header = table_line + "\n" + name_line + "\n"+table_line
+        table_students = ""
+        for student in self.students:
+            student_name = student.name
+            final_grade = student.calculate_weighted_average()
+            padding = " " * (len(longest_name) - len(student_name))
+            table_students += "| " + student_name + padding + "|      " + str(final_grade) + "      |\n"
+
+        grade_sheet = table_header + "\n" + table_students + table_line
+        return grade_sheet
 
 
-"""if __name__ == '__main__':
-    assert double_letters("ab") == "aabb"
-    assert double_letters("a! b") == "aa! bb"
-
-    assert count_digits_chars_symbols("db/") == "The input has 2 chars, 1 symbols"
-    assert count_digits_chars_symbols("545#¤%") == "The input has 3 digits and 3 symbols"
-
-    assert mix_string("AAA", "bbb") == "AbAbAb"
-    assert mix_string("AA", "") == "AA"
-    assert mix_string("mxdsrn", "ie tig") == "mixed string"
-
-    assert bingo([
-        [5, 7, 11, 15, 21],
-        [22, 25, 26, 27, 9],
-        [34, 2, 48, 54, 58],
-        [59, 61, 33, 81, 24],
-        [90, 37, 3, 6, 32],
-    ], [5, 21, 90, 32]) == (True, False, False)
-
-    assert bingo([
-        [5, 7, 11, 15, 21],
-        [22, 25, 26, 27, 9],
-        [34, 2, 48, 54, 58],
-        [59, 61, 33, 81, 24],
-        [90, 37, 3, 6, 32],
-    ], [5, 21, 90, 32, 25, 48, 81, 27, 61, 91]) == (True, True, False)
-
-    assert valid_parentheses("()") is True
-    assert valid_parentheses("[[") is False
-    assert valid_parentheses("[(])") is False
-
-    # hospital
-    patient1 = Patient("patient1", "covid", 20)
-    patient2 = Patient("patient2", "flu", 25)
-    patient3 = Patient("patient3", "madness", 35)
-
-    hospital = Hospital("HospiTalTech", ["flu", "madness"])
-    hospital.add_patient(patient3)
-    assert hospital.get_patients() == [patient3]
-
-    hospital.add_patients([patient1, patient2, patient3])
-    assert hospital.get_patients() == [patient3, patient2]
-
-    assert hospital.sort_patients_by_illness() == [patient2, patient3]
-
-    hospital.add_new_illness_to_cure("covid")
-
-    hospital.add_patient(patient1)
-    assert hospital.get_patients() == [patient3, patient2, patient1]
-    assert hospital.get_patients_by_illness("flu") == [patient2]
-    assert hospital.collect_patients_by_illness() == {
-        'flu': [patient2],
-        'madness': [patient3],
-        'covid': [patient1]
-    }
+if __name__ == '__main__':
 
     # Teacher, grade, student
     mari = Student("Mari Maa")
+    annamaria = Student("Anna Maria Jurgenson - Ivanova")
     jyri = Student("Jyri Jogi")
     teele = Student("Teele Tee")
-    cl = Class("Anna", [mari, jyri, teele])
+    cl = Class("Anna", [mari, jyri, teele, annamaria])
+
+    #cl.remove_student(annamaria)
+
     mari.grade(Grade(5, 3, "KT", "01/09/2020"))
+    annamaria.grade(Grade(5, 5, "KT", "01/05/2028"))
+    mari.calculate_weighted_average()
+    gr = Grade(1, 3, "OOP", "01/09/2020")
+    mari.grade(gr)
+    mari.calculate_weighted_average()
+    mari.redo_assignment(5, "KT", "02/09/2020" )
+    mari.calculate_weighted_average()
+
     gr = Grade("!", 3, "KT", "01/09/2020")
     jyri.grade(gr)
     teele.grade(Grade(4, 3, "KT", "01/09/2020"))
@@ -517,4 +501,3 @@ class Class:
     tuuli = Student("Tuuli Karu")
     cl.add_student(tuuli)
     print(len(cl.students))  # 4
-"""
