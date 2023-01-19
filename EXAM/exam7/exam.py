@@ -289,8 +289,9 @@ def show_highest_grade(grade1, grade2):
     :param grade2:
     :return:
     """
+
     highest_grade = "Highest grade: "
-    if grade1 > grade2:
+    if grade1 > grade2 > 1:
         print(highest_grade + str(grade1))
     print(highest_grade + str(grade2))
     return None
@@ -455,6 +456,18 @@ class Stargate:
         """
         pass
 
+if __name__ == '__main__':
+    # OOP1 - stargate
+
+    sg1 = Stargate("Earth", True)
+    sg2 = Stargate("Another planet", False)
+    assert sg1.dial(sg2) is True
+    assert sg1.get_connected_planet_name() == "Another planet"
+    sg2.disconnect()
+    assert sg2.get_connected_planet_name() == "Earth"
+    sg1.disconnect()
+    assert sg2.get_connected_planet_name() is None
+    assert sg2.dial(sg1) is False
 
 class Student:
     """Student class."""
