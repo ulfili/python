@@ -227,7 +227,7 @@ def who_called(calls, name):
         print("Caller :", k, "  called: ", v)
         if name in v:
             caller = k
-    if caller is "":
+    if caller == "":
         return -1
     return caller
 
@@ -461,7 +461,11 @@ class Stargate:
         :param destination: The stargate that this stargate should connect to. Stargate
         :return: Did the two stargates connect successfully. Boolean
         """
-        pass
+        if self.is_connected() is False:
+            if self.has_dial_home_device:
+                if destination.has_dial_home_device:
+                    return True
+        return False
 
     def disconnect(self):
         """
@@ -472,7 +476,7 @@ class Stargate:
         """
         pass
 
-"""if __name__ == '__main__':
+if __name__ == '__main__':
   # OOP1 - stargate
 
     sg1 = Stargate("Earth", True)
@@ -483,7 +487,7 @@ class Stargate:
     assert sg2.get_connected_planet_name() == "Earth"
     sg1.disconnect()
     assert sg2.get_connected_planet_name() is None
-    assert sg2.dial(sg1) is False"""
+    assert sg2.dial(sg1) is False
 
 class Student:
     """Student class."""
