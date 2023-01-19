@@ -503,7 +503,7 @@ if __name__ == '__main__':
 class Student:
     """Student class."""
 
-    def __init__(self, curriculum: list):
+    def __init__(self, curriculum):
         """
         Initialize student.
 
@@ -520,7 +520,7 @@ class Student:
         :param subject: the subject to be added to the curriculum.
         :param eap: how many EAPs the subject is worth.
         """
-        self.curriculum.append(subject)
+        self.curriculum.add_subject(subject)
 
     def add_grade(self, subject, grade):
         """
@@ -601,7 +601,7 @@ class Curriculum:
 
     def __init__(self):
         """Initialize curriculum."""
-        pass
+        self.subjects = []
 
     def get_subject(self, name):
         """
@@ -618,7 +618,7 @@ class Curriculum:
 
         :param subject: the subject to be added.
         """
-        pass
+        self.subjects.append(subject)
 
     def get_all_subjects(self):
         """
@@ -626,7 +626,7 @@ class Curriculum:
 
         :return: al list of all the subjects in the curriculum.
         """
-        pass
+        return self.subjects
 
     def add_subject_grade(self, subject, grade):
         """
