@@ -156,8 +156,6 @@ print(string_between_string("", "yas"))  # == "say"
 print(string_between_string("smrt", "a"))  # == "smart"
 
 
-
-
 def get_padded_string(string1, string2):
     """
     Pad the longer of two strings with the shorter one on both sides.
@@ -171,10 +169,16 @@ def get_padded_string(string1, string2):
     :param string2:  String two
     :return: Padded string
     """
-    result_str = string2 + string1 + string2
+    if len(string2) < len(string1):
+        result_str = string2 + string1 + string2
+    else:
+        result_str = string1 + string2 + string1
+
     return result_str
 
+
 print(get_padded_string("pizza", "bbq"))  # == "bbqpizzabbq"
+print(get_padded_string("bbq", "pizza"))
 
 def remove_duplicate(number_list):
     """
