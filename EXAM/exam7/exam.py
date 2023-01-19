@@ -291,9 +291,10 @@ def show_highest_grade(grade1, grade2):
     """
 
     highest_grade = "Highest grade: "
-    if grade1 > grade2 > 1:
+    if grade1 > grade2 > 0:
         print(highest_grade + str(grade1))
-    print(highest_grade + str(grade2))
+    if 0 < grade1 < grade2:
+        print(highest_grade + str(grade2))
     return None
 
 
@@ -372,9 +373,9 @@ def recursive_sum(list_of_numbers):
     @param list_of_numbers: list of integers.
     @return: sum of numbers in list
     """
-    pass
 
 
+# print(recursive_sum([1, 2, 3]))   # == 6
 class Stargate:
     """
     Class Stargate.
@@ -456,8 +457,8 @@ class Stargate:
         """
         pass
 
-if __name__ == '__main__':
-    # OOP1 - stargate
+"""if __name__ == '__main__':
+  # OOP1 - stargate
 
     sg1 = Stargate("Earth", True)
     sg2 = Stargate("Another planet", False)
@@ -467,7 +468,7 @@ if __name__ == '__main__':
     assert sg2.get_connected_planet_name() == "Earth"
     sg1.disconnect()
     assert sg2.get_connected_planet_name() is None
-    assert sg2.dial(sg1) is False
+    assert sg2.dial(sg1) is False"""
 
 class Student:
     """Student class."""
