@@ -213,7 +213,6 @@ print(remove_duplicate([1, 1, 2, 2, 3, 1, 1, 3]))  # == [1, 2, 3])
 print(remove_duplicate([0]))  # == []
 
 
-
 def who_called(calls, name):
     """
     Who called.
@@ -386,12 +385,7 @@ def recursive_sum(list_of_numbers):
     @param list_of_numbers: list of integers.
     @return: sum of numbers in list
     """
-
-    if len(list_of_numbers) == 0:
-        return 0
-
-
-print(recursive_sum([1, 2, 3]))
+    pass
 
 
 class Stargate:
