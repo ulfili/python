@@ -46,18 +46,28 @@ def add_or_subtract(numbers):
     """
     result_sum = 0
     subtracting_mode = False
+    if 0 not in numbers:
+        result_sum = sum(numbers)
     for num in numbers:
-        # print(num)
         if num == 0:
             subtracting_mode = True
-        if subtracting_mode:
-            result_sum -= num
-        else:
-            result_sum += num
-    return result_sum
+            print("zero is founded", num)
+            print("div mode is on", num == 0)
+            print("current result is", result_sum)
+            for num1 in numbers:
+                if subtracting_mode:
+                    result_sum -= num1
+                else:
+                    result_sum += num1
 
+
+        return result_sum
 
 print(add_or_subtract([1, 2, 0, 3, 0, 4]))  # 1 + 2 - 3 + 4 = 4
+#print(add_or_subtract([0, 1, 1, 1]))  # -3
+#print(add_or_subtract([1, 2, 3]))  # 6
+#print(add_or_subtract([1, 2, 0, 3]))  # 6
+
 print("_____________________________")
 
 
@@ -382,7 +392,6 @@ def recursive_sum(list_of_numbers):
 
     if len(list_of_numbers) == 0:
         return 0
-    return list_of_numbers[0] + recursive_sum(list_of_numbers[:len(list_of_numbers) - 1])
 
 
 print(recursive_sum([1, 2, 3]))
@@ -484,25 +493,6 @@ class Stargate:
         connected.
         """
         pass
-
-
-if __name__ == '__main__':
-    # OOP1 - stargate
-
-    sg1 = Stargate("Earth", True)
-    sg2 = Stargate("Another planet", False)
-    print("palnet name")
-    print(sg1.get_planet_name())
-    print(sg1.get_connected_stargate())
-    print(sg1.get_connected_planet_name())  #  == "Another planet"
-    #sg2.disconnect()
-    print(sg2.get_connected_planet_name())  # == "Earth"
-    #sg1.disconnect()
-    print(sg2.get_connected_planet_name())  #  is None
-    print(sg2.dial(sg1))  #  is False
-    print(sg1.dial(sg2))
-
-
 
 
 class Student:
@@ -654,33 +644,3 @@ class Curriculum:
         :return: dictionary.
         """
         pass
-
-
-if __name__ == '__main__':
-
-    # OOP2 - student
-    student = Student(Curriculum())
-
-    subj1 = Subject("lineaar", 6)
-    subj2 = Subject("matanaal", 5)
-    subj3 = Subject("java", 4)
-
-    student.get_curriculum().add_subject(subj1)
-    student.get_curriculum().add_subject(subj2)
-    student.get_curriculum().add_subject(subj3)
-
-    student.add_grade(subj1, 3)
-    student.add_grade(subj2, 5)
-
-    assert student.get_subject_grade(subj3) is None
-    assert student.get_eaps() == 11
-    assert student.get_subject_grade(subj2) == 5
-    assert student.get_average_grade() == 4
-
-    student.add_grade(subj2, 3)
-
-    assert student.get_subject_grade(subj2) == 3
-    assert student.get_average_grade() == 3
-
-    assert student.get_curriculum().get_subject("java") == subj3
-
