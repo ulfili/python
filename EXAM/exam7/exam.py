@@ -49,9 +49,19 @@ def add_or_subtract(numbers):
     :param numbers: the list of number given.
     :return: the sum of all numbers.
     """
+    result_sum = 0
     subtracting_mode = False
+    for num in numbers:
+        print(num)
+        if num == 0:
+            subtracting_mode = True
+        if subtracting_mode:
+            result_sum -= num
+        result_sum += num
+    return result_sum
 
 
+# print(add_or_subtract([1, 2, 0, 3, 0, 4]))  # 1 + 2 - 3 + 4
 
 
 def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
@@ -72,7 +82,22 @@ def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
     :param first_class_is_programming: is the first class a programming class, boolean
     :return: True if you should get up early, otherwise False
     """
-    pass
+    if is_weekday:
+        if really_tired is False:
+            if first_class_is_programming is False:
+                return True
+        if really_tired:
+            if first_class_is_programming:
+                return True
+            if first_class_is_programming is False:
+                return False
+    if is_weekday is False:
+        return False
+
+
+print(should_get_up_early(True, False, False))
+
+
 
 
 def pear_fear(pears, people):
