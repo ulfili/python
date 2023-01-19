@@ -198,11 +198,12 @@ def remove_duplicate(number_list):
     :return: new list
     """
     result = []
-    for num in number_list:
-        if num in result:
-            result.remove(num)
-        result.append(num)
-    print("DUPLICATES", result)
+    sorted_list = set(number_list)
+    print("sorted list :", sorted_list)
+    for elem in sorted_list:
+        result.append(elem)
+    return result
+
 
 print(remove_duplicate([1, 1, 2, 2, 3, 3]))  # == [1, 2, 3])
 
@@ -379,7 +380,13 @@ def recursive_sum(list_of_numbers):
     @param list_of_numbers: list of integers.
     @return: sum of numbers in list
     """
-    pass
+
+    if len(list_of_numbers) == 0:
+        return 0
+    return list_of_numbers[0] + recursive_sum(list_of_numbers[:len(list_of_numbers) - 1])
+
+
+print(recursive_sum([1, 2, 3]))
 
 class Stargate:
     """
