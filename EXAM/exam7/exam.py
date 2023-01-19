@@ -197,15 +197,14 @@ def remove_duplicate(number_list):
     :return: new list
     """
     result = []
-    for i in range(1, len(number_list) - 1):
-        if number_list[i] != number_list[i + 1] or number_list[i] != number_list[i - 1]:
-            result.append(number_list[i])
-    result = list(set(result))
+    sorted_list = set(number_list)
+    print("sorted list :", sorted_list)
+    for elem in sorted_list:
+        result.append(elem)
     return result
-    # print("result list", result)
 
 
-print(remove_duplicate([1, 1, 2, 2, 3, 1, 1, 3]))  # == [1, 2, 3])
+print(remove_duplicate([1, 1, 2, 2, 3, 3]))  # == [1, 2, 3])
 
 
 def who_called(calls, name):
@@ -504,7 +503,7 @@ if __name__ == '__main__':
 class Student:
     """Student class."""
 
-    def __init__(self, curriculum):
+    def __init__(self, curriculum: list):
         """
         Initialize student.
 
@@ -521,7 +520,7 @@ class Student:
         :param subject: the subject to be added to the curriculum.
         :param eap: how many EAPs the subject is worth.
         """
-        self.curriculum.add_subject(subject)
+        self.curriculum.append(subject)
 
     def add_grade(self, subject, grade):
         """
@@ -652,73 +651,7 @@ class Curriculum:
         pass
 
 
-"""if __name__ == '__main__':
-
-    assert segment_number(1, 11) == [5, 10]
-    assert segment_number(1, 4) == []
-    assert segment_number(-20, 20) == [-20, -10, -5, 5, 10, 20]
-
-    assert add_or_subtract([1, 2, 0, 3]) == 0
-    assert add_or_subtract([0, 1, 2]) == -3
-    assert add_or_subtract([1, 2, 0, 2, 0, 4]) == 5
-
-    assert should_get_up_early(True, True, True) is True
-    assert should_get_up_early(False, True, False) is False
-
-    assert pear_fear(10, 3) == 5
-    assert pear_fear(10, 5) == 2
-    assert pear_fear(0, 3) == 0
-    assert pear_fear(17, 2) == 8
-    assert pear_fear(21, 10) == 3
-
-    assert string_between_string("ho", "lle") == "hello"
-    assert string_between_string("", "yas") == "say"
-    assert string_between_string("smrt", "a") == "smart"
-    assert string_between_string("w  d", " ro ") == "w  or  d"
-    assert string_between_string(".,", ",.") == "..,,"
-
-    assert get_padded_string("pizza", "bbq") == "bbqpizzabbq"
-    assert get_padded_string("dog", "cat") == "catdogcat"
-    assert get_padded_string("geoff", "giraffe") == "geoffgiraffegeoff"
-
-    assert remove_duplicate([1, 1, 2, 2, 3, 3]) == [1, 2, 3]
-    assert remove_duplicate([1, 2, 3]) == [1, 2, 3]
-    assert remove_duplicate([1, 1, 1, 1, 1, 2, 1, 1, 3]) == [1, 2, 1, 3]
-
-    assert who_called({}, "Nathan") == -1
-    assert who_called({"Alex": "James", "Jeff": "Bill", "James": "Alex", "Daniel": "Matt"}, "Alex") == "James"
-    assert who_called({"Alex": "James", "Jeff": "Bill", "James": "Alex", "Daniel": "Matt"}, "Olaf") == -1
-
-    assert remove_lowest_digit(123) == 23
-    assert remove_lowest_digit(100) == 10
-    assert remove_lowest_digit(7) == 0
-    assert remove_lowest_digit(171) == 71
-
-    assert show_highest_grade(10, 14) is None
-    # prints:
-    # Highest grade: 14
-
-    assert transactions("A,B,100") == [0, 200, 100]
-    assert transactions("C,A,200") == [300, 100, -100]
-    assert transactions("") == [100, 100, 100]
-    assert transactions("0,A,1000") == [1100, 100, 100]
-    assert transactions("A,B,10 B,C,10 0,A,20") == [110, 100, 110]
-
-    assert recursive_sum([]) == 0
-    assert recursive_sum([1, 2, 3]) == 6
-    assert recursive_sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 55
-
-    # OOP1 - stargate
-
-    sg1 = Stargate("Earth", True)
-    sg2 = Stargate("Another planet", False)
-    assert sg1.dial(sg2) is True
-    assert sg1.get_connected_planet_name() == "Another planet"
-    sg2.disconnect()
-    assert sg2.get_connected_planet_name() == "Earth"
-    sg1.disconnect()
-    assert sg2.get_connected_planet_name() is None
-    assert sg2.dial(sg1) is False
+if __name__ == '__main__':
 
     # OOP2 - student
     student = Student(Curriculum())
@@ -744,5 +677,5 @@ class Curriculum:
     assert student.get_subject_grade(subj2) == 3
     assert student.get_average_grade() == 3
 
-    assert student.get_curriculum().get_subject("java") == subj3"""
+    assert student.get_curriculum().get_subject("java") == subj3
 
