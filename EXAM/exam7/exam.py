@@ -204,7 +204,7 @@ def remove_duplicate(number_list):
         if nr != prev_nr:
             result.append(nr)
         prev_nr = nr
-    print("result", result)
+    return result
 
 
 print(remove_duplicate([1, 1, 2, 2, 3, 1, 1, 3]))  # == [1, 2, 3])
