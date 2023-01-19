@@ -388,6 +388,7 @@ def recursive_sum(list_of_numbers):
 
 print(recursive_sum([1, 2, 3]))
 
+
 class Stargate:
     """
     Class Stargate.
@@ -472,7 +473,8 @@ class Stargate:
         if self.is_connected() is False:
             if self.has_dial_home_device:
                 if destination.has_dial_home_device:
-                    return True
+                    if destination is not self.planet_name:
+                        return True
         return False
 
     def disconnect(self):
@@ -519,7 +521,7 @@ class Student:
         :param subject: the subject to be added to the curriculum.
         :param eap: how many EAPs the subject is worth.
         """
-        pass
+        self.curriculum.add_subject(subject)
 
     def add_grade(self, subject, grade):
         """
@@ -532,7 +534,7 @@ class Student:
         :param subject: the subject for which the students has been given a grade.
         :param grade: the grade the student received. Must be between 0-5 (both included).
         """
-        pass
+        self.curriculum.add_subject_grade(subject, grade)
 
     def get_subject_grade(self, subject):
         """
@@ -543,7 +545,7 @@ class Student:
         :param subject: the subject which grade to return.
         :return: the received grade or None.
         """
-        pass
+        return self.curriculum.get_grades(subject)
 
     def get_average_grade(self):
         """
@@ -743,3 +745,4 @@ class Curriculum:
     assert student.get_average_grade() == 3
 
     assert student.get_curriculum().get_subject("java") == subj3"""
+
