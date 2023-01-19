@@ -141,7 +141,6 @@ def string_between_string(word1, word2):
     :param word2: Word to reverse and insert. String.
     :return: New word as string.
     """
-    result_str = ""
     reversed_word2 = word2[::-1]
     if len(word1) == 0:
         return reversed_word2
@@ -172,8 +171,10 @@ def get_padded_string(string1, string2):
     :param string2:  String two
     :return: Padded string
     """
-    pass
+    result_str = string2 + string1 + string2
+    return result_str
 
+print(get_padded_string("pizza", "bbq"))  # == "bbqpizzabbq"
 
 def remove_duplicate(number_list):
     """
