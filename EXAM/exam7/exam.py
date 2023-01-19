@@ -395,14 +395,15 @@ class Stargate:
     initiates the disconnect).
     """
 
-    def __init__(self, planet_name, has_dial_home_device):
+    def __init__(self, planet_name: str, has_dial_home_device: bool):
         """
         Construct a new stargate.
 
         :param planet_name: The name of the planet the stargate is on. String
         :param has_dial_home_device: Does the stargate have a Dial Home Device. Boolean
         """
-        pass
+        self.planet_name = planet_name
+        self.has_dial_home_device = has_dial_home_device
 
     def get_planet_name(self):
         """
@@ -410,7 +411,7 @@ class Stargate:
 
         :return: The name of the planet the stargate is on. String
         """
-        pass
+        return self.planet_name
 
     def is_connected(self):
         """
@@ -418,7 +419,9 @@ class Stargate:
 
         :return: Is the stargate currently connected or not. Boolean
         """
-        pass
+        if self.has_dial_home_device:
+            return True
+        return False
 
     def get_connected_stargate(self):
         """
@@ -426,7 +429,9 @@ class Stargate:
 
         :return: The stargate this stargate is connected to. None if not connected. Stargate or None
         """
-        pass
+        if self.is_connected():
+            return Stargate
+        return None
 
     def get_connected_planet_name(self):
         """
@@ -434,7 +439,9 @@ class Stargate:
 
         :return: The name of the planet that the stargate that this stargate is connected to is on. None if not connected. String or None
         """
-        pass
+        if self.is_connected():
+            return self.planet_name
+        return None
 
     def dial(self, destination):
         """
