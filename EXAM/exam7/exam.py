@@ -49,13 +49,11 @@ def add_or_subtract(numbers):
     for num in numbers:
         # print(num)
         if num == 0:
-            print(num == 0)
             subtracting_mode = True
         if subtracting_mode:
             result_sum -= num
-            subtracting_mode = False
-            if subtracting_mode:
-                result_sum += num
+        else:
+            result_sum += num
     return result_sum
 
 
