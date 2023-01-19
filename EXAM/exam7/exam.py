@@ -45,21 +45,25 @@ def add_or_subtract(numbers):
     :return: the sum of all numbers.
     """
     result_sum = 0
-    subtracting_mode = False
+    if len(numbers) == 0:
+        return 0
     if 0 not in numbers:
         result_sum = sum(numbers)
-    for num in numbers:
-        if num == 0:
-            subtracting_mode = True
-            print("zero is founded", num)
-            print("div mode is on", num == 0)
-            print("current result is", result_sum)
-            for num1 in numbers:
-                if subtracting_mode:
-                    result_sum -= num1
-                else:
-                    result_sum += num1
-
+        return result_sum
+    else:
+        for num in numbers:
+            result_sum += num
+            print(num)
+            if num == 0:
+                subtracting_mode = True
+                print("zero is founded", num)
+                print("div mode is on", num == 0)
+                print("current result is", result_sum)
+                for num1 in numbers:
+                    if subtracting_mode:
+                        result_sum -= num1
+                    else:
+                        result_sum += num1
 
         return result_sum
 
