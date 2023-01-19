@@ -493,6 +493,7 @@ if __name__ == '__main__':
     assert sg2.get_connected_planet_name() is None
     assert sg2.dial(sg1) is False
 
+
 class Student:
     """Student class."""
 
@@ -502,7 +503,7 @@ class Student:
 
         :param curriculum: the students curriculum.
         """
-        pass
+        self.curriculum = curriculum
 
     def add_subject_to_curriculum(self, subject):
         """
@@ -586,7 +587,7 @@ class Subject:
 
         :return: nr of EAPs
         """
-        pass
+        return self.eaps
 
 
 class Curriculum:
