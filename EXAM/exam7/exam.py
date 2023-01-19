@@ -16,7 +16,7 @@ def segment_number(first_number, last_number):
     :return: list of numbers
     """
     five_div_list = []
-    for num in range(first_number, last_number):
+    for num in range(first_number, last_number + 1):
         if num % 5 == 0 and num % 3 != 0:
             five_div_list.append(num)
     return five_div_list
@@ -24,6 +24,7 @@ def segment_number(first_number, last_number):
 
 print(segment_number(1, 10))  # 5
 print(segment_number(1, 21))  # 5, 10, 20
+print(segment_number(-25, 55))
 
 
 def add_or_subtract(numbers):
@@ -48,7 +49,9 @@ def add_or_subtract(numbers):
     :param numbers: the list of number given.
     :return: the sum of all numbers.
     """
-    pass
+    subtracting_mode = False
+
+
 
 
 def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
