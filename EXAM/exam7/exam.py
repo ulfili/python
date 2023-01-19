@@ -197,14 +197,15 @@ def remove_duplicate(number_list):
     :return: new list
     """
     result = []
-    sorted_list = set(number_list)
-    print("sorted list :", sorted_list)
-    for elem in sorted_list:
-        result.append(elem)
+    for i in range(1, len(number_list) - 1):
+        if number_list[i] != number_list[i + 1] or number_list[i] != number_list[i - 1]:
+            result.append(number_list[i])
+    result = list(set(result))
     return result
+    # print("result list", result)
 
 
-print(remove_duplicate([1, 1, 2, 2, 3, 3]))  # == [1, 2, 3])
+print(remove_duplicate([1, 1, 2, 2, 3, 1, 1, 3]))  # == [1, 2, 3])
 
 
 def who_called(calls, name):
