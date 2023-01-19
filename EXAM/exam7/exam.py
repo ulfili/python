@@ -59,7 +59,8 @@ def add_or_subtract(numbers):
     return result_sum
 
 
-print("_____________________________")
+print(add_or_subtract([4, 0, 2, 3]))
+print(add_or_subtract([0, 1, 1]))
 
 
 def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
@@ -198,14 +199,15 @@ def remove_duplicate(number_list):
     :return: new list
     """
     result = []
-    sorted_list = set(number_list)
-    print("sorted list :", sorted_list)
-    for elem in sorted_list:
-        result.append(elem)
-    return result
+    prev_nr = 0
+    for nr in number_list:
+        if nr != prev_nr:
+            result.append(nr)
+        prev_nr = nr
+    print("result", result)
 
 
-print(remove_duplicate([1, 1, 2, 2, 3, 3]))  # == [1, 2, 3])
+print(remove_duplicate([1, 1, 2, 2, 3, 1, 1, 3]))  # == [1, 2, 3])
 
 
 def who_called(calls, name):
