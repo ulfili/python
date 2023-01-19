@@ -198,6 +198,8 @@ def remove_duplicate(number_list):
     :param number_list: input list
     :return: new list
     """
+    if len(number_list) == 0:
+        return []
     result = []
     prev_nr = 0
     for nr in number_list:
@@ -208,6 +210,8 @@ def remove_duplicate(number_list):
 
 
 print(remove_duplicate([1, 1, 2, 2, 3, 1, 1, 3]))  # == [1, 2, 3])
+print(remove_duplicate([]))  # == []
+
 
 
 def who_called(calls, name):
