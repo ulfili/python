@@ -86,6 +86,8 @@ def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
         if really_tired is False:
             if first_class_is_programming is False:
                 return True
+            if first_class_is_programming:
+                return True
         if really_tired:
             if first_class_is_programming:
                 return True
@@ -95,7 +97,8 @@ def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
         return False
 
 
-print(should_get_up_early(True, False, False))
+print(should_get_up_early(True, False, True))
+
 
 
 
