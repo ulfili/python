@@ -288,7 +288,15 @@ def show_highest_grade(grade1, grade2):
     :param grade2:
     :return:
     """
-    pass
+    highest_grade = "Highest grade: "
+    if grade1 > grade2:
+        return highest_grade + str(grade1)
+    return highest_grade + str(grade2)
+
+
+print(show_highest_grade(3, 4))  # 4
+print(show_highest_grade(5, 4))  # 4
+
 
 
 def transactions(transaction_string):
