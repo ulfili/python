@@ -228,12 +228,13 @@ def who_called(calls, name):
 
         if name in v:
             caller = k
-
+    if name not in calls:
+        return -1
     return caller
 
-print(who_called({"Alex": "James", "Jeff": "Bill", "James": "Alex", "Daniel": "Matt"}, "Alex"))   #  == James
-#print(who_called({"Daniel": "Matt"}, "Alex"))   #  == -1
 
+print(who_called({"Alex": "James", "Jeff": "Bill", "James": "Alex", "Daniel": "Matt"}, "Alex"))   # == James
+print(who_called({"Daniel": "Matt"}, "Alex"))   # == -1
 
 
 def remove_lowest_digit(number):
