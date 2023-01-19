@@ -224,7 +224,7 @@ def who_called(calls, name):
         return -1
     caller = ""
     for k, v in calls.items():
-        print("Caller :", k, "  called: ", v)
+        # print("Caller :", k, "  called: ", v)
 
         if name in v:
             caller = k
@@ -255,6 +255,8 @@ def remove_lowest_digit(number):
     """
     number_list = []
     result_nr = ""
+    if len(str(number)) == 1:
+        return 0
 
     for num in str(number):
         number_list.append(int(num))
@@ -268,7 +270,7 @@ def remove_lowest_digit(number):
     return int(result_nr)
 
 
-print(remove_lowest_digit(171))  # == 71)
+print(remove_lowest_digit(1))  # == 71)
 
 
 def show_highest_grade(grade1, grade2):
@@ -295,8 +297,7 @@ def show_highest_grade(grade1, grade2):
 
 
 print(show_highest_grade(3, 4))  # 4
-print(show_highest_grade(5, 4))  # 4
-
+print(show_highest_grade(10, 14))  # 4
 
 
 def transactions(transaction_string):
