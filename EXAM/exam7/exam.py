@@ -202,6 +202,9 @@ def remove_duplicate(number_list):
     pass
 
 
+# print(remove_duplicate([1, 1, 2, 2, 3, 3])) # == [1, 2, 3])
+
+
 def who_called(calls, name):
     """
     Who called.
@@ -217,7 +220,20 @@ def who_called(calls, name):
     :param name: name of the receiver
     :return: name of the caller
     """
-    pass
+    if len(calls) == 0:
+        return -1
+    caller = ""
+    for k, v in calls.items():
+        print("Caller :", k, "  called: ", v)
+
+        if name in v:
+            caller = k
+
+    return caller
+
+print(who_called({"Alex": "James", "Jeff": "Bill", "James": "Alex", "Daniel": "Matt"}, "Alex"))   #  == James
+#print(who_called({"Daniel": "Matt"}, "Alex"))   #  == -1
+
 
 
 def remove_lowest_digit(number):
