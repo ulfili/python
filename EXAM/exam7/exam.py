@@ -97,10 +97,7 @@ def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
         return False
 
 
-print(should_get_up_early(True, False, True))
-
-
-
+# print(should_get_up_early(False, True, True))
 
 
 def pear_fear(pears, people):
@@ -118,7 +115,18 @@ def pear_fear(pears, people):
     :param people:
     :return:
     """
-    pass
+
+    if people <= 2:
+        pears_per_pers = pears // people
+    else:
+        new_people = people - (people // 3)
+        print(new_people)
+        pears_per_pers = pears // new_people
+    return pears_per_pers
+
+
+print(pear_fear(4, 2))  # 2
+print(pear_fear(8, 6))  # 2
 
 
 def string_between_string(word1, word2):
