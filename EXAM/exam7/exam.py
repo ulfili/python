@@ -22,11 +22,6 @@ def segment_number(first_number, last_number):
     return five_div_list
 
 
-print(segment_number(1, 10))  # 5
-print(segment_number(1, 21))  # 5, 10, 20
-print(segment_number(-25, 55))
-
-
 def add_or_subtract(numbers):
     """
     Add or subtract.
@@ -49,19 +44,22 @@ def add_or_subtract(numbers):
     :param numbers: the list of number given.
     :return: the sum of all numbers.
     """
+
     result_sum = 0
     subtracting_mode = False
     for num in numbers:
-        print(num)
+        # print(num)
         if num == 0:
             subtracting_mode = True
         if subtracting_mode:
             result_sum -= num
-        result_sum += num
+        else:
+            result_sum += num
     return result_sum
 
 
 print(add_or_subtract([1, 2, 0, 3, 0, 4]))  # 1 + 2 - 3 + 4
+print("_____________________________")
 
 
 def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
@@ -207,7 +205,7 @@ def remove_duplicate(number_list):
     return result
 
 
-print(remove_duplicate([1, 1, 2, 2, 3, 3])) # == [1, 2, 3])
+print(remove_duplicate([1, 1, 2, 2, 3, 3]))  # == [1, 2, 3])
 
 
 def who_called(calls, name):
@@ -480,8 +478,9 @@ class Stargate:
         """
         pass
 
+
 if __name__ == '__main__':
-  # OOP1 - stargate
+    # OOP1 - stargate
 
     sg1 = Stargate("Earth", True)
     sg2 = Stargate("Another planet", False)
