@@ -224,11 +224,10 @@ def who_called(calls, name):
         return -1
     caller = ""
     for k, v in calls.items():
-        # print("Caller :", k, "  called: ", v)
-
+        print("Caller :", k, "  called: ", v)
         if name in v:
             caller = k
-    if name not in calls:
+    if caller is "":
         return -1
     return caller
 
