@@ -198,12 +198,11 @@ def remove_duplicate(number_list):
     :return: new list
     """
     result = []
-    sorted_list = set(number_list)
-    print("sorted list :", sorted_list)
-    for elem in sorted_list:
-        result.append(elem)
-    return result
-
+    for num in number_list:
+        if num in result:
+            result.remove(num)
+        result.append(num)
+    print("DUPLICATES", result)
 
 print(remove_duplicate([1, 1, 2, 2, 3, 3]))  # == [1, 2, 3])
 
