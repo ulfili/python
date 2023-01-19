@@ -291,15 +291,19 @@ def show_highest_grade(grade1, grade2):
     """
 
     highest_grade = "Highest grade: "
-    if grade1 > grade2 > 0:
+    if grade1 > grade2 >= 1:
         print(highest_grade + str(grade1))
-    if 0 < grade1 < grade2:
+    if 1 <= grade1 < grade2:
         print(highest_grade + str(grade2))
+    if grade1 == 0 and grade2 > 0:
+        print(highest_grade + str(grade2))
+    if grade2 == 0 and grade1 > 0:
+        print(highest_grade + str(grade1))
     return None
 
 
 print(show_highest_grade(3, 4))  # 4
-print(show_highest_grade(10, 14))  # 4
+print(show_highest_grade(0, 14))  # 4
 
 
 def transactions(transaction_string):
