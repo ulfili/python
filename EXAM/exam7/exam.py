@@ -405,6 +405,10 @@ class Stargate:
         self.planet_name = planet_name
         self.has_dial_home_device = has_dial_home_device
 
+    def __repr__(self):
+        """Repr."""
+        return "Planet name: " + self.planet_name
+
     def get_planet_name(self):
         """
         Get planet name.
