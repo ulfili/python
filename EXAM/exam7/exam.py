@@ -44,33 +44,20 @@ def add_or_subtract(numbers):
     :param numbers: the list of number given.
     :return: the sum of all numbers.
     """
-    result_sum = 0
     if len(numbers) == 0:
         return 0
-    if 0 not in numbers:
-        result_sum = sum(numbers)
-        return result_sum
-    else:
-        for num in numbers:
+    result_sum = 0
+    subtracting_mode = False
+    for num in numbers:
+        # print(num)
+        if num == 0:
+            subtracting_mode = True
+        if subtracting_mode:
+            result_sum -= num
+        else:
             result_sum += num
-            print(num)
-            if num == 0:
-                subtracting_mode = True
-                print("zero is founded", num)
-                print("div mode is on", num == 0)
-                print("current result is", result_sum)
-                for num1 in numbers:
-                    if subtracting_mode:
-                        result_sum -= num1
-                    else:
-                        result_sum += num1
+    return result_sum
 
-        return result_sum
-
-print(add_or_subtract([1, 2, 0, 3, 0, 4]))  # 1 + 2 - 3 + 4 = 4
-#print(add_or_subtract([0, 1, 1, 1]))  # -3
-#print(add_or_subtract([1, 2, 3]))  # 6
-#print(add_or_subtract([1, 2, 0, 3]))  # 6
 
 print("_____________________________")
 
