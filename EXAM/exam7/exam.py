@@ -291,8 +291,9 @@ def show_highest_grade(grade1, grade2):
     """
     highest_grade = "Highest grade: "
     if grade1 > grade2:
-        return highest_grade + str(grade1)
-    return highest_grade + str(grade2)
+        print(highest_grade + str(grade1))
+    print(highest_grade + str(grade2))
+    return None
 
 
 print(show_highest_grade(3, 4))  # 4
