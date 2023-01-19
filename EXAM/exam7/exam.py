@@ -114,7 +114,6 @@ def pear_fear(pears, people):
     :param people:
     :return:
     """
-
     if people <= 2:
         pears_per_pers = pears // people
     else:
@@ -297,7 +296,6 @@ def show_highest_grade(grade1, grade2):
     :param grade2:
     :return:
     """
-
     highest_grade = "Highest grade: "
     if grade1 > grade2 >= 1:
         print(highest_grade + str(grade1))
