@@ -61,7 +61,7 @@ def add_or_subtract(numbers):
     return result_sum
 
 
-# print(add_or_subtract([1, 2, 0, 3, 0, 4]))  # 1 + 2 - 3 + 4
+print(add_or_subtract([1, 2, 0, 3, 0, 4]))  # 1 + 2 - 3 + 4
 
 
 def should_get_up_early(is_weekday, really_tired, first_class_is_programming):
@@ -199,10 +199,15 @@ def remove_duplicate(number_list):
     :param number_list: input list
     :return: new list
     """
-    pass
+    result = []
+    sorted_list = set(number_list)
+    print("sorted list :", sorted_list)
+    for elem in sorted_list:
+        result.append(elem)
+    return result
 
 
-# print(remove_duplicate([1, 1, 2, 2, 3, 3])) # == [1, 2, 3])
+print(remove_duplicate([1, 1, 2, 2, 3, 3])) # == [1, 2, 3])
 
 
 def who_called(calls, name):
@@ -377,9 +382,8 @@ def recursive_sum(list_of_numbers):
     @param list_of_numbers: list of integers.
     @return: sum of numbers in list
     """
+    pass
 
-
-# print(recursive_sum([1, 2, 3]))   # == 6
 class Stargate:
     """
     Class Stargate.
